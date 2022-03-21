@@ -10,7 +10,6 @@ import {
   IconButton,
 } from '@chakra-ui/react'
 import { CopyIcon } from '@chakra-ui/icons'
-import useWindowSize from 'react-use/lib/useWindowSize'
 import { ellipseAddress, getChainData } from '../lib/utilities'
 
 configureLogger({ logLevel: 'DEBUG' })
@@ -208,8 +207,6 @@ export const Home = (): JSX.Element => {
   }, [provider, disconnect])
 
   const chainData = getChainData(chainId)
-
-  const { width, height } = useWindowSize()
 
   return (
     <>
