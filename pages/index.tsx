@@ -8,13 +8,19 @@ import { useCallback, useEffect, useReducer, useState } from 'react'
 import {
   Button,
   IconButton,
+  Input,
+  Center,
 } from '@chakra-ui/react'
 import { CopyIcon } from '@chakra-ui/icons'
 import { ellipseAddress, getChainData } from '../lib/utilities'
+import lens from '../lib/lens'
+import { CreateProfileDataStruct } from '../lib/typechain-types/LensHub'
+import MainPage from '../components/MainPage'
 
 configureLogger({ logLevel: 'DEBUG' })
 
 const INFURA_ID = '6ae5bd1d600f40048725736711ef4acb'
+const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
 const providerOptions = {
   sequence: {
@@ -115,7 +121,9 @@ export const Home = (): JSX.Element => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const { provider, web3Provider, address, chainId } = state
   const [isLoading, setLoading] = useState(false)
-
+  const [handle, setHandle] = useState('')
+  const [profile, setProfile] = useState(null)
+  
   const connect = useCallback(async function () {
     const provider = await web3Modal.connect()
     const web3Provider = new ethers.providers.Web3Provider(provider)
@@ -152,14 +160,31 @@ export const Home = (): JSX.Element => {
     [provider]
   )
 
-  const login = async function () {
+  const loginLens = async function () {
     if (!address) {
       alert('Please connect wallet')
       return
     }
+    if (!handle) {
+      alert('Please input handle')
+      return
+    }
     setLoading(true)
     try {
-      //
+      const profile: CreateProfileDataStruct = {
+        to: address,
+        handle,
+        imageURI:
+            'https://ipfs.fleek.co/ipfs/ghostplantghostplantghostplantghostplantghostplantghostplan',
+        followModule: ZERO_ADDRESS,
+        followModuleData: [],
+        followNFTURI:
+            'https://ipfs.fleek.co/ipfs/ghostplantghostplantghostplantghostplantghostplantghostplan',
+    }
+      const res = await lens.createProfile(web3Provider.getSigner(), profile)
+      // eslint-disable-next-line no-console
+      console.log({ res })
+      setProfile(res)
     } finally {
       setLoading(false)
     }
@@ -210,7 +235,7 @@ export const Home = (): JSX.Element => {
 
   return (
     <>
-      <div className="container bg-gray-100 font-body">
+      <div className="container font-body">
         <Head>
           <title>Certificates | Akashic Records</title>
           <link rel="icon" href="/favicon.ico" />
@@ -220,6 +245,11 @@ export const Home = (): JSX.Element => {
           {address && (
             <div className="grid">
               <div>
+                {profile ? (
+                  <div>
+                    <p className="mb-1">🌱 {profile?.handle}</p>
+                  </div>
+                ) : null}
                 <div>
                   <p className="mb-1">
                     👤 {ellipseAddress(address)}
@@ -248,16 +278,35 @@ export const Home = (): JSX.Element => {
         </header>
 
         <main className='section'>
-          <div className="p-8 title">Lens Mandala</div>
-
-          {web3Provider ? (
-            <Button isLoading={isLoading} colorScheme='red' variant='solid' onClick={login} size="lg">
-              Login Lens
-            </Button>
+          {web3Provider && !profile ? (
+            <>
+              <Center>
+                <Input
+                  maxWidth="200px"
+                  value={handle}
+                  onChange={(event) => setHandle(event.target.value)}
+                  placeholder='Your Handle'
+                  size='md'
+                  variant='outline'
+                  className='mt-12 mb-4'
+                />
+              </Center>
+              <Button isLoading={isLoading} colorScheme="red" variant="solid" onClick={loginLens} size="lg">
+                Sign In/Up
+              </Button>
+            </>
+          ) : web3Provider && profile ? (
+            <div className="mt-8 mb-8">
+              <MainPage profile={profile} signer={web3Provider.getSigner()} />
+            </div>
           ) : !web3Provider ? (
-            <Button colorScheme='red' variant='solid' onClick={connect} size="lg">
-              Connect Wallet
-            </Button>
+            <>
+              <div className="p-8 title">Lens Mandala</div>
+
+              <Button colorScheme='red' variant='solid' onClick={connect} size="lg">
+                Connect Wallet
+              </Button>
+            </>
           ) : null}
         </main>
 
