@@ -209,6 +209,38 @@ const supportedChains: IChainData[] = [
       balance: '',
     },
   },
+  {
+    name: 'Localhost 8545',
+    short_name: 'localhost',
+    chain: 'localhost',
+    network: 'localhost',
+    chain_id: 31337,
+    network_id: 31337,
+    rpc_url: 'http://localhost:8545',
+    native_currency: {
+      symbol: 'ETH',
+      name: 'ETH',
+      decimals: '18',
+      contractAddress: '',
+      balance: '',
+    },
+  },
+  {
+    name: 'Localhost 8545',
+    short_name: 'localhost',
+    chain: 'localhost',
+    network: 'localhost',
+    chain_id: 1337,
+    network_id: 1337,
+    rpc_url: 'http://localhost:8545',
+    native_currency: {
+      symbol: 'ETH',
+      name: 'ETH',
+      decimals: '18',
+      contractAddress: '',
+      balance: '',
+    },
+  },
 ]
 
 export default supportedChains
