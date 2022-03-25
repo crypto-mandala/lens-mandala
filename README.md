@@ -53,7 +53,7 @@ $ USERID=$UID docker-compose down
 
 ### Addresses
 
-### Localhost
+#### Localhost
 
 | #   | Type       | Address                                    | Private Key                                                        |
 | --- | ---------- | ------------------------------------------ | ------------------------------------------------------------------ |
