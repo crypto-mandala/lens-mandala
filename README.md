@@ -75,6 +75,8 @@ $ USERID=$UID docker-compose down
 | 2   | treasury   | 0x1158b33c4475e69615272B416c48281365FfFC71 | 0x61938fd49ffe065d8a95efb64e354b5e332f879611a46a288948a50eb8e95ac9 |
 | 3   | user       | 0x19908A43C5A69DF06F854B4f89BDb7B2DcA7746d | 0x87781e21054c1addaf03036514a253c91229ec46b0cb4ae8f74862cbff5fea11 |
 
+Mnemonic: `derive monkey umbrella trouble wagon order limb victory tourist cement loop wheel`
+
 ```
 {
   "lensHub proxy": "0xE00dc8CB3a7c3F8E5ab5286Afabb0c2D1054187b",
