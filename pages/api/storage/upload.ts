@@ -15,6 +15,7 @@ const handler = async (
     case 'POST':
       // eslint-disable-next-line no-case-declarations
       // const cid = await lighthouse.upload(json.toString())
+      // eslint-disable-next-line no-case-declarations
       const cid = await pinata.upload(json)
       res.status(200).json(cid)
       // eslint-disable-next-line no-console
