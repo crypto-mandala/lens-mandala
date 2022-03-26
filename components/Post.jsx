@@ -4,15 +4,16 @@ import { FaRetweet } from 'react-icons/fa'
 import { FcLikePlaceholder } from 'react-icons/fc'
 import { FiShare } from 'react-icons/fi'
 
-function Post({ displayName, username, text }) {
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+const Post = ({ handle, imageURI, text }) => {
   return (
     <>
       <div className="hover:bg-slate-100 border-b-2 cursor-pointer pt-4 pb-2">
         <div className="flex flex-row px-5 mt-1 ">
-          <img src={username} className="w-12 h-12 rounded-full" alt="" />
+          <img src={imageURI} className="w-12 h-12 rounded-full" alt="" />
 
           <div>
-            <p className="font-semibold ml-3 flex flex-row">{displayName} </p>
+            <p className="font-semibold ml-3 flex flex-row">{handle} </p>
             <div className="ml-3 flex flex-col"> {text}</div>
           </div>
         </div>

@@ -1,7 +1,8 @@
 import Homesection from './homesection'
 import Leftside from './Leftside'
 
-function MainPage({ profile, signer }) {
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+const MainPage = ({ profile, signer }) => {
   return (
     // <div style={{boxShadow: '5px 10px 20px rgba(0,0,0,0.25)'}}>
     <div style={{border: 'solid', borderColor: '#E2E8F0', borderBottomStyle: 'none'}}>
