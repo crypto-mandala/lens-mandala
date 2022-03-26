@@ -8,10 +8,10 @@ import {
 } from 'ethers'
 import { LensHub__factory } from './typechain-types'
 import {
-    CreateProfileDataStruct,
-    ProfileStructStructOutput,
-    PostDataStruct,
-    MirrorDataStruct
+  CreateProfileDataStruct,
+  ProfileStructStructOutput,
+  PostDataStruct,
+  MirrorDataStruct,
 } from './typechain-types/LensHub'
 
 const addrs = require('./addresses.json')
@@ -66,55 +66,65 @@ class Lens {
   }
 
   async getProfileIdByHandle(handle: string): Promise<BigNumber> {
-    const lensHub = LensHub__factory.connect(addrs['lensHub proxy'], adminSigner)
+    const lensHub = LensHub__factory.connect(
+      addrs['lensHub proxy'],
+      adminSigner
+    )
     return await lensHub.getProfileIdByHandle(handle)
   }
 
-    async post(profileId: BigNumber, userSigner: Signer, postData: PostDataStruct) {
-        const lensHub = LensHub__factory.connect(addrs['lensHub proxy'], userSigner)
-        const tx = await lensHub.connect(userSigner).post(postData)
-        await tx.wait()
-        const pubCount = await lensHub.getPubCount(profileId)
-        const pub = await lensHub.getPub(profileId, pubCount.sub(BigNumber.from(1)))
-        // eslint-disable-next-line no-console
-        console.log({ pub })
-        return { txHash: tx.hash, pub }
-    }
+  async post(
+    profileId: BigNumber,
+    userSigner: Signer,
+    postData: PostDataStruct
+  ) {
+    const lensHub = LensHub__factory.connect(addrs['lensHub proxy'], userSigner)
+    const tx = await lensHub.connect(userSigner).post(postData)
+    await tx.wait()
+    const pubCount = await lensHub.getPubCount(profileId)
+    const pub = await lensHub.getPub(profileId, pubCount.sub(BigNumber.from(1)))
+    // eslint-disable-next-line no-console
+    console.log({ pub })
+    return { txHash: tx.hash, pub }
+  }
 
-    async mirror(userSigner: Signer, mirrorData: MirrorDataStruct) {
-        const lensHub = LensHub__factory.connect(addrs['lensHub proxy'], userSigner)
-        const tx = await lensHub.mirror(mirrorData)
-        await tx.wait()
-        const pubCount = await lensHub.getPubCount(mirrorData.profileId)
-        const pub = await lensHub.getPub(mirrorData.profileId, pubCount.sub(BigNumber.from(1)))
-        // eslint-disable-next-line no-console
-        console.log({ pub }) 
-        return { txHash: tx.hash, pub }
-    }
+  async mirror(userSigner: Signer, mirrorData: MirrorDataStruct) {
+    const lensHub = LensHub__factory.connect(addrs['lensHub proxy'], userSigner)
+    const tx = await lensHub.mirror(mirrorData)
+    await tx.wait()
+    const pubCount = await lensHub.getPubCount(mirrorData.profileId)
+    const pub = await lensHub.getPub(
+      mirrorData.profileId,
+      pubCount.sub(BigNumber.from(1))
+    )
+    // eslint-disable-next-line no-console
+    console.log({ pub })
+    return { txHash: tx.hash, pub }
+  }
 
-    async collect(userSigner: Signer, { profileId, pubId , data }) {
-        const lensHub = LensHub__factory.connect(addrs['lensHub proxy'], userSigner)
+  async collect(userSigner: Signer, { profileId, pubId, data }) {
+    const lensHub = LensHub__factory.connect(addrs['lensHub proxy'], userSigner)
 
-        const pubCount1 = await lensHub.getPubCount(profileId)
-        // eslint-disable-next-line no-console
-        console.log({pubCount1})
-        
-        let tx
-        try {
-            tx = await lensHub.connect(userSigner).collect(profileId, pubId, data)
-            await tx.wait()
-        } catch (e) {
-            // If you are not following that person, it will fail with an error
-            await waitForTx(lensHub.follow([profileId], [[]]));
-            tx = await lensHub.connect(userSigner).collect(profileId, pubId, data)
-        }
-        await tx.wait()
-        const pubCount = await lensHub.getPubCount(profileId)
-        const pub = await lensHub.getPub(profileId, pubCount.sub(BigNumber.from(1)))
-        // eslint-disable-next-line no-console
-        console.log({ pub })
-        return { txHash: tx.hash, pub }
+    const pubCount1 = await lensHub.getPubCount(profileId)
+    // eslint-disable-next-line no-console
+    console.log({ pubCount1 })
+
+    let tx
+    try {
+      tx = await lensHub.connect(userSigner).collect(profileId, pubId, data)
+      await tx.wait()
+    } catch (e) {
+      // If you are not following that person, it will fail with an error
+      await waitForTx(lensHub.follow([profileId], [[]]))
+      tx = await lensHub.connect(userSigner).collect(profileId, pubId, data)
     }
+    await tx.wait()
+    const pubCount = await lensHub.getPubCount(profileId)
+    const pub = await lensHub.getPub(profileId, pubCount.sub(BigNumber.from(1)))
+    // eslint-disable-next-line no-console
+    console.log({ pub })
+    return { txHash: tx.hash, pub }
+  }
 
   async getProfile(profileId: BigNumber): Promise<ProfileStructStructOutput> {
     const lensHub = LensHub__factory.connect(

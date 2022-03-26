@@ -50,11 +50,11 @@ const Post = ({ handle, imageURI, pubId, message, signer, currentHandle }) => {
         </div>
 
         <div className="flex flex-row justify-around ml-4  mt-8 m-2 ">
-          <Button variant='ghost' size='md' onClick={comment}>
+          <Button variant="ghost" size="md" onClick={comment}>
             <FaRegComment size={20} />
           </Button>
 
-          <Button variant='ghost' size='md' onClick={mirror}>
+          <Button variant="ghost" size="md" onClick={mirror}>
             <FaRetweet size={20} />
           </Button>
 
@@ -62,7 +62,7 @@ const Post = ({ handle, imageURI, pubId, message, signer, currentHandle }) => {
             <FcLikePlaceholder size={20} />
           </Button> */}
 
-          <Button variant='ghost' size='md' onClick={collect}>
+          <Button variant="ghost" size="md" onClick={collect}>
             <FiDownload size={20} />
           </Button>
         </div>

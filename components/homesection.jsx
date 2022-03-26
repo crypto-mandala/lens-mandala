@@ -22,7 +22,7 @@ const uploadContent = async (profileId, handle, message) => {
     // tx_hash: "0x123456678"
   }
   const res = await axios.post('/api/storage/upload', {
-    json: JSON.stringify(contentJson)
+    json: JSON.stringify(contentJson),
   })
   const ipfsCID = res.data
   return ipfsCID
@@ -56,8 +56,8 @@ const homesection = ({ profile, signer }) => {
         handle: 'user1',
         imageURI: imageURIs[Math.floor(Math.random() * imageURIs.length)],
         pubId: 2,
-        message: 'Hello'
-      }
+        message: 'Hello',
+      },
     ])
   }, [])
 
@@ -79,7 +79,7 @@ const homesection = ({ profile, signer }) => {
       referenceModuleData: [],
     }
     const { txHash, pub } = await lens.post(profileId, signer, postData)
-    
+
     settweetMessage('')
   }
   return (
