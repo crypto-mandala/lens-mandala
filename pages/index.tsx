@@ -251,7 +251,7 @@ export const Home = (): JSX.Element => {
     <>
       <div className="container font-body">
         <Head>
-          <title>Certificates | Akashic Records</title>
+          <title>Lens Mandala</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
