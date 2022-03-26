@@ -2,143 +2,141 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, Signer, utils } from "ethers";
-import { Provider } from "@ethersproject/providers";
+import { Contract, Signer, utils } from 'ethers'
+import { Provider } from '@ethersproject/providers'
 import type {
   FollowValidatorFollowModuleBase,
   FollowValidatorFollowModuleBaseInterface,
-} from "../FollowValidatorFollowModuleBase";
+} from '../FollowValidatorFollowModuleBase'
 
 const _abi = [
   {
     inputs: [],
-    name: "FollowInvalid",
-    type: "error",
+    name: 'FollowInvalid',
+    type: 'error',
   },
   {
     inputs: [],
-    name: "InitParamsInvalid",
-    type: "error",
+    name: 'InitParamsInvalid',
+    type: 'error',
   },
   {
     inputs: [],
-    name: "HUB",
+    name: 'HUB',
     outputs: [
       {
-        internalType: "address",
-        name: "",
-        type: "address",
+        internalType: 'address',
+        name: '',
+        type: 'address',
       },
     ],
-    stateMutability: "view",
-    type: "function",
+    stateMutability: 'view',
+    type: 'function',
   },
   {
     inputs: [
       {
-        internalType: "uint256",
-        name: "profileId",
-        type: "uint256",
+        internalType: 'uint256',
+        name: 'profileId',
+        type: 'uint256',
       },
       {
-        internalType: "address",
-        name: "from",
-        type: "address",
+        internalType: 'address',
+        name: 'from',
+        type: 'address',
       },
       {
-        internalType: "address",
-        name: "to",
-        type: "address",
+        internalType: 'address',
+        name: 'to',
+        type: 'address',
       },
       {
-        internalType: "uint256",
-        name: "followNFTTokenId",
-        type: "uint256",
+        internalType: 'uint256',
+        name: 'followNFTTokenId',
+        type: 'uint256',
       },
     ],
-    name: "followModuleTransferHook",
+    name: 'followModuleTransferHook',
     outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
+    stateMutability: 'nonpayable',
+    type: 'function',
   },
   {
     inputs: [
       {
-        internalType: "uint256",
-        name: "profileId",
-        type: "uint256",
+        internalType: 'uint256',
+        name: 'profileId',
+        type: 'uint256',
       },
       {
-        internalType: "bytes",
-        name: "data",
-        type: "bytes",
+        internalType: 'bytes',
+        name: 'data',
+        type: 'bytes',
       },
     ],
-    name: "initializeFollowModule",
+    name: 'initializeFollowModule',
     outputs: [
       {
-        internalType: "bytes",
-        name: "",
-        type: "bytes",
+        internalType: 'bytes',
+        name: '',
+        type: 'bytes',
       },
     ],
-    stateMutability: "nonpayable",
-    type: "function",
+    stateMutability: 'nonpayable',
+    type: 'function',
   },
   {
     inputs: [
       {
-        internalType: "address",
-        name: "follower",
-        type: "address",
+        internalType: 'address',
+        name: 'follower',
+        type: 'address',
       },
       {
-        internalType: "uint256",
-        name: "profileId",
-        type: "uint256",
+        internalType: 'uint256',
+        name: 'profileId',
+        type: 'uint256',
       },
       {
-        internalType: "bytes",
-        name: "data",
-        type: "bytes",
+        internalType: 'bytes',
+        name: 'data',
+        type: 'bytes',
       },
     ],
-    name: "processFollow",
+    name: 'processFollow',
     outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
+    stateMutability: 'nonpayable',
+    type: 'function',
   },
   {
     inputs: [
       {
-        internalType: "uint256",
-        name: "profileId",
-        type: "uint256",
+        internalType: 'uint256',
+        name: 'profileId',
+        type: 'uint256',
       },
       {
-        internalType: "address",
-        name: "follower",
-        type: "address",
+        internalType: 'address',
+        name: 'follower',
+        type: 'address',
       },
       {
-        internalType: "uint256",
-        name: "followNFTTokenId",
-        type: "uint256",
+        internalType: 'uint256',
+        name: 'followNFTTokenId',
+        type: 'uint256',
       },
     ],
-    name: "validateFollow",
+    name: 'validateFollow',
     outputs: [],
-    stateMutability: "view",
-    type: "function",
+    stateMutability: 'view',
+    type: 'function',
   },
-];
+]
 
 export class FollowValidatorFollowModuleBase__factory {
-  static readonly abi = _abi;
+  static readonly abi = _abi
   static createInterface(): FollowValidatorFollowModuleBaseInterface {
-    return new utils.Interface(
-      _abi
-    ) as FollowValidatorFollowModuleBaseInterface;
+    return new utils.Interface(_abi) as FollowValidatorFollowModuleBaseInterface
   }
   static connect(
     address: string,
@@ -148,6 +146,6 @@ export class FollowValidatorFollowModuleBase__factory {
       address,
       _abi,
       signerOrProvider
-    ) as FollowValidatorFollowModuleBase;
+    ) as FollowValidatorFollowModuleBase
   }
 }

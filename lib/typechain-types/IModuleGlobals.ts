@@ -12,298 +12,292 @@ import {
   PopulatedTransaction,
   Signer,
   utils,
-} from "ethers";
-import { FunctionFragment, Result } from "@ethersproject/abi";
-import { Listener, Provider } from "@ethersproject/providers";
-import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from "./common";
+} from 'ethers'
+import { FunctionFragment, Result } from '@ethersproject/abi'
+import { Listener, Provider } from '@ethersproject/providers'
+import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from './common'
 
 export interface IModuleGlobalsInterface extends utils.Interface {
   functions: {
-    "getGovernance()": FunctionFragment;
-    "getTreasury()": FunctionFragment;
-    "getTreasuryData()": FunctionFragment;
-    "getTreasuryFee()": FunctionFragment;
-    "isCurrencyWhitelisted(address)": FunctionFragment;
-    "setGovernance(address)": FunctionFragment;
-    "setTreasury(address)": FunctionFragment;
-    "setTreasuryFee(uint16)": FunctionFragment;
-    "whitelistCurrency(address,bool)": FunctionFragment;
-  };
+    'getGovernance()': FunctionFragment
+    'getTreasury()': FunctionFragment
+    'getTreasuryData()': FunctionFragment
+    'getTreasuryFee()': FunctionFragment
+    'isCurrencyWhitelisted(address)': FunctionFragment
+    'setGovernance(address)': FunctionFragment
+    'setTreasury(address)': FunctionFragment
+    'setTreasuryFee(uint16)': FunctionFragment
+    'whitelistCurrency(address,bool)': FunctionFragment
+  }
 
   encodeFunctionData(
-    functionFragment: "getGovernance",
+    functionFragment: 'getGovernance',
     values?: undefined
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "getTreasury",
+    functionFragment: 'getTreasury',
     values?: undefined
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "getTreasuryData",
+    functionFragment: 'getTreasuryData',
     values?: undefined
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "getTreasuryFee",
+    functionFragment: 'getTreasuryFee',
     values?: undefined
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "isCurrencyWhitelisted",
+    functionFragment: 'isCurrencyWhitelisted',
     values: [string]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "setGovernance",
+    functionFragment: 'setGovernance',
     values: [string]
-  ): string;
-  encodeFunctionData(functionFragment: "setTreasury", values: [string]): string;
+  ): string
+  encodeFunctionData(functionFragment: 'setTreasury', values: [string]): string
   encodeFunctionData(
-    functionFragment: "setTreasuryFee",
+    functionFragment: 'setTreasuryFee',
     values: [BigNumberish]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "whitelistCurrency",
+    functionFragment: 'whitelistCurrency',
     values: [string, boolean]
-  ): string;
+  ): string
 
   decodeFunctionResult(
-    functionFragment: "getGovernance",
+    functionFragment: 'getGovernance',
     data: BytesLike
-  ): Result;
+  ): Result
+  decodeFunctionResult(functionFragment: 'getTreasury', data: BytesLike): Result
   decodeFunctionResult(
-    functionFragment: "getTreasury",
+    functionFragment: 'getTreasuryData',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "getTreasuryData",
+    functionFragment: 'getTreasuryFee',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "getTreasuryFee",
+    functionFragment: 'isCurrencyWhitelisted',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "isCurrencyWhitelisted",
+    functionFragment: 'setGovernance',
     data: BytesLike
-  ): Result;
+  ): Result
+  decodeFunctionResult(functionFragment: 'setTreasury', data: BytesLike): Result
   decodeFunctionResult(
-    functionFragment: "setGovernance",
+    functionFragment: 'setTreasuryFee',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "setTreasury",
+    functionFragment: 'whitelistCurrency',
     data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "setTreasuryFee",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "whitelistCurrency",
-    data: BytesLike
-  ): Result;
+  ): Result
 
-  events: {};
+  events: {}
 }
 
 export interface IModuleGlobals extends BaseContract {
-  connect(signerOrProvider: Signer | Provider | string): this;
-  attach(addressOrName: string): this;
-  deployed(): Promise<this>;
+  connect(signerOrProvider: Signer | Provider | string): this
+  attach(addressOrName: string): this
+  deployed(): Promise<this>
 
-  interface: IModuleGlobalsInterface;
+  interface: IModuleGlobalsInterface
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
     fromBlockOrBlockhash?: string | number | undefined,
     toBlock?: string | number | undefined
-  ): Promise<Array<TEvent>>;
+  ): Promise<Array<TEvent>>
 
   listeners<TEvent extends TypedEvent>(
     eventFilter?: TypedEventFilter<TEvent>
-  ): Array<TypedListener<TEvent>>;
-  listeners(eventName?: string): Array<Listener>;
+  ): Array<TypedListener<TEvent>>
+  listeners(eventName?: string): Array<Listener>
   removeAllListeners<TEvent extends TypedEvent>(
     eventFilter: TypedEventFilter<TEvent>
-  ): this;
-  removeAllListeners(eventName?: string): this;
-  off: OnEvent<this>;
-  on: OnEvent<this>;
-  once: OnEvent<this>;
-  removeListener: OnEvent<this>;
+  ): this
+  removeAllListeners(eventName?: string): this
+  off: OnEvent<this>
+  on: OnEvent<this>
+  once: OnEvent<this>
+  removeListener: OnEvent<this>
 
   functions: {
-    getGovernance(overrides?: CallOverrides): Promise<[string]>;
+    getGovernance(overrides?: CallOverrides): Promise<[string]>
 
-    getTreasury(overrides?: CallOverrides): Promise<[string]>;
+    getTreasury(overrides?: CallOverrides): Promise<[string]>
 
-    getTreasuryData(overrides?: CallOverrides): Promise<[string, number]>;
+    getTreasuryData(overrides?: CallOverrides): Promise<[string, number]>
 
-    getTreasuryFee(overrides?: CallOverrides): Promise<[number]>;
+    getTreasuryFee(overrides?: CallOverrides): Promise<[number]>
 
     isCurrencyWhitelisted(
       currency: string,
       overrides?: CallOverrides
-    ): Promise<[boolean]>;
+    ): Promise<[boolean]>
 
     setGovernance(
       newGovernance: string,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
     setTreasury(
       newTreasury: string,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
     setTreasuryFee(
       newTreasuryFee: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
     whitelistCurrency(
       currency: string,
       toWhitelist: boolean,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-  };
+    ): Promise<ContractTransaction>
+  }
 
-  getGovernance(overrides?: CallOverrides): Promise<string>;
+  getGovernance(overrides?: CallOverrides): Promise<string>
 
-  getTreasury(overrides?: CallOverrides): Promise<string>;
+  getTreasury(overrides?: CallOverrides): Promise<string>
 
-  getTreasuryData(overrides?: CallOverrides): Promise<[string, number]>;
+  getTreasuryData(overrides?: CallOverrides): Promise<[string, number]>
 
-  getTreasuryFee(overrides?: CallOverrides): Promise<number>;
+  getTreasuryFee(overrides?: CallOverrides): Promise<number>
 
   isCurrencyWhitelisted(
     currency: string,
     overrides?: CallOverrides
-  ): Promise<boolean>;
+  ): Promise<boolean>
 
   setGovernance(
     newGovernance: string,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   setTreasury(
     newTreasury: string,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   setTreasuryFee(
     newTreasuryFee: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   whitelistCurrency(
     currency: string,
     toWhitelist: boolean,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   callStatic: {
-    getGovernance(overrides?: CallOverrides): Promise<string>;
+    getGovernance(overrides?: CallOverrides): Promise<string>
 
-    getTreasury(overrides?: CallOverrides): Promise<string>;
+    getTreasury(overrides?: CallOverrides): Promise<string>
 
-    getTreasuryData(overrides?: CallOverrides): Promise<[string, number]>;
+    getTreasuryData(overrides?: CallOverrides): Promise<[string, number]>
 
-    getTreasuryFee(overrides?: CallOverrides): Promise<number>;
+    getTreasuryFee(overrides?: CallOverrides): Promise<number>
 
     isCurrencyWhitelisted(
       currency: string,
       overrides?: CallOverrides
-    ): Promise<boolean>;
+    ): Promise<boolean>
 
     setGovernance(
       newGovernance: string,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<void>
 
-    setTreasury(newTreasury: string, overrides?: CallOverrides): Promise<void>;
+    setTreasury(newTreasury: string, overrides?: CallOverrides): Promise<void>
 
     setTreasuryFee(
       newTreasuryFee: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<void>
 
     whitelistCurrency(
       currency: string,
       toWhitelist: boolean,
       overrides?: CallOverrides
-    ): Promise<void>;
-  };
+    ): Promise<void>
+  }
 
-  filters: {};
+  filters: {}
 
   estimateGas: {
-    getGovernance(overrides?: CallOverrides): Promise<BigNumber>;
+    getGovernance(overrides?: CallOverrides): Promise<BigNumber>
 
-    getTreasury(overrides?: CallOverrides): Promise<BigNumber>;
+    getTreasury(overrides?: CallOverrides): Promise<BigNumber>
 
-    getTreasuryData(overrides?: CallOverrides): Promise<BigNumber>;
+    getTreasuryData(overrides?: CallOverrides): Promise<BigNumber>
 
-    getTreasuryFee(overrides?: CallOverrides): Promise<BigNumber>;
+    getTreasuryFee(overrides?: CallOverrides): Promise<BigNumber>
 
     isCurrencyWhitelisted(
       currency: string,
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     setGovernance(
       newGovernance: string,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     setTreasury(
       newTreasury: string,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     setTreasuryFee(
       newTreasuryFee: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     whitelistCurrency(
       currency: string,
       toWhitelist: boolean,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-  };
+    ): Promise<BigNumber>
+  }
 
   populateTransaction: {
-    getGovernance(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    getGovernance(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
-    getTreasury(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    getTreasury(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
-    getTreasuryData(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    getTreasuryData(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
-    getTreasuryFee(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    getTreasuryFee(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
     isCurrencyWhitelisted(
       currency: string,
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     setGovernance(
       newGovernance: string,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     setTreasury(
       newTreasury: string,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     setTreasuryFee(
       newTreasuryFee: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     whitelistCurrency(
       currency: string,
       toWhitelist: boolean,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-  };
+    ): Promise<PopulatedTransaction>
+  }
 }

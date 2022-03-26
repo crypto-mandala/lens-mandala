@@ -2,120 +2,120 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, Signer, utils } from "ethers";
-import { Provider } from "@ethersproject/providers";
-import type { IFollowModule, IFollowModuleInterface } from "../IFollowModule";
+import { Contract, Signer, utils } from 'ethers'
+import { Provider } from '@ethersproject/providers'
+import type { IFollowModule, IFollowModuleInterface } from '../IFollowModule'
 
 const _abi = [
   {
     inputs: [
       {
-        internalType: "uint256",
-        name: "profileId",
-        type: "uint256",
+        internalType: 'uint256',
+        name: 'profileId',
+        type: 'uint256',
       },
       {
-        internalType: "address",
-        name: "from",
-        type: "address",
+        internalType: 'address',
+        name: 'from',
+        type: 'address',
       },
       {
-        internalType: "address",
-        name: "to",
-        type: "address",
+        internalType: 'address',
+        name: 'to',
+        type: 'address',
       },
       {
-        internalType: "uint256",
-        name: "followNFTTokenId",
-        type: "uint256",
+        internalType: 'uint256',
+        name: 'followNFTTokenId',
+        type: 'uint256',
       },
     ],
-    name: "followModuleTransferHook",
+    name: 'followModuleTransferHook',
     outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
+    stateMutability: 'nonpayable',
+    type: 'function',
   },
   {
     inputs: [
       {
-        internalType: "uint256",
-        name: "profileId",
-        type: "uint256",
+        internalType: 'uint256',
+        name: 'profileId',
+        type: 'uint256',
       },
       {
-        internalType: "bytes",
-        name: "data",
-        type: "bytes",
+        internalType: 'bytes',
+        name: 'data',
+        type: 'bytes',
       },
     ],
-    name: "initializeFollowModule",
+    name: 'initializeFollowModule',
     outputs: [
       {
-        internalType: "bytes",
-        name: "",
-        type: "bytes",
+        internalType: 'bytes',
+        name: '',
+        type: 'bytes',
       },
     ],
-    stateMutability: "nonpayable",
-    type: "function",
+    stateMutability: 'nonpayable',
+    type: 'function',
   },
   {
     inputs: [
       {
-        internalType: "address",
-        name: "follower",
-        type: "address",
+        internalType: 'address',
+        name: 'follower',
+        type: 'address',
       },
       {
-        internalType: "uint256",
-        name: "profileId",
-        type: "uint256",
+        internalType: 'uint256',
+        name: 'profileId',
+        type: 'uint256',
       },
       {
-        internalType: "bytes",
-        name: "data",
-        type: "bytes",
+        internalType: 'bytes',
+        name: 'data',
+        type: 'bytes',
       },
     ],
-    name: "processFollow",
+    name: 'processFollow',
     outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
+    stateMutability: 'nonpayable',
+    type: 'function',
   },
   {
     inputs: [
       {
-        internalType: "uint256",
-        name: "profileId",
-        type: "uint256",
+        internalType: 'uint256',
+        name: 'profileId',
+        type: 'uint256',
       },
       {
-        internalType: "address",
-        name: "follower",
-        type: "address",
+        internalType: 'address',
+        name: 'follower',
+        type: 'address',
       },
       {
-        internalType: "uint256",
-        name: "followNFTTokenId",
-        type: "uint256",
+        internalType: 'uint256',
+        name: 'followNFTTokenId',
+        type: 'uint256',
       },
     ],
-    name: "validateFollow",
+    name: 'validateFollow',
     outputs: [],
-    stateMutability: "view",
-    type: "function",
+    stateMutability: 'view',
+    type: 'function',
   },
-];
+]
 
 export class IFollowModule__factory {
-  static readonly abi = _abi;
+  static readonly abi = _abi
   static createInterface(): IFollowModuleInterface {
-    return new utils.Interface(_abi) as IFollowModuleInterface;
+    return new utils.Interface(_abi) as IFollowModuleInterface
   }
   static connect(
     address: string,
     signerOrProvider: Signer | Provider
   ): IFollowModule {
-    return new Contract(address, _abi, signerOrProvider) as IFollowModule;
+    return new Contract(address, _abi, signerOrProvider) as IFollowModule
   }
 }

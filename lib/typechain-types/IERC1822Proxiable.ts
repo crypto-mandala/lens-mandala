@@ -9,72 +9,72 @@ import {
   PopulatedTransaction,
   Signer,
   utils,
-} from "ethers";
-import { FunctionFragment, Result } from "@ethersproject/abi";
-import { Listener, Provider } from "@ethersproject/providers";
-import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from "./common";
+} from 'ethers'
+import { FunctionFragment, Result } from '@ethersproject/abi'
+import { Listener, Provider } from '@ethersproject/providers'
+import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from './common'
 
 export interface IERC1822ProxiableInterface extends utils.Interface {
   functions: {
-    "proxiableUUID()": FunctionFragment;
-  };
+    'proxiableUUID()': FunctionFragment
+  }
 
   encodeFunctionData(
-    functionFragment: "proxiableUUID",
+    functionFragment: 'proxiableUUID',
     values?: undefined
-  ): string;
+  ): string
 
   decodeFunctionResult(
-    functionFragment: "proxiableUUID",
+    functionFragment: 'proxiableUUID',
     data: BytesLike
-  ): Result;
+  ): Result
 
-  events: {};
+  events: {}
 }
 
 export interface IERC1822Proxiable extends BaseContract {
-  connect(signerOrProvider: Signer | Provider | string): this;
-  attach(addressOrName: string): this;
-  deployed(): Promise<this>;
+  connect(signerOrProvider: Signer | Provider | string): this
+  attach(addressOrName: string): this
+  deployed(): Promise<this>
 
-  interface: IERC1822ProxiableInterface;
+  interface: IERC1822ProxiableInterface
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
     fromBlockOrBlockhash?: string | number | undefined,
     toBlock?: string | number | undefined
-  ): Promise<Array<TEvent>>;
+  ): Promise<Array<TEvent>>
 
   listeners<TEvent extends TypedEvent>(
     eventFilter?: TypedEventFilter<TEvent>
-  ): Array<TypedListener<TEvent>>;
-  listeners(eventName?: string): Array<Listener>;
+  ): Array<TypedListener<TEvent>>
+  listeners(eventName?: string): Array<Listener>
   removeAllListeners<TEvent extends TypedEvent>(
     eventFilter: TypedEventFilter<TEvent>
-  ): this;
-  removeAllListeners(eventName?: string): this;
-  off: OnEvent<this>;
-  on: OnEvent<this>;
-  once: OnEvent<this>;
-  removeListener: OnEvent<this>;
+  ): this
+  removeAllListeners(eventName?: string): this
+  off: OnEvent<this>
+  on: OnEvent<this>
+  once: OnEvent<this>
+  removeListener: OnEvent<this>
 
   functions: {
-    proxiableUUID(overrides?: CallOverrides): Promise<[string]>;
-  };
+    proxiableUUID(overrides?: CallOverrides): Promise<[string]>
+  }
 
-  proxiableUUID(overrides?: CallOverrides): Promise<string>;
+  proxiableUUID(overrides?: CallOverrides): Promise<string>
 
   callStatic: {
-    proxiableUUID(overrides?: CallOverrides): Promise<string>;
-  };
+    proxiableUUID(overrides?: CallOverrides): Promise<string>
+  }
 
-  filters: {};
+  filters: {}
 
   estimateGas: {
-    proxiableUUID(overrides?: CallOverrides): Promise<BigNumber>;
-  };
+    proxiableUUID(overrides?: CallOverrides): Promise<BigNumber>
+  }
 
   populateTransaction: {
-    proxiableUUID(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-  };
+    proxiableUUID(overrides?: CallOverrides): Promise<PopulatedTransaction>
+  }
 }

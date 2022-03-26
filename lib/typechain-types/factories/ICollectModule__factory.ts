@@ -2,87 +2,84 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, Signer, utils } from "ethers";
-import { Provider } from "@ethersproject/providers";
-import type {
-  ICollectModule,
-  ICollectModuleInterface,
-} from "../ICollectModule";
+import { Contract, Signer, utils } from 'ethers'
+import { Provider } from '@ethersproject/providers'
+import type { ICollectModule, ICollectModuleInterface } from '../ICollectModule'
 
 const _abi = [
   {
     inputs: [
       {
-        internalType: "uint256",
-        name: "profileId",
-        type: "uint256",
+        internalType: 'uint256',
+        name: 'profileId',
+        type: 'uint256',
       },
       {
-        internalType: "uint256",
-        name: "pubId",
-        type: "uint256",
+        internalType: 'uint256',
+        name: 'pubId',
+        type: 'uint256',
       },
       {
-        internalType: "bytes",
-        name: "data",
-        type: "bytes",
+        internalType: 'bytes',
+        name: 'data',
+        type: 'bytes',
       },
     ],
-    name: "initializePublicationCollectModule",
+    name: 'initializePublicationCollectModule',
     outputs: [
       {
-        internalType: "bytes",
-        name: "",
-        type: "bytes",
+        internalType: 'bytes',
+        name: '',
+        type: 'bytes',
       },
     ],
-    stateMutability: "nonpayable",
-    type: "function",
+    stateMutability: 'nonpayable',
+    type: 'function',
   },
   {
     inputs: [
       {
-        internalType: "uint256",
-        name: "referrerProfileId",
-        type: "uint256",
+        internalType: 'uint256',
+        name: 'referrerProfileId',
+        type: 'uint256',
       },
       {
-        internalType: "address",
-        name: "collector",
-        type: "address",
+        internalType: 'address',
+        name: 'collector',
+        type: 'address',
       },
       {
-        internalType: "uint256",
-        name: "profileId",
-        type: "uint256",
+        internalType: 'uint256',
+        name: 'profileId',
+        type: 'uint256',
       },
       {
-        internalType: "uint256",
-        name: "pubId",
-        type: "uint256",
+        internalType: 'uint256',
+        name: 'pubId',
+        type: 'uint256',
       },
       {
-        internalType: "bytes",
-        name: "data",
-        type: "bytes",
+        internalType: 'bytes',
+        name: 'data',
+        type: 'bytes',
       },
     ],
-    name: "processCollect",
+    name: 'processCollect',
     outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
+    stateMutability: 'nonpayable',
+    type: 'function',
   },
-];
+]
 
 export class ICollectModule__factory {
-  static readonly abi = _abi;
+  static readonly abi = _abi
   static createInterface(): ICollectModuleInterface {
-    return new utils.Interface(_abi) as ICollectModuleInterface;
+    return new utils.Interface(_abi) as ICollectModuleInterface
   }
   static connect(
     address: string,
     signerOrProvider: Signer | Provider
   ): ICollectModule {
-    return new Contract(address, _abi, signerOrProvider) as ICollectModule;
+    return new Contract(address, _abi, signerOrProvider) as ICollectModule
   }
 }

@@ -12,68 +12,68 @@ import {
   PopulatedTransaction,
   Signer,
   utils,
-} from "ethers";
-import { FunctionFragment, Result } from "@ethersproject/abi";
-import { Listener, Provider } from "@ethersproject/providers";
-import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from "./common";
+} from 'ethers'
+import { FunctionFragment, Result } from '@ethersproject/abi'
+import { Listener, Provider } from '@ethersproject/providers'
+import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from './common'
 
 export interface ICollectNFTInterface extends utils.Interface {
   functions: {
-    "getSourcePublicationPointer()": FunctionFragment;
-    "initialize(uint256,uint256,string,string)": FunctionFragment;
-    "mint(address)": FunctionFragment;
-  };
+    'getSourcePublicationPointer()': FunctionFragment
+    'initialize(uint256,uint256,string,string)': FunctionFragment
+    'mint(address)': FunctionFragment
+  }
 
   encodeFunctionData(
-    functionFragment: "getSourcePublicationPointer",
+    functionFragment: 'getSourcePublicationPointer',
     values?: undefined
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "initialize",
+    functionFragment: 'initialize',
     values: [BigNumberish, BigNumberish, string, string]
-  ): string;
-  encodeFunctionData(functionFragment: "mint", values: [string]): string;
+  ): string
+  encodeFunctionData(functionFragment: 'mint', values: [string]): string
 
   decodeFunctionResult(
-    functionFragment: "getSourcePublicationPointer",
+    functionFragment: 'getSourcePublicationPointer',
     data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "initialize", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "mint", data: BytesLike): Result;
+  ): Result
+  decodeFunctionResult(functionFragment: 'initialize', data: BytesLike): Result
+  decodeFunctionResult(functionFragment: 'mint', data: BytesLike): Result
 
-  events: {};
+  events: {}
 }
 
 export interface ICollectNFT extends BaseContract {
-  connect(signerOrProvider: Signer | Provider | string): this;
-  attach(addressOrName: string): this;
-  deployed(): Promise<this>;
+  connect(signerOrProvider: Signer | Provider | string): this
+  attach(addressOrName: string): this
+  deployed(): Promise<this>
 
-  interface: ICollectNFTInterface;
+  interface: ICollectNFTInterface
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
     fromBlockOrBlockhash?: string | number | undefined,
     toBlock?: string | number | undefined
-  ): Promise<Array<TEvent>>;
+  ): Promise<Array<TEvent>>
 
   listeners<TEvent extends TypedEvent>(
     eventFilter?: TypedEventFilter<TEvent>
-  ): Array<TypedListener<TEvent>>;
-  listeners(eventName?: string): Array<Listener>;
+  ): Array<TypedListener<TEvent>>
+  listeners(eventName?: string): Array<Listener>
   removeAllListeners<TEvent extends TypedEvent>(
     eventFilter: TypedEventFilter<TEvent>
-  ): this;
-  removeAllListeners(eventName?: string): this;
-  off: OnEvent<this>;
-  on: OnEvent<this>;
-  once: OnEvent<this>;
-  removeListener: OnEvent<this>;
+  ): this
+  removeAllListeners(eventName?: string): this
+  off: OnEvent<this>
+  on: OnEvent<this>
+  once: OnEvent<this>
+  removeListener: OnEvent<this>
 
   functions: {
     getSourcePublicationPointer(
       overrides?: CallOverrides
-    ): Promise<[BigNumber, BigNumber]>;
+    ): Promise<[BigNumber, BigNumber]>
 
     initialize(
       profileId: BigNumberish,
@@ -81,17 +81,17 @@ export interface ICollectNFT extends BaseContract {
       name: string,
       symbol: string,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
     mint(
       to: string,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-  };
+    ): Promise<ContractTransaction>
+  }
 
   getSourcePublicationPointer(
     overrides?: CallOverrides
-  ): Promise<[BigNumber, BigNumber]>;
+  ): Promise<[BigNumber, BigNumber]>
 
   initialize(
     profileId: BigNumberish,
@@ -99,17 +99,17 @@ export interface ICollectNFT extends BaseContract {
     name: string,
     symbol: string,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   mint(
     to: string,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   callStatic: {
     getSourcePublicationPointer(
       overrides?: CallOverrides
-    ): Promise<[BigNumber, BigNumber]>;
+    ): Promise<[BigNumber, BigNumber]>
 
     initialize(
       profileId: BigNumberish,
@@ -117,15 +117,15 @@ export interface ICollectNFT extends BaseContract {
       name: string,
       symbol: string,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<void>
 
-    mint(to: string, overrides?: CallOverrides): Promise<void>;
-  };
+    mint(to: string, overrides?: CallOverrides): Promise<void>
+  }
 
-  filters: {};
+  filters: {}
 
   estimateGas: {
-    getSourcePublicationPointer(overrides?: CallOverrides): Promise<BigNumber>;
+    getSourcePublicationPointer(overrides?: CallOverrides): Promise<BigNumber>
 
     initialize(
       profileId: BigNumberish,
@@ -133,18 +133,18 @@ export interface ICollectNFT extends BaseContract {
       name: string,
       symbol: string,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     mint(
       to: string,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-  };
+    ): Promise<BigNumber>
+  }
 
   populateTransaction: {
     getSourcePublicationPointer(
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     initialize(
       profileId: BigNumberish,
@@ -152,11 +152,11 @@ export interface ICollectNFT extends BaseContract {
       name: string,
       symbol: string,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     mint(
       to: string,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-  };
+    ): Promise<PopulatedTransaction>
+  }
 }

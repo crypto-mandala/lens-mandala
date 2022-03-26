@@ -17,12 +17,12 @@ const uploadContent = async (profileId, handle, message) => {
     message,
     encrypted: false,
     timestamp: new Date().toISOString(),
-    seed_nft_contract_address: "0x12345",
+    seed_nft_contract_address: '0x12345',
     seed_nft_token_id: 1,
     // tx_hash: "0x123456678"
   }
   const ipfsCID = await axios.post('/api/storage/upload', {
-    json: JSON.stringify(contentJson)
+    json: JSON.stringify(contentJson),
   })
   return ipfsCID
 }
@@ -54,8 +54,8 @@ const homesection = ({ profile, signer }) => {
         id: 1,
         handle: 'Ara',
         imageURI: imageURIs[Math.floor(Math.random() * imageURIs.length)],
-        text: 'Hello'
-      }
+        text: 'Hello',
+      },
     ])
   }, [])
 
@@ -74,9 +74,9 @@ const homesection = ({ profile, signer }) => {
       collectModuleData: [],
       referenceModule: ZERO_ADDRESS,
       referenceModuleData: [],
-    };
+    }
     const { txHash, pub } = await lens.post(profileId, signer, postData)
-    
+
     setTweetmessage('')
   }
   return (

@@ -2,158 +2,155 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, Signer, utils } from "ethers";
-import { Provider } from "@ethersproject/providers";
-import type {
-  IModuleGlobals,
-  IModuleGlobalsInterface,
-} from "../IModuleGlobals";
+import { Contract, Signer, utils } from 'ethers'
+import { Provider } from '@ethersproject/providers'
+import type { IModuleGlobals, IModuleGlobalsInterface } from '../IModuleGlobals'
 
 const _abi = [
   {
     inputs: [],
-    name: "getGovernance",
+    name: 'getGovernance',
     outputs: [
       {
-        internalType: "address",
-        name: "",
-        type: "address",
+        internalType: 'address',
+        name: '',
+        type: 'address',
       },
     ],
-    stateMutability: "view",
-    type: "function",
+    stateMutability: 'view',
+    type: 'function',
   },
   {
     inputs: [],
-    name: "getTreasury",
+    name: 'getTreasury',
     outputs: [
       {
-        internalType: "address",
-        name: "",
-        type: "address",
+        internalType: 'address',
+        name: '',
+        type: 'address',
       },
     ],
-    stateMutability: "view",
-    type: "function",
+    stateMutability: 'view',
+    type: 'function',
   },
   {
     inputs: [],
-    name: "getTreasuryData",
+    name: 'getTreasuryData',
     outputs: [
       {
-        internalType: "address",
-        name: "",
-        type: "address",
+        internalType: 'address',
+        name: '',
+        type: 'address',
       },
       {
-        internalType: "uint16",
-        name: "",
-        type: "uint16",
+        internalType: 'uint16',
+        name: '',
+        type: 'uint16',
       },
     ],
-    stateMutability: "view",
-    type: "function",
+    stateMutability: 'view',
+    type: 'function',
   },
   {
     inputs: [],
-    name: "getTreasuryFee",
+    name: 'getTreasuryFee',
     outputs: [
       {
-        internalType: "uint16",
-        name: "",
-        type: "uint16",
+        internalType: 'uint16',
+        name: '',
+        type: 'uint16',
       },
     ],
-    stateMutability: "view",
-    type: "function",
+    stateMutability: 'view',
+    type: 'function',
   },
   {
     inputs: [
       {
-        internalType: "address",
-        name: "currency",
-        type: "address",
+        internalType: 'address',
+        name: 'currency',
+        type: 'address',
       },
     ],
-    name: "isCurrencyWhitelisted",
+    name: 'isCurrencyWhitelisted',
     outputs: [
       {
-        internalType: "bool",
-        name: "",
-        type: "bool",
+        internalType: 'bool',
+        name: '',
+        type: 'bool',
       },
     ],
-    stateMutability: "view",
-    type: "function",
+    stateMutability: 'view',
+    type: 'function',
   },
   {
     inputs: [
       {
-        internalType: "address",
-        name: "newGovernance",
-        type: "address",
+        internalType: 'address',
+        name: 'newGovernance',
+        type: 'address',
       },
     ],
-    name: "setGovernance",
+    name: 'setGovernance',
     outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
+    stateMutability: 'nonpayable',
+    type: 'function',
   },
   {
     inputs: [
       {
-        internalType: "address",
-        name: "newTreasury",
-        type: "address",
+        internalType: 'address',
+        name: 'newTreasury',
+        type: 'address',
       },
     ],
-    name: "setTreasury",
+    name: 'setTreasury',
     outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
+    stateMutability: 'nonpayable',
+    type: 'function',
   },
   {
     inputs: [
       {
-        internalType: "uint16",
-        name: "newTreasuryFee",
-        type: "uint16",
+        internalType: 'uint16',
+        name: 'newTreasuryFee',
+        type: 'uint16',
       },
     ],
-    name: "setTreasuryFee",
+    name: 'setTreasuryFee',
     outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
+    stateMutability: 'nonpayable',
+    type: 'function',
   },
   {
     inputs: [
       {
-        internalType: "address",
-        name: "currency",
-        type: "address",
+        internalType: 'address',
+        name: 'currency',
+        type: 'address',
       },
       {
-        internalType: "bool",
-        name: "toWhitelist",
-        type: "bool",
+        internalType: 'bool',
+        name: 'toWhitelist',
+        type: 'bool',
       },
     ],
-    name: "whitelistCurrency",
+    name: 'whitelistCurrency',
     outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
+    stateMutability: 'nonpayable',
+    type: 'function',
   },
-];
+]
 
 export class IModuleGlobals__factory {
-  static readonly abi = _abi;
+  static readonly abi = _abi
   static createInterface(): IModuleGlobalsInterface {
-    return new utils.Interface(_abi) as IModuleGlobalsInterface;
+    return new utils.Interface(_abi) as IModuleGlobalsInterface
   }
   static connect(
     address: string,
     signerOrProvider: Signer | Provider
   ): IModuleGlobals {
-    return new Contract(address, _abi, signerOrProvider) as IModuleGlobals;
+    return new Contract(address, _abi, signerOrProvider) as IModuleGlobals
   }
 }
