@@ -1,6 +1,6 @@
 import { Wallet, Signer, ContractTransaction, ContractReceipt, providers, BigNumber } from 'ethers'
 import { LensHub__factory } from './typechain-types'
-import { CreateProfileDataStruct, ProfileStructStructOutput, PostDataStruct, PublicationStructStructOutput } from './typechain-types/LensHub'
+import { CreateProfileDataStruct, ProfileStructStructOutput, PostDataStruct } from './typechain-types/LensHub'
 
 const addrs = require('./addresses.json')
 

@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import lighthouse from '../../../lib/lighthouse'
 
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   const { body: { json }, method } = req
 
   switch (method) {
