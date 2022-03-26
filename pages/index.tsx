@@ -5,7 +5,7 @@ import { sequence } from '0xsequence'
 import { configureLogger } from '@0xsequence/utils'
 import Head from 'next/head'
 import { useCallback, useEffect, useReducer, useState } from 'react'
-import { Button, IconButton, Input, Center } from '@chakra-ui/react'
+import { Button, IconButton, Input, Center, Box } from '@chakra-ui/react'
 import { CopyIcon } from '@chakra-ui/icons'
 import { ellipseAddress, getChainData } from '../lib/utilities'
 import lens from '../lib/lens'
@@ -117,6 +117,8 @@ export const Home = (): JSX.Element => {
   const { provider, web3Provider, address, chainId } = state
   const [isLoading, setLoading] = useState(false)
   const [handle, setHandle] = useState('')
+  const [nftContractAddress, setNftContractAddress] = useState('0x41db8e68b817abe104cced933c9d8c5030ba1879')
+  const [nftTokenId, setNftTokenId] = useState('1')
   const [profile, setProfile] = useState(null)
 
   const connect = useCallback(async function () {
@@ -300,17 +302,47 @@ export const Home = (): JSX.Element => {
         <main className="section">
           {web3Provider && !profile ? (
             <>
+              <Center className="mt-12 mb-4">
+                <Box textStyle='h2'>
+                  Handle
+                </Box>
+              </Center>
               <Center>
                 <Input
-                  maxWidth="200px"
+                  maxWidth="310px"
                   value={handle}
                   onChange={(event) => setHandle(event.target.value)}
                   placeholder="Your Handle"
                   size="md"
                   variant="outline"
-                  className="mt-12 mb-4"
                 />
               </Center>
+
+              <Center className="mt-6 mb-4">
+                <Box textStyle='h2'>
+                  Community NFT Info
+                </Box>
+              </Center>
+              <Center className="mt-2 mb-8">
+                <Input
+                  maxWidth="200px"
+                  value={nftContractAddress}
+                  onChange={(event) => setNftContractAddress(event.target.value)}
+                  placeholder="NFT Contract address"
+                  size="md"
+                  variant="outline"
+                />
+                <Input
+                  maxWidth="100px"
+                  value={nftTokenId}
+                  onChange={(event) => setNftTokenId(event.target.value)}
+                  placeholder="NFT Token ID"
+                  size="md"
+                  variant="outline"
+                  className='ml-2'
+                />
+              </Center>
+
               <Button
                 isLoading={isLoading}
                 colorScheme="red"
@@ -323,7 +355,12 @@ export const Home = (): JSX.Element => {
             </>
           ) : web3Provider && profile ? (
             <div className="mt-8 mb-8">
-              <MainPage profile={profile} signer={web3Provider.getSigner()} />
+              <MainPage
+                profile={profile}
+                signer={web3Provider.getSigner()}
+                nftContractAddress={nftContractAddress}
+                nftTokenId={nftTokenId}
+              />
             </div>
           ) : !web3Provider ? (
             <>

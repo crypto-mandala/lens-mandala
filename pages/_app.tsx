@@ -11,6 +11,15 @@ const theme = extendTheme({
       },
     },
   },
+  textStyles: {
+    h2: {
+      fontSize: ['20px'],
+      fontWeight: 'semibold',
+      color: 'gray.600',
+      lineHeight: '110%',
+      letterSpacing: '-1%',
+    },
+  },
 })
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types

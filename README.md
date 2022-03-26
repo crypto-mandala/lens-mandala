@@ -99,3 +99,8 @@ Mnemonic: `derive monkey umbrella trouble wagon order limb victory tourist cemen
   "follower only reference module": "0x29caEaD5Bccdd15a5E076341F0B06EeC62277059"
 }
 ```
+
+Example NFT
+
+- Contract Address: `0x41Db8E68b817aBe104cCED933C9D8c5030Ba1879`
+- OpenSea Page: https://testnets.opensea.io/collection/lensmandalanft
