@@ -29,7 +29,7 @@ const providerOptions = {
       const wallet = await web3Modal.connect()
       const provider = new ethers.providers.Web3Provider(wallet)
       if (wallet.sequence) {
-        ;(provider as any).sequence = wallet.sequence
+        (provider as any).sequence = wallet.sequence
       }
       return provider
     },
@@ -123,7 +123,7 @@ export const Home = (): JSX.Element => {
     const provider = await web3Modal.connect()
     const web3Provider = new ethers.providers.Web3Provider(provider)
     if (provider.sequence) {
-      ;(provider as any).sequence = provider.sequence
+      (provider as any).sequence = provider.sequence
     }
     const signer = web3Provider.getSigner()
     const address = await signer.getAddress()
