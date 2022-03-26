@@ -3,7 +3,8 @@ import { FaLeaf } from 'react-icons/fa'
 import { signOut, useSession } from 'next-auth/react'
 import { TiTick } from 'react-icons/ti'
 
-function Leftside() {
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+const Leftside = () => {
   const { data: session } = useSession()
   return (
     <>

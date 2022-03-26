@@ -3,7 +3,7 @@ import {
   Signer,
   ContractTransaction,
   ContractReceipt,
-  getDefaultProvider,
+  providers,
   BigNumber,
 } from 'ethers'
 import { LensHub__factory } from './typechain-types'
@@ -11,15 +11,18 @@ import {
   CreateProfileDataStruct,
   ProfileStructStructOutput,
   PostDataStruct,
-  PublicationStructStructOutput,
 } from './typechain-types/LensHub'
 
 const addrs = require('./addresses.json')
 
-// TODO: test environment
-const provider = getDefaultProvider('http://localhost:8545')
+// TODO: Test environment
+// const provider = getDefaultProvider('http://localhost:8545') // for localhost
+// const adminPrivateKey = '0xd49743deccbccc5dc7baa8e69e5be03298da8688a15dd202e20f15d5e0e9a9fb' // for localhost
+const provider = new providers.JsonRpcProvider(
+  'https://polygon-mumbai.infura.io/v3/7495501b681645b0b80f955d4139add9'
+) // for testnet
 const adminPrivateKey =
-  '0xd49743deccbccc5dc7baa8e69e5be03298da8688a15dd202e20f15d5e0e9a9fb'
+  '0xe1f22d18c216702657928a69c6914dac176b054480094c1673ffddd12e60f792' // for testnet
 const adminSigner = new Wallet(adminPrivateKey, provider)
 
 const waitForTx = async (
@@ -100,14 +103,16 @@ class Lens {
     profileId: BigNumber,
     userSigner: Signer,
     postData: PostDataStruct
-  ): Promise<PublicationStructStructOutput> {
+  ) {
     const lensHub = LensHub__factory.connect(
       addrs['lensHub proxy'],
       adminSigner
     )
-    await waitForTx(lensHub.connect(userSigner).post(postData))
+    const tx = await lensHub.connect(userSigner).post(postData)
+    await tx.wait()
     const pubCount = await lensHub.getPubCount(profileId)
-    return await lensHub.getPub(profileId, pubCount.sub(BigNumber.from(1)))
+    const pub = await lensHub.getPub(profileId, pubCount.sub(BigNumber.from(1)))
+    return { txHash: tx.hash, pub }
   }
 }
 

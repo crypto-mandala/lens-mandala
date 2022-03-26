@@ -5,12 +5,7 @@ import { sequence } from '0xsequence'
 import { configureLogger } from '@0xsequence/utils'
 import Head from 'next/head'
 import { useCallback, useEffect, useReducer, useState } from 'react'
-import {
-  Button,
-  IconButton,
-  Input,
-  Center,
-} from '@chakra-ui/react'
+import { Button, IconButton, Input, Center } from '@chakra-ui/react'
 import { CopyIcon } from '@chakra-ui/icons'
 import { ellipseAddress, getChainData } from '../lib/utilities'
 import lens from '../lib/lens'
@@ -34,7 +29,7 @@ const providerOptions = {
       const wallet = await web3Modal.connect()
       const provider = new ethers.providers.Web3Provider(wallet)
       if (wallet.sequence) {
-        (provider as any).sequence = wallet.sequence
+        ;(provider as any).sequence = wallet.sequence
       }
       return provider
     },
@@ -123,12 +118,12 @@ export const Home = (): JSX.Element => {
   const [isLoading, setLoading] = useState(false)
   const [handle, setHandle] = useState('')
   const [profile, setProfile] = useState(null)
-  
+
   const connect = useCallback(async function () {
     const provider = await web3Modal.connect()
     const web3Provider = new ethers.providers.Web3Provider(provider)
     if (provider.sequence) {
-      (provider as any).sequence = provider.sequence
+      ;(provider as any).sequence = provider.sequence
     }
     const signer = web3Provider.getSigner()
     const address = await signer.getAddress()
@@ -151,7 +146,7 @@ export const Home = (): JSX.Element => {
           wallet.disconnect()
         } else {
           await provider.disconnect()
-        }    
+        }
       }
       dispatch({
         type: 'RESET_WEB3_PROVIDER',
@@ -160,7 +155,35 @@ export const Home = (): JSX.Element => {
     [provider]
   )
 
-  const loginLens = async function () {
+  const createProfile = async () => {
+    const imageURIs = [
+      'https://openseauserdata.com/files/f175198e5ee2c5326211d4f6e1300e3e.svg',
+      'https://openseauserdata.com/files/64275135762f54bcf92771b8b4f9a75d.svg',
+      'https://openseauserdata.com/files/c0e89af4ff7cf2bdbd2bb39c7f48736a.svg',
+      'https://openseauserdata.com/files/145bdd5fa737ad4b004cb83237ec2c88.svg',
+      'https://openseauserdata.com/files/c92b996e1592228b010fed800f107245.svg',
+      'https://openseauserdata.com/files/d97a43bc3061fcc154ef0fbbbc752202.svg',
+      'https://openseauserdata.com/files/b99bb2b877ba491edc313c6c7b0d6c09.svg',
+      'https://openseauserdata.com/files/d892b4b3d49104b0f6dd3cbae356e000.svg',
+      'https://openseauserdata.com/files/e94108e2961d09dac81333ce55cca621.svg',
+      'https://openseauserdata.com/files/6e11b1c3688c940c99a3dec8bddffd54.svg',
+      'https://openseauserdata.com/files/09cb4dc0ceaf02d7807fc6eaf12adf81.svg',
+      'https://openseauserdata.com/files/e7c3db61f4a957956e455517b4922788.svg',
+    ]
+    const imageURI = imageURIs[Math.floor(Math.random() * imageURIs.length)]
+    const profile: CreateProfileDataStruct = {
+      to: address,
+      handle,
+      imageURI,
+      followModule: ZERO_ADDRESS,
+      followModuleData: [],
+      followNFTURI:
+        'https://ipfs.fleek.co/ipfs/ghostplantghostplantghostplantghostplantghostplantghostplan',
+    }
+    return await lens.createProfile(web3Provider.getSigner(), profile)
+  }
+
+  const loginLens = async () => {
     if (!address) {
       alert('Please connect wallet')
       return
@@ -171,17 +194,7 @@ export const Home = (): JSX.Element => {
     }
     setLoading(true)
     try {
-      const profile: CreateProfileDataStruct = {
-        to: address,
-        handle,
-        imageURI:
-            'https://ipfs.fleek.co/ipfs/ghostplantghostplantghostplantghostplantghostplantghostplan',
-        followModule: ZERO_ADDRESS,
-        followModuleData: [],
-        followNFTURI:
-            'https://ipfs.fleek.co/ipfs/ghostplantghostplantghostplantghostplantghostplantghostplan',
-    }
-      const res = await lens.createProfile(web3Provider.getSigner(), profile)
+      const res = await createProfile()
       // eslint-disable-next-line no-console
       console.log({ res })
       setProfile(res)
@@ -252,12 +265,11 @@ export const Home = (): JSX.Element => {
                 ) : null}
                 <div>
                   <p className="mb-1">
-                    👤 {ellipseAddress(address)}
-                    {' '}
+                    👤 {ellipseAddress(address)}{' '}
                     <IconButton
-                      aria-label='Copy'
-                      fontSize='12px'
-                      size='xs'
+                      aria-label="Copy"
+                      fontSize="12px"
+                      size="xs"
                       icon={<CopyIcon />}
                       className="mb-1"
                       onClick={() => navigator.clipboard.writeText(address)}
@@ -265,11 +277,18 @@ export const Home = (): JSX.Element => {
                   </p>
                 </div>
                 <div>
-                  <p className="mb-1">🔌 {chainData?.name || web3Provider?.network?.name}</p>
+                  <p className="mb-1">
+                    🔌 {chainData?.name || web3Provider?.network?.name}
+                  </p>
                 </div>
               </div>
               <div>
-                <Button colorScheme='red' variant='solid' size='md' onClick={disconnect}>
+                <Button
+                  colorScheme="red"
+                  variant="solid"
+                  size="md"
+                  onClick={disconnect}
+                >
                   Disconnect
                 </Button>
               </div>
@@ -277,7 +296,7 @@ export const Home = (): JSX.Element => {
           )}
         </header>
 
-        <main className='section'>
+        <main className="section">
           {web3Provider && !profile ? (
             <>
               <Center>
@@ -285,13 +304,19 @@ export const Home = (): JSX.Element => {
                   maxWidth="200px"
                   value={handle}
                   onChange={(event) => setHandle(event.target.value)}
-                  placeholder='Your Handle'
-                  size='md'
-                  variant='outline'
-                  className='mt-12 mb-4'
+                  placeholder="Your Handle"
+                  size="md"
+                  variant="outline"
+                  className="mt-12 mb-4"
                 />
               </Center>
-              <Button isLoading={isLoading} colorScheme="red" variant="solid" onClick={loginLens} size="lg">
+              <Button
+                isLoading={isLoading}
+                colorScheme="red"
+                variant="solid"
+                onClick={loginLens}
+                size="lg"
+              >
                 Sign In/Up
               </Button>
             </>
@@ -303,7 +328,12 @@ export const Home = (): JSX.Element => {
             <>
               <div className="p-8 title">Lens Mandala</div>
 
-              <Button colorScheme='red' variant='solid' onClick={connect} size="lg">
+              <Button
+                colorScheme="red"
+                variant="solid"
+                onClick={connect}
+                size="lg"
+              >
                 Connect Wallet
               </Button>
             </>
