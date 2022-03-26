@@ -1,10 +1,8 @@
 import React from 'react'
 import { FaRegComment } from 'react-icons/fa'
 import { FaRetweet } from 'react-icons/fa'
-// import { FcLikePlaceholder } from 'react-icons/fc'
 import { FiDownload } from 'react-icons/fi'
 import { Button } from '@chakra-ui/react'
-import { BigNumber } from 'ethers'
 import lens from '../lib/lens'
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -70,4 +68,5 @@ const Post = ({ handle, imageURI, pubId, message, signer, currentHandle }) => {
     </>
   )
 }
+
 export default Post
