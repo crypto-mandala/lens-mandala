@@ -9,6 +9,7 @@ class Lighthouse {
     const path = require('path')
     const filename = uuidv4()
     const tmpDirectory = path.resolve(process.cwd(), 'tmp')
+    // eslint-disable-next-line no-console
     console.log(String(path.join(tmpDirectory, `${filename}.json`)))
     fs.writeFileSync(path.join(tmpDirectory, `${filename}.json`), contentStr, 'utf8')
     const key = await lighthouse.getKey(
