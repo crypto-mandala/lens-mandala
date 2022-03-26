@@ -31,7 +31,7 @@ const handler = async (req: ApiRequestWithNeo4j, res: NextApiResponse) => {
             p.imageURI = $profileObj.imageURI,
             p.followNFTURI = $profileObj.followNFTURI
            RETURN p;`
-          req.neo4j.writeTransaction(tx => 
+          req.neo4j.writeTransaction(tx =>
             tx.run(writeQuery, { lensHubAddress, profileIdInt, pubCount, profileObj })
           )
         }

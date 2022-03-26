@@ -74,7 +74,7 @@ const handler = async (req: ApiRequestWithNeo4j, res: NextApiResponse) => {
           MERGE
             (pf)-[:POST]->(pb)
            RETURN pb;`
-          await req.neo4j.writeTransaction(tx => 
+          await req.neo4j.writeTransaction(tx =>
             tx.run(writeQuery, { lensHubAddress, profileIdInt, pubIdInt, profileIdPointed, pubIdPointed, pubObj, content })
           )
         }
