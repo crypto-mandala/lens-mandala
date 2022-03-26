@@ -11,8 +11,7 @@ import {
     CreateProfileDataStruct,
     ProfileStructStructOutput,
     PostDataStruct,
-    MirrorDataStruct,
-    PublicationStructStructOutput
+    MirrorDataStruct
 } from './typechain-types/LensHub'
 
 const addrs = require('./addresses.json')
@@ -93,15 +92,22 @@ class Lens {
         return { txHash: tx.hash, pub }
     }
 
-    async collect(userSigner: Signer, { profileId, _pubId , _data }) {
+    async collect(userSigner: Signer, { profileId, pubId , data }) {
         const lensHub = LensHub__factory.connect(addrs['lensHub proxy'], userSigner)
 
         const pubCount1 = await lensHub.getPubCount(profileId)
         // eslint-disable-next-line no-console
         console.log({pubCount1})
         
-        // const tx = await lensHub.connect(userSigner).collect(profileId, pubId, data)
-        const tx = await lensHub.collect(2, 6, [])
+        let tx
+        try {
+            tx = await lensHub.connect(userSigner).collect(profileId, pubId, data)
+            await tx.wait()
+        } catch (e) {
+            // If you are not following that person, it will fail with an error
+            await waitForTx(lensHub.follow([profileId], [[]]));
+            tx = await lensHub.connect(userSigner).collect(profileId, pubId, data)
+        }
         await tx.wait()
         const pubCount = await lensHub.getPubCount(profileId)
         const pub = await lensHub.getPub(profileId, pubCount.sub(BigNumber.from(1)))
