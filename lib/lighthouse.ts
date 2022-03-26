@@ -6,9 +6,11 @@ import axios from 'axios'
 
 class Lighthouse {
   async upload(contentStr: string) {
+    const path = require('path')
     const filename = uuidv4()
-    const path = `tmp/${filename}.json`
-    fs.writeFileSync(path, contentStr, 'utf8')
+    const tmpDirectory = path.resolve(process.cwd(), 'tmp')
+    console.log(String(path.join(tmpDirectory, `${filename}.json`)))
+    fs.writeFileSync(path.join(tmpDirectory, `${filename}.json`), contentStr, 'utf8')
     const key = await lighthouse.getKey(
       process.env.LIGHTHOUSE_PRIV_KEY_ENCRYPTED,
       process.env.LIGHTHOUSE_PASSWORD
@@ -23,14 +25,14 @@ class Lighthouse {
     const message = messageResponse.data
     const signedMessage = await signer.signMessage(message)
     const deploy = await lighthouse.deploy(
-      path,
+      `tmp/${filename}.json`,
       signer,
       false,
       signedMessage,
       key.publicKey,
       process.env.LIGHTHOUSE_NETWORK
     )
-    fs.unlinkSync(path)
+    fs.unlinkSync(`tmp/${filename}.json`)
     const cid = deploy.Hash
     // eslint-disable-next-line no-console
     console.log({ cid })
