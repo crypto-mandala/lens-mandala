@@ -144,6 +144,7 @@ export const Home = (): JSX.Element => {
 
   const disconnect = useCallback(
     async function () {
+      setProfile(null)
       await web3Modal.clearCachedProvider()
       if (provider?.disconnect && typeof provider.disconnect === 'function') {
         if (provider && (provider as any).sequence) {

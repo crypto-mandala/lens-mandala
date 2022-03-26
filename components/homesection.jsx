@@ -1,9 +1,9 @@
 /* eslint-disable */
 import React, { useEffect, useState } from 'react'
-import Post from './Post'
 import { useSession } from 'next-auth/react'
-import lens from '../lib/lens'
 import axios from 'axios'
+import Post from './Post'
+import lens from '../lib/lens'
 
 const addrs = require('../lib/addresses.json')
 
@@ -52,24 +52,26 @@ const homesection = ({ profile, signer }) => {
     setPosts([
       {
         id: 1,
-        handle: 'Ara',
+        handle: 'user1',
         imageURI: imageURIs[Math.floor(Math.random() * imageURIs.length)],
-        text: 'Hello'
+        pubId: 2,
+        message: 'Hello'
       }
     ])
   }, [])
 
-  const [tweetmessage, setTweetmessage] = useState('')
-  const handleNew = async (e) => {
+  const [tweetMessage, settweetMessage] = useState('')
+  const post = async (e) => {
     e.preventDefault()
+
     const profileId = await lens.getProfileIdByHandle(profile.handle)
-    const ipfsCID = await uploadContent(profileId, profile.handle, tweetmessage)
+    const ipfsCID = await uploadContent(profileId, profile.handle, tweetMessage)
 
     const emptyCollectModuleAddr = addrs['empty collect module']
     const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
     const postData = {
       profileId,
-      contentURI: `https://gateway.lighthouse.storage/ipfs//${ipfsCID}`,
+      contentURI: `https://gateway.lighthouse.storage/ipfs/${ipfsCID}`,
       collectModule: emptyCollectModuleAddr,
       collectModuleData: [],
       referenceModule: ZERO_ADDRESS,
@@ -77,7 +79,7 @@ const homesection = ({ profile, signer }) => {
     };
     const { txHash, pub } = await lens.post(profileId, signer, postData)
     
-    setTweetmessage('')
+    settweetMessage('')
   }
   return (
     <>
@@ -91,8 +93,8 @@ const homesection = ({ profile, signer }) => {
 
           <input
             type="text"
-            onChange={(e) => setTweetmessage(e.target.value)}
-            value={tweetmessage}
+            onChange={(e) => settweetMessage(e.target.value)}
+            value={tweetMessage}
             placeholder="What`s happening?"
             required
             className="mt-6 ml-3 outline-0 text-zinc-500 text-xl font-semibold"
@@ -102,7 +104,7 @@ const homesection = ({ profile, signer }) => {
           <div className="flex flex-row ml-11 mt-9 justify-end mr-4">
             <button
               className="bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-10 rounded-full  mb-3"
-              onClick={handleNew}
+              onClick={post}
               type="submit"
             >
               Post
@@ -114,7 +116,10 @@ const homesection = ({ profile, signer }) => {
             key={post.id}
             handle={post.handle}
             imageURI={post.imageURI}
-            text={post.text}
+            pubId={post.pubId}
+            message={post.message}
+            currentHandle={profile.handle}
+            signer={signer}
           />
         ))}
       </div>
