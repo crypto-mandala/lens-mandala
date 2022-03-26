@@ -1,10 +1,11 @@
 /* eslint-disable */
 import React, { useEffect, useState } from 'react'
-import { Spinner } from '@chakra-ui/react'
+import { Spinner, Checkbox } from '@chakra-ui/react'
 import axios from 'axios'
 import Post from './Post'
 import lens from '../lib/lens'
 import apiClient from '../lib/apiClient'
+import lit from '../lib/lit'
 
 const addrs = require('../lib/addresses.json')
 
@@ -12,6 +13,7 @@ const homesection = ({ profile, signer, nftContractAddress, nftTokenId }) => {
   const [posts, setPosts] = useState([])
   const [posting, setPosting] = useState(false)
   const [tweetMessage, setTweetMessage] = useState('')
+  const [wantEncrypt, setWantEncrypt] = useState(false)
 
   useEffect(() => {
     apiClient.getPosts().then(posts => setPosts(posts))
@@ -24,11 +26,20 @@ const homesection = ({ profile, signer, nftContractAddress, nftTokenId }) => {
       profile_id: profileId.toNumber(),
       handle,
       message,
-      encrypted: false,
+      encrypted: wantEncrypt,
+      encryptedSymmetricKey: '',
       timestamp: new Date().toISOString(),
       seed_nft_contract_address: nftContractAddress,
       seed_nft_token_id: nftTokenId,
     }
+
+    if (wantEncrypt) {
+      const { encryptedString, encryptedSymmetricKey } = await lit.encrypt('test', nftContractAddress)
+      // await lit.decrypt(encryptedString, encryptedSymmetricKey, nftContractAddress)
+      contentJson.encryptedSymmetricKey = encryptedSymmetricKey
+      contentJson.message = encryptedString
+    }
+
     const res = await axios.post('/api/storage/upload', {
       json: JSON.stringify(contentJson),
     })
@@ -91,7 +102,15 @@ const homesection = ({ profile, signer, nftContractAddress, nftTokenId }) => {
           />
         </div>
         <div className="border-b-2">
-          <div className="flex flex-row ml-11 mt-9 justify-end mr-4">
+          <div className="flex flex-row ml-11 mt-9 justify-between mr-4">
+            <Checkbox
+              isChecked={wantEncrypt}
+              onChange={(e) => setWantEncrypt(e.target.checked)}
+              className='mb-4'
+            >
+              Enable Encryption (NFT holders only)
+            </Checkbox>
+
             <button
               className="bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-10 rounded-full  mb-3"
               onClick={post}
