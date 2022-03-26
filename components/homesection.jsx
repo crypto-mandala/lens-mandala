@@ -11,9 +11,9 @@ const uploadContent = async (profileId, handle, message) => {
   const contentJson = {
     type: 'post',
     lens_hub_contract_address: addrs['lensHub proxy'],
-    profileId,
+    profile_id: profileId.toNumber(),
     handle,
-    pubId: 1,
+    // pub_id: 1,
     message,
     encrypted: false,
     timestamp: new Date().toISOString(),
@@ -21,9 +21,10 @@ const uploadContent = async (profileId, handle, message) => {
     seed_nft_token_id: 1,
     // tx_hash: "0x123456678"
   }
-  const ipfsCID = await axios.post('/api/storage/upload', {
+  const res = await axios.post('/api/storage/upload', {
     json: JSON.stringify(contentJson),
   })
+  const ipfsCID = res.data
   return ipfsCID
 }
 
@@ -55,8 +56,8 @@ const homesection = ({ profile, signer }) => {
         handle: 'user1',
         imageURI: imageURIs[Math.floor(Math.random() * imageURIs.length)],
         pubId: 2,
-        message: 'Hello'
-      }
+        message: 'Hello',
+      },
     ])
   }, [])
 
@@ -78,7 +79,7 @@ const homesection = ({ profile, signer }) => {
       referenceModuleData: [],
     }
     const { txHash, pub } = await lens.post(profileId, signer, postData)
-    
+
     settweetMessage('')
   }
   return (
