@@ -38,7 +38,7 @@ const handler = async (req: ApiRequestWithNeo4j, res: NextApiResponse) => {
             seed_nft_contract_address: pub.seed_nft_contract_address,
             seed_nft_token_id: pub.seed_nft_token_id?.toNumber(),
             mirrorCount: 0,
-            collectCount: 0
+            collectCount: pub.collectCount?.toNumber() || 0
           }
         })
         res.status(200).json(pubs || {})

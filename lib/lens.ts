@@ -6,7 +6,7 @@ import {
   providers,
   BigNumber,
 } from 'ethers'
-import { LensHub__factory } from './typechain-types'
+import { LensHub__factory, CollectNFT__factory } from './typechain-types'
 import {
   CreateProfileDataStruct,
   ProfileStructStructOutput,
@@ -158,6 +158,16 @@ class Lens {
       adminSigner
     )
     return await lensHub.getPub(profileId, pubId)
+  }
+
+  async collectNFT_totalSupply(
+    collectNFTaddress: string
+  ): Promise<BigNumber> {
+    const collectNFT = CollectNFT__factory.connect(
+      collectNFTaddress,
+      adminSigner
+    )
+    return await collectNFT.totalSupply()
   }
 }
 
