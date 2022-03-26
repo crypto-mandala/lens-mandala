@@ -54,6 +54,7 @@ const handler = async (req: ApiRequestWithNeo4j, res: NextApiResponse) => {
           MERGE
             (pb:Pub {
               lensHubAddress: $lensHubAddress,
+              profileId: $profileIdInt,
               pubId: $pubIdInt
             })
            SET
