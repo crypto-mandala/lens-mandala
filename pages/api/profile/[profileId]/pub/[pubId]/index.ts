@@ -1,7 +1,7 @@
 import { BigNumber } from 'ethers'
 import { NextApiResponse } from 'next'
-import lens from '../../../../../lib/lens'
-import withNeo4j, { ApiRequestWithNeo4j } from '../../../../../lib/middleware/neo4j'
+import lens from '../../../../../../lib/lens'
+import withNeo4j, { ApiRequestWithNeo4j } from '../../../../../../lib/middleware/neo4j'
 import axios from 'axios'
 
 const handler = async (req: ApiRequestWithNeo4j, res: NextApiResponse) => {
@@ -45,6 +45,14 @@ const handler = async (req: ApiRequestWithNeo4j, res: NextApiResponse) => {
           } catch (e) {
             content = {}
           }
+          let collectCount = BigNumber.from(0).toBigInt()
+          if (pubObj.collectNFT !== '0x0000000000000000000000000000000000000000') {
+            try {
+              collectCount = BigNumber.from(await lens.collectNFT_totalSupply(pubObj.collectNFT)).toBigInt()
+            } catch (e) {
+              collectCount = BigNumber.from(0).toBigInt()
+            }
+          }
           const writeQuery = `
           MERGE
             (pf:Profile {
@@ -71,12 +79,13 @@ const handler = async (req: ApiRequestWithNeo4j, res: NextApiResponse) => {
             pb.timestamp = $content.timestamp,
             pb.seed_nft_contract_address = $content.seed_nft_contract_address,
             pb.seed_nft_token_id = $content.seed_nft_token_id,
-            pb.tx_hash = $content.tx_hash
+            pb.tx_hash = $content.tx_hash,
+            pb.collectCount = $collectCount
           MERGE
             (pf)-[:POST]->(pb)
            RETURN pb;`
           await req.neo4j.writeTransaction(tx =>
-            tx.run(writeQuery, { lensHubAddress, profileIdInt, pubIdInt, profileIdPointed, pubIdPointed, pubObj, content })
+            tx.run(writeQuery, { lensHubAddress, profileIdInt, pubIdInt, profileIdPointed, pubIdPointed, pubObj, content, collectCount })
           )
         }
 

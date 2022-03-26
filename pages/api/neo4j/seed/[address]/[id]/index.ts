@@ -18,15 +18,15 @@ const handler = async (req: ApiRequestWithNeo4j, res: NextApiResponse) => {
             pb.seed_nft_contract_address = $address AND
             pb.seed_nft_token_id = $tokenIdInt
 
-          RETURN COUNT(DISTINCT pf) as pf, COUNT(DISTINCT pb) as pb;`
+          RETURN COUNT(DISTINCT pf) as profile, COUNT(DISTINCT pb) as post, SUM(pb.collectCount) as collect;`
         const result = await req.neo4j.run(selectQuery, { address, tokenIdInt })
 
         const resData = {
           timestamp_minted: "2022-03-25T23:13:00Z",
-          profileCount: result.records[0].get("pf").toNumber(),
-          postCount: result.records[0].get("pb").toNumber(),
+          profileCount: result.records[0].get("profile").toNumber(),
+          postCount: result.records[0].get("post").toNumber(),
           mirrorCount: 0,
-          collectCount: 0
+          collectCount: result.records[0].get("collect").toNumber()
         }
         res.status(200).json(resData || {})
 
