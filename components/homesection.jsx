@@ -59,7 +59,7 @@ const homesection = ({ profile, signer, nftContractAddress, nftTokenId }) => {
       const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
       const postData = {
         profileId,
-        contentURI: `https://gateway.lighthouse.storage/ipfs/${ipfsCID}`,
+        contentURI: `https://gateway.pinata.cloud/ipfs/${ipfsCID}`,
         collectModule: emptyCollectModuleAddr,
         collectModuleData: [],
         referenceModule: ZERO_ADDRESS,
