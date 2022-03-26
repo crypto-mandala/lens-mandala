@@ -1,6 +1,11 @@
 import { Wallet, Signer, ContractTransaction, ContractReceipt, providers, BigNumber } from 'ethers'
 import { LensHub__factory } from './typechain-types'
-import { CreateProfileDataStruct, ProfileStructStructOutput, PostDataStruct } from './typechain-types/LensHub'
+import {
+    CreateProfileDataStruct,
+    ProfileStructStructOutput,
+    PostDataStruct,
+    MirrorDataStruct
+} from './typechain-types/LensHub'
 
 const addrs = require('./addresses.json')
 
@@ -48,11 +53,41 @@ class Lens {
     }
 
     async post(profileId: BigNumber, userSigner: Signer, postData: PostDataStruct) {
-        const lensHub = LensHub__factory.connect(addrs['lensHub proxy'], adminSigner)
+        const lensHub = LensHub__factory.connect(addrs['lensHub proxy'], userSigner)
         const tx = await lensHub.connect(userSigner).post(postData)
         await tx.wait()
         const pubCount = await lensHub.getPubCount(profileId)
         const pub = await lensHub.getPub(profileId, pubCount.sub(BigNumber.from(1)))
+        // eslint-disable-next-line no-console
+        console.log({ pub })
+        return { txHash: tx.hash, pub }
+    }
+
+    async mirror(userSigner: Signer, mirrorData: MirrorDataStruct) {
+        const lensHub = LensHub__factory.connect(addrs['lensHub proxy'], userSigner)
+        const tx = await lensHub.mirror(mirrorData)
+        await tx.wait()
+        const pubCount = await lensHub.getPubCount(mirrorData.profileId)
+        const pub = await lensHub.getPub(mirrorData.profileId, pubCount.sub(BigNumber.from(1)))
+        // eslint-disable-next-line no-console
+        console.log({ pub }) 
+        return { txHash: tx.hash, pub }
+    }
+
+    async collect(userSigner: Signer, { profileId, pubId , data }) {
+        const lensHub = LensHub__factory.connect(addrs['lensHub proxy'], userSigner)
+
+        const pubCount1 = await lensHub.getPubCount(profileId)
+        // eslint-disable-next-line no-console
+        console.log({pubCount1})
+        
+        // const tx = await lensHub.connect(userSigner).collect(profileId, pubId, data)
+        const tx = await lensHub.collect(2, 6, [])
+        await tx.wait()
+        const pubCount = await lensHub.getPubCount(profileId)
+        const pub = await lensHub.getPub(profileId, pubCount.sub(BigNumber.from(1)))
+        // eslint-disable-next-line no-console
+        console.log({ pub })
         return { txHash: tx.hash, pub }
     }
 }
