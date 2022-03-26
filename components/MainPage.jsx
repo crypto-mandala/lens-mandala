@@ -1,10 +1,10 @@
+import { FaLeaf } from 'react-icons/fa'
+import { Center } from '@chakra-ui/react'
 import Homesection from './homesection'
-import Leftside from './Leftside'
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-const MainPage = ({ profile, signer }) => {
+const MainPage = ({ profile, signer, nftContractAddress, nftTokenId }) => {
   return (
-    // <div style={{boxShadow: '5px 10px 20px rgba(0,0,0,0.25)'}}>
     <div
       style={{
         border: 'solid',
@@ -14,10 +14,17 @@ const MainPage = ({ profile, signer }) => {
     >
       <div className="grid grid-flow-col">
         <div className="col-span-1">
-          <Leftside />
+          <Center className='mt-4'>
+            <FaLeaf size={27} />
+          </Center>
         </div>
         <div className="col-span-6">
-          <Homesection profile={profile} signer={signer} />
+          <Homesection
+            profile={profile}
+            signer={signer}
+            nftContractAddress={nftContractAddress}
+            nftTokenId={nftTokenId}
+          />
         </div>
       </div>
     </div>

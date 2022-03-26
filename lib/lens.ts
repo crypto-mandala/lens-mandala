@@ -12,7 +12,7 @@ import {
   ProfileStructStructOutput,
   PostDataStruct,
   MirrorDataStruct,
-  PublicationStructStructOutput
+  PublicationStructStructOutput,
 } from './typechain-types/LensHub'
 
 const addrs = require('./addresses.json')
@@ -88,10 +88,11 @@ class Lens {
     const tx = await lensHub.connect(userSigner).post(postData)
     await tx.wait()
     const pubCount = await lensHub.getPubCount(profileId)
-    const pub = await lensHub.getPub(profileId, pubCount.sub(BigNumber.from(1)))
+    const pubId = pubCount.sub(BigNumber.from(1))
+    const pub = await lensHub.getPub(profileId, pubId)
     // eslint-disable-next-line no-console
     console.log({ pub })
-    return { txHash: tx.hash, pub }
+    return { txHash: tx.hash, pubId: pubId.toNumber(), pub }
   }
 
   async mirror(userSigner: Signer, mirrorData: MirrorDataStruct) {
