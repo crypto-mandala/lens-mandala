@@ -7,7 +7,7 @@ import axios from 'axios'
 class Lighthouse {
   async upload(contentStr: string) {
     const filename = uuidv4()
-    const path = `tmp/${filename}.json`
+    const path = `${process.cwd()}/${filename}.json`
     fs.writeFileSync(path, contentStr, 'utf8')
     const key = await lighthouse.getKey(
       process.env.LIGHTHOUSE_PRIV_KEY_ENCRYPTED,
