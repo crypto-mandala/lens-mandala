@@ -12,20 +12,20 @@ import {
   PopulatedTransaction,
   Signer,
   utils,
-} from "ethers";
-import { FunctionFragment, Result } from "@ethersproject/abi";
-import { Listener, Provider } from "@ethersproject/providers";
-import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from "./common";
+} from 'ethers'
+import { FunctionFragment, Result } from '@ethersproject/abi'
+import { Listener, Provider } from '@ethersproject/providers'
+import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from './common'
 
 export type ProfilePublicationDataStruct = {
-  collectLimit: BigNumberish;
-  currentCollects: BigNumberish;
-  amount: BigNumberish;
-  currency: string;
-  recipient: string;
-  referralFee: BigNumberish;
-  endTimestamp: BigNumberish;
-};
+  collectLimit: BigNumberish
+  currentCollects: BigNumberish
+  amount: BigNumberish
+  currency: string
+  recipient: string
+  referralFee: BigNumberish
+  endTimestamp: BigNumberish
+}
 
 export type ProfilePublicationDataStructOutput = [
   BigNumber,
@@ -36,106 +36,106 @@ export type ProfilePublicationDataStructOutput = [
   number,
   number
 ] & {
-  collectLimit: BigNumber;
-  currentCollects: BigNumber;
-  amount: BigNumber;
-  currency: string;
-  recipient: string;
-  referralFee: number;
-  endTimestamp: number;
-};
+  collectLimit: BigNumber
+  currentCollects: BigNumber
+  amount: BigNumber
+  currency: string
+  recipient: string
+  referralFee: number
+  endTimestamp: number
+}
 
 export interface LimitedTimedFeeCollectModuleInterface extends utils.Interface {
   functions: {
-    "HUB()": FunctionFragment;
-    "MODULE_GLOBALS()": FunctionFragment;
-    "getPublicationData(uint256,uint256)": FunctionFragment;
-    "initializePublicationCollectModule(uint256,uint256,bytes)": FunctionFragment;
-    "processCollect(uint256,address,uint256,uint256,bytes)": FunctionFragment;
-  };
+    'HUB()': FunctionFragment
+    'MODULE_GLOBALS()': FunctionFragment
+    'getPublicationData(uint256,uint256)': FunctionFragment
+    'initializePublicationCollectModule(uint256,uint256,bytes)': FunctionFragment
+    'processCollect(uint256,address,uint256,uint256,bytes)': FunctionFragment
+  }
 
-  encodeFunctionData(functionFragment: "HUB", values?: undefined): string;
+  encodeFunctionData(functionFragment: 'HUB', values?: undefined): string
   encodeFunctionData(
-    functionFragment: "MODULE_GLOBALS",
+    functionFragment: 'MODULE_GLOBALS',
     values?: undefined
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "getPublicationData",
+    functionFragment: 'getPublicationData',
     values: [BigNumberish, BigNumberish]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "initializePublicationCollectModule",
+    functionFragment: 'initializePublicationCollectModule',
     values: [BigNumberish, BigNumberish, BytesLike]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "processCollect",
+    functionFragment: 'processCollect',
     values: [BigNumberish, string, BigNumberish, BigNumberish, BytesLike]
-  ): string;
+  ): string
 
-  decodeFunctionResult(functionFragment: "HUB", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'HUB', data: BytesLike): Result
   decodeFunctionResult(
-    functionFragment: "MODULE_GLOBALS",
+    functionFragment: 'MODULE_GLOBALS',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "getPublicationData",
+    functionFragment: 'getPublicationData',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "initializePublicationCollectModule",
+    functionFragment: 'initializePublicationCollectModule',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "processCollect",
+    functionFragment: 'processCollect',
     data: BytesLike
-  ): Result;
+  ): Result
 
-  events: {};
+  events: {}
 }
 
 export interface LimitedTimedFeeCollectModule extends BaseContract {
-  connect(signerOrProvider: Signer | Provider | string): this;
-  attach(addressOrName: string): this;
-  deployed(): Promise<this>;
+  connect(signerOrProvider: Signer | Provider | string): this
+  attach(addressOrName: string): this
+  deployed(): Promise<this>
 
-  interface: LimitedTimedFeeCollectModuleInterface;
+  interface: LimitedTimedFeeCollectModuleInterface
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
     fromBlockOrBlockhash?: string | number | undefined,
     toBlock?: string | number | undefined
-  ): Promise<Array<TEvent>>;
+  ): Promise<Array<TEvent>>
 
   listeners<TEvent extends TypedEvent>(
     eventFilter?: TypedEventFilter<TEvent>
-  ): Array<TypedListener<TEvent>>;
-  listeners(eventName?: string): Array<Listener>;
+  ): Array<TypedListener<TEvent>>
+  listeners(eventName?: string): Array<Listener>
   removeAllListeners<TEvent extends TypedEvent>(
     eventFilter: TypedEventFilter<TEvent>
-  ): this;
-  removeAllListeners(eventName?: string): this;
-  off: OnEvent<this>;
-  on: OnEvent<this>;
-  once: OnEvent<this>;
-  removeListener: OnEvent<this>;
+  ): this
+  removeAllListeners(eventName?: string): this
+  off: OnEvent<this>
+  on: OnEvent<this>
+  once: OnEvent<this>
+  removeListener: OnEvent<this>
 
   functions: {
-    HUB(overrides?: CallOverrides): Promise<[string]>;
+    HUB(overrides?: CallOverrides): Promise<[string]>
 
-    MODULE_GLOBALS(overrides?: CallOverrides): Promise<[string]>;
+    MODULE_GLOBALS(overrides?: CallOverrides): Promise<[string]>
 
     getPublicationData(
       profileId: BigNumberish,
       pubId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<[ProfilePublicationDataStructOutput]>;
+    ): Promise<[ProfilePublicationDataStructOutput]>
 
     initializePublicationCollectModule(
       profileId: BigNumberish,
       pubId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
     processCollect(
       referrerProfileId: BigNumberish,
@@ -144,25 +144,25 @@ export interface LimitedTimedFeeCollectModule extends BaseContract {
       pubId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-  };
+    ): Promise<ContractTransaction>
+  }
 
-  HUB(overrides?: CallOverrides): Promise<string>;
+  HUB(overrides?: CallOverrides): Promise<string>
 
-  MODULE_GLOBALS(overrides?: CallOverrides): Promise<string>;
+  MODULE_GLOBALS(overrides?: CallOverrides): Promise<string>
 
   getPublicationData(
     profileId: BigNumberish,
     pubId: BigNumberish,
     overrides?: CallOverrides
-  ): Promise<ProfilePublicationDataStructOutput>;
+  ): Promise<ProfilePublicationDataStructOutput>
 
   initializePublicationCollectModule(
     profileId: BigNumberish,
     pubId: BigNumberish,
     data: BytesLike,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   processCollect(
     referrerProfileId: BigNumberish,
@@ -171,25 +171,25 @@ export interface LimitedTimedFeeCollectModule extends BaseContract {
     pubId: BigNumberish,
     data: BytesLike,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   callStatic: {
-    HUB(overrides?: CallOverrides): Promise<string>;
+    HUB(overrides?: CallOverrides): Promise<string>
 
-    MODULE_GLOBALS(overrides?: CallOverrides): Promise<string>;
+    MODULE_GLOBALS(overrides?: CallOverrides): Promise<string>
 
     getPublicationData(
       profileId: BigNumberish,
       pubId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<ProfilePublicationDataStructOutput>;
+    ): Promise<ProfilePublicationDataStructOutput>
 
     initializePublicationCollectModule(
       profileId: BigNumberish,
       pubId: BigNumberish,
       data: BytesLike,
       overrides?: CallOverrides
-    ): Promise<string>;
+    ): Promise<string>
 
     processCollect(
       referrerProfileId: BigNumberish,
@@ -198,28 +198,28 @@ export interface LimitedTimedFeeCollectModule extends BaseContract {
       pubId: BigNumberish,
       data: BytesLike,
       overrides?: CallOverrides
-    ): Promise<void>;
-  };
+    ): Promise<void>
+  }
 
-  filters: {};
+  filters: {}
 
   estimateGas: {
-    HUB(overrides?: CallOverrides): Promise<BigNumber>;
+    HUB(overrides?: CallOverrides): Promise<BigNumber>
 
-    MODULE_GLOBALS(overrides?: CallOverrides): Promise<BigNumber>;
+    MODULE_GLOBALS(overrides?: CallOverrides): Promise<BigNumber>
 
     getPublicationData(
       profileId: BigNumberish,
       pubId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     initializePublicationCollectModule(
       profileId: BigNumberish,
       pubId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     processCollect(
       referrerProfileId: BigNumberish,
@@ -228,26 +228,26 @@ export interface LimitedTimedFeeCollectModule extends BaseContract {
       pubId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-  };
+    ): Promise<BigNumber>
+  }
 
   populateTransaction: {
-    HUB(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    HUB(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
-    MODULE_GLOBALS(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    MODULE_GLOBALS(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
     getPublicationData(
       profileId: BigNumberish,
       pubId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     initializePublicationCollectModule(
       profileId: BigNumberish,
       pubId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     processCollect(
       referrerProfileId: BigNumberish,
@@ -256,6 +256,6 @@ export interface LimitedTimedFeeCollectModule extends BaseContract {
       pubId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-  };
+    ): Promise<PopulatedTransaction>
+  }
 }

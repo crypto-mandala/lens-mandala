@@ -2,38 +2,38 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, Signer, utils } from "ethers";
-import { Provider } from "@ethersproject/providers";
+import { Contract, Signer, utils } from 'ethers'
+import { Provider } from '@ethersproject/providers'
 import type {
   FollowValidationModuleBase,
   FollowValidationModuleBaseInterface,
-} from "../FollowValidationModuleBase";
+} from '../FollowValidationModuleBase'
 
 const _abi = [
   {
     inputs: [],
-    name: "InitParamsInvalid",
-    type: "error",
+    name: 'InitParamsInvalid',
+    type: 'error',
   },
   {
     inputs: [],
-    name: "HUB",
+    name: 'HUB',
     outputs: [
       {
-        internalType: "address",
-        name: "",
-        type: "address",
+        internalType: 'address',
+        name: '',
+        type: 'address',
       },
     ],
-    stateMutability: "view",
-    type: "function",
+    stateMutability: 'view',
+    type: 'function',
   },
-];
+]
 
 export class FollowValidationModuleBase__factory {
-  static readonly abi = _abi;
+  static readonly abi = _abi
   static createInterface(): FollowValidationModuleBaseInterface {
-    return new utils.Interface(_abi) as FollowValidationModuleBaseInterface;
+    return new utils.Interface(_abi) as FollowValidationModuleBaseInterface
   }
   static connect(
     address: string,
@@ -43,6 +43,6 @@ export class FollowValidationModuleBase__factory {
       address,
       _abi,
       signerOrProvider
-    ) as FollowValidationModuleBase;
+    ) as FollowValidationModuleBase
   }
 }

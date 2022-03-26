@@ -11,63 +11,63 @@ import {
   PopulatedTransaction,
   Signer,
   utils,
-} from "ethers";
-import { FunctionFragment, Result } from "@ethersproject/abi";
-import { Listener, Provider } from "@ethersproject/providers";
-import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from "./common";
+} from 'ethers'
+import { FunctionFragment, Result } from '@ethersproject/abi'
+import { Listener, Provider } from '@ethersproject/providers'
+import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from './common'
 
 export interface HelperInterface extends utils.Interface {
   functions: {
-    "batchDelegate(address,address,address)": FunctionFragment;
-    "getBlockNumber()": FunctionFragment;
-  };
+    'batchDelegate(address,address,address)': FunctionFragment
+    'getBlockNumber()': FunctionFragment
+  }
 
   encodeFunctionData(
-    functionFragment: "batchDelegate",
+    functionFragment: 'batchDelegate',
     values: [string, string, string]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "getBlockNumber",
+    functionFragment: 'getBlockNumber',
     values?: undefined
-  ): string;
+  ): string
 
   decodeFunctionResult(
-    functionFragment: "batchDelegate",
+    functionFragment: 'batchDelegate',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "getBlockNumber",
+    functionFragment: 'getBlockNumber',
     data: BytesLike
-  ): Result;
+  ): Result
 
-  events: {};
+  events: {}
 }
 
 export interface Helper extends BaseContract {
-  connect(signerOrProvider: Signer | Provider | string): this;
-  attach(addressOrName: string): this;
-  deployed(): Promise<this>;
+  connect(signerOrProvider: Signer | Provider | string): this
+  attach(addressOrName: string): this
+  deployed(): Promise<this>
 
-  interface: HelperInterface;
+  interface: HelperInterface
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
     fromBlockOrBlockhash?: string | number | undefined,
     toBlock?: string | number | undefined
-  ): Promise<Array<TEvent>>;
+  ): Promise<Array<TEvent>>
 
   listeners<TEvent extends TypedEvent>(
     eventFilter?: TypedEventFilter<TEvent>
-  ): Array<TypedListener<TEvent>>;
-  listeners(eventName?: string): Array<Listener>;
+  ): Array<TypedListener<TEvent>>
+  listeners(eventName?: string): Array<Listener>
   removeAllListeners<TEvent extends TypedEvent>(
     eventFilter: TypedEventFilter<TEvent>
-  ): this;
-  removeAllListeners(eventName?: string): this;
-  off: OnEvent<this>;
-  on: OnEvent<this>;
-  once: OnEvent<this>;
-  removeListener: OnEvent<this>;
+  ): this
+  removeAllListeners(eventName?: string): this
+  off: OnEvent<this>
+  on: OnEvent<this>
+  once: OnEvent<this>
+  removeListener: OnEvent<this>
 
   functions: {
     batchDelegate(
@@ -75,19 +75,19 @@ export interface Helper extends BaseContract {
       first: string,
       second: string,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
-    getBlockNumber(overrides?: CallOverrides): Promise<[BigNumber]>;
-  };
+    getBlockNumber(overrides?: CallOverrides): Promise<[BigNumber]>
+  }
 
   batchDelegate(
     nft: string,
     first: string,
     second: string,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
-  getBlockNumber(overrides?: CallOverrides): Promise<BigNumber>;
+  getBlockNumber(overrides?: CallOverrides): Promise<BigNumber>
 
   callStatic: {
     batchDelegate(
@@ -95,12 +95,12 @@ export interface Helper extends BaseContract {
       first: string,
       second: string,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<void>
 
-    getBlockNumber(overrides?: CallOverrides): Promise<BigNumber>;
-  };
+    getBlockNumber(overrides?: CallOverrides): Promise<BigNumber>
+  }
 
-  filters: {};
+  filters: {}
 
   estimateGas: {
     batchDelegate(
@@ -108,10 +108,10 @@ export interface Helper extends BaseContract {
       first: string,
       second: string,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
-    getBlockNumber(overrides?: CallOverrides): Promise<BigNumber>;
-  };
+    getBlockNumber(overrides?: CallOverrides): Promise<BigNumber>
+  }
 
   populateTransaction: {
     batchDelegate(
@@ -119,8 +119,8 @@ export interface Helper extends BaseContract {
       first: string,
       second: string,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
-    getBlockNumber(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-  };
+    getBlockNumber(overrides?: CallOverrides): Promise<PopulatedTransaction>
+  }
 }

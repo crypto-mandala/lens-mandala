@@ -12,31 +12,31 @@ import {
   PopulatedTransaction,
   Signer,
   utils,
-} from "ethers";
-import { FunctionFragment, Result } from "@ethersproject/abi";
-import { Listener, Provider } from "@ethersproject/providers";
-import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from "./common";
+} from 'ethers'
+import { FunctionFragment, Result } from '@ethersproject/abi'
+import { Listener, Provider } from '@ethersproject/providers'
+import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from './common'
 
 export type EIP712SignatureStruct = {
-  v: BigNumberish;
-  r: BytesLike;
-  s: BytesLike;
-  deadline: BigNumberish;
-};
+  v: BigNumberish
+  r: BytesLike
+  s: BytesLike
+  deadline: BigNumberish
+}
 
 export type EIP712SignatureStructOutput = [
   number,
   string,
   string,
   BigNumber
-] & { v: number; r: string; s: string; deadline: BigNumber };
+] & { v: number; r: string; s: string; deadline: BigNumber }
 
 export type ToggleFollowWithSigDataStruct = {
-  follower: string;
-  profileIds: BigNumberish[];
-  enables: boolean[];
-  sig: EIP712SignatureStruct;
-};
+  follower: string
+  profileIds: BigNumberish[]
+  enables: boolean[]
+  sig: EIP712SignatureStruct
+}
 
 export type ToggleFollowWithSigDataStructOutput = [
   string,
@@ -44,156 +44,156 @@ export type ToggleFollowWithSigDataStructOutput = [
   boolean[],
   EIP712SignatureStructOutput
 ] & {
-  follower: string;
-  profileIds: BigNumber[];
-  enables: boolean[];
-  sig: EIP712SignatureStructOutput;
-};
+  follower: string
+  profileIds: BigNumber[]
+  enables: boolean[]
+  sig: EIP712SignatureStructOutput
+}
 
 export interface LensPeripheryDataProviderInterface extends utils.Interface {
   functions: {
-    "NAME()": FunctionFragment;
-    "sigNonces(address)": FunctionFragment;
-    "toggleFollow(uint256[],bool[])": FunctionFragment;
-    "toggleFollowWithSig((address,uint256[],bool[],(uint8,bytes32,bytes32,uint256)))": FunctionFragment;
-  };
+    'NAME()': FunctionFragment
+    'sigNonces(address)': FunctionFragment
+    'toggleFollow(uint256[],bool[])': FunctionFragment
+    'toggleFollowWithSig((address,uint256[],bool[],(uint8,bytes32,bytes32,uint256)))': FunctionFragment
+  }
 
-  encodeFunctionData(functionFragment: "NAME", values?: undefined): string;
-  encodeFunctionData(functionFragment: "sigNonces", values: [string]): string;
+  encodeFunctionData(functionFragment: 'NAME', values?: undefined): string
+  encodeFunctionData(functionFragment: 'sigNonces', values: [string]): string
   encodeFunctionData(
-    functionFragment: "toggleFollow",
+    functionFragment: 'toggleFollow',
     values: [BigNumberish[], boolean[]]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "toggleFollowWithSig",
+    functionFragment: 'toggleFollowWithSig',
     values: [ToggleFollowWithSigDataStruct]
-  ): string;
+  ): string
 
-  decodeFunctionResult(functionFragment: "NAME", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "sigNonces", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'NAME', data: BytesLike): Result
+  decodeFunctionResult(functionFragment: 'sigNonces', data: BytesLike): Result
   decodeFunctionResult(
-    functionFragment: "toggleFollow",
+    functionFragment: 'toggleFollow',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "toggleFollowWithSig",
+    functionFragment: 'toggleFollowWithSig',
     data: BytesLike
-  ): Result;
+  ): Result
 
-  events: {};
+  events: {}
 }
 
 export interface LensPeripheryDataProvider extends BaseContract {
-  connect(signerOrProvider: Signer | Provider | string): this;
-  attach(addressOrName: string): this;
-  deployed(): Promise<this>;
+  connect(signerOrProvider: Signer | Provider | string): this
+  attach(addressOrName: string): this
+  deployed(): Promise<this>
 
-  interface: LensPeripheryDataProviderInterface;
+  interface: LensPeripheryDataProviderInterface
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
     fromBlockOrBlockhash?: string | number | undefined,
     toBlock?: string | number | undefined
-  ): Promise<Array<TEvent>>;
+  ): Promise<Array<TEvent>>
 
   listeners<TEvent extends TypedEvent>(
     eventFilter?: TypedEventFilter<TEvent>
-  ): Array<TypedListener<TEvent>>;
-  listeners(eventName?: string): Array<Listener>;
+  ): Array<TypedListener<TEvent>>
+  listeners(eventName?: string): Array<Listener>
   removeAllListeners<TEvent extends TypedEvent>(
     eventFilter: TypedEventFilter<TEvent>
-  ): this;
-  removeAllListeners(eventName?: string): this;
-  off: OnEvent<this>;
-  on: OnEvent<this>;
-  once: OnEvent<this>;
-  removeListener: OnEvent<this>;
+  ): this
+  removeAllListeners(eventName?: string): this
+  off: OnEvent<this>
+  on: OnEvent<this>
+  once: OnEvent<this>
+  removeListener: OnEvent<this>
 
   functions: {
-    NAME(overrides?: CallOverrides): Promise<[string]>;
+    NAME(overrides?: CallOverrides): Promise<[string]>
 
-    sigNonces(arg0: string, overrides?: CallOverrides): Promise<[BigNumber]>;
+    sigNonces(arg0: string, overrides?: CallOverrides): Promise<[BigNumber]>
 
     toggleFollow(
       profileIds: BigNumberish[],
       enables: boolean[],
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
     toggleFollowWithSig(
       vars: ToggleFollowWithSigDataStruct,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-  };
+    ): Promise<ContractTransaction>
+  }
 
-  NAME(overrides?: CallOverrides): Promise<string>;
+  NAME(overrides?: CallOverrides): Promise<string>
 
-  sigNonces(arg0: string, overrides?: CallOverrides): Promise<BigNumber>;
+  sigNonces(arg0: string, overrides?: CallOverrides): Promise<BigNumber>
 
   toggleFollow(
     profileIds: BigNumberish[],
     enables: boolean[],
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   toggleFollowWithSig(
     vars: ToggleFollowWithSigDataStruct,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   callStatic: {
-    NAME(overrides?: CallOverrides): Promise<string>;
+    NAME(overrides?: CallOverrides): Promise<string>
 
-    sigNonces(arg0: string, overrides?: CallOverrides): Promise<BigNumber>;
+    sigNonces(arg0: string, overrides?: CallOverrides): Promise<BigNumber>
 
     toggleFollow(
       profileIds: BigNumberish[],
       enables: boolean[],
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<void>
 
     toggleFollowWithSig(
       vars: ToggleFollowWithSigDataStruct,
       overrides?: CallOverrides
-    ): Promise<void>;
-  };
+    ): Promise<void>
+  }
 
-  filters: {};
+  filters: {}
 
   estimateGas: {
-    NAME(overrides?: CallOverrides): Promise<BigNumber>;
+    NAME(overrides?: CallOverrides): Promise<BigNumber>
 
-    sigNonces(arg0: string, overrides?: CallOverrides): Promise<BigNumber>;
+    sigNonces(arg0: string, overrides?: CallOverrides): Promise<BigNumber>
 
     toggleFollow(
       profileIds: BigNumberish[],
       enables: boolean[],
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     toggleFollowWithSig(
       vars: ToggleFollowWithSigDataStruct,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-  };
+    ): Promise<BigNumber>
+  }
 
   populateTransaction: {
-    NAME(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    NAME(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
     sigNonces(
       arg0: string,
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     toggleFollow(
       profileIds: BigNumberish[],
       enables: boolean[],
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     toggleFollowWithSig(
       vars: ToggleFollowWithSigDataStruct,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-  };
+    ): Promise<PopulatedTransaction>
+  }
 }

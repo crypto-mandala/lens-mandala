@@ -10,198 +10,198 @@ import {
   PopulatedTransaction,
   Signer,
   utils,
-} from "ethers";
-import { FunctionFragment, Result } from "@ethersproject/abi";
-import { Listener, Provider } from "@ethersproject/providers";
-import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from "./common";
+} from 'ethers'
+import { FunctionFragment, Result } from '@ethersproject/abi'
+import { Listener, Provider } from '@ethersproject/providers'
+import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from './common'
 
 export interface FollowerOnlyReferenceModuleInterface extends utils.Interface {
   functions: {
-    "HUB()": FunctionFragment;
-    "initializeReferenceModule(uint256,uint256,bytes)": FunctionFragment;
-    "processComment(uint256,uint256,uint256)": FunctionFragment;
-    "processMirror(uint256,uint256,uint256)": FunctionFragment;
-  };
+    'HUB()': FunctionFragment
+    'initializeReferenceModule(uint256,uint256,bytes)': FunctionFragment
+    'processComment(uint256,uint256,uint256)': FunctionFragment
+    'processMirror(uint256,uint256,uint256)': FunctionFragment
+  }
 
-  encodeFunctionData(functionFragment: "HUB", values?: undefined): string;
+  encodeFunctionData(functionFragment: 'HUB', values?: undefined): string
   encodeFunctionData(
-    functionFragment: "initializeReferenceModule",
+    functionFragment: 'initializeReferenceModule',
     values: [BigNumberish, BigNumberish, BytesLike]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "processComment",
+    functionFragment: 'processComment',
     values: [BigNumberish, BigNumberish, BigNumberish]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "processMirror",
+    functionFragment: 'processMirror',
     values: [BigNumberish, BigNumberish, BigNumberish]
-  ): string;
+  ): string
 
-  decodeFunctionResult(functionFragment: "HUB", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'HUB', data: BytesLike): Result
   decodeFunctionResult(
-    functionFragment: "initializeReferenceModule",
+    functionFragment: 'initializeReferenceModule',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "processComment",
+    functionFragment: 'processComment',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "processMirror",
+    functionFragment: 'processMirror',
     data: BytesLike
-  ): Result;
+  ): Result
 
-  events: {};
+  events: {}
 }
 
 export interface FollowerOnlyReferenceModule extends BaseContract {
-  connect(signerOrProvider: Signer | Provider | string): this;
-  attach(addressOrName: string): this;
-  deployed(): Promise<this>;
+  connect(signerOrProvider: Signer | Provider | string): this
+  attach(addressOrName: string): this
+  deployed(): Promise<this>
 
-  interface: FollowerOnlyReferenceModuleInterface;
+  interface: FollowerOnlyReferenceModuleInterface
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
     fromBlockOrBlockhash?: string | number | undefined,
     toBlock?: string | number | undefined
-  ): Promise<Array<TEvent>>;
+  ): Promise<Array<TEvent>>
 
   listeners<TEvent extends TypedEvent>(
     eventFilter?: TypedEventFilter<TEvent>
-  ): Array<TypedListener<TEvent>>;
-  listeners(eventName?: string): Array<Listener>;
+  ): Array<TypedListener<TEvent>>
+  listeners(eventName?: string): Array<Listener>
   removeAllListeners<TEvent extends TypedEvent>(
     eventFilter: TypedEventFilter<TEvent>
-  ): this;
-  removeAllListeners(eventName?: string): this;
-  off: OnEvent<this>;
-  on: OnEvent<this>;
-  once: OnEvent<this>;
-  removeListener: OnEvent<this>;
+  ): this
+  removeAllListeners(eventName?: string): this
+  off: OnEvent<this>
+  on: OnEvent<this>
+  once: OnEvent<this>
+  removeListener: OnEvent<this>
 
   functions: {
-    HUB(overrides?: CallOverrides): Promise<[string]>;
+    HUB(overrides?: CallOverrides): Promise<[string]>
 
     initializeReferenceModule(
       profileId: BigNumberish,
       pubId: BigNumberish,
       data: BytesLike,
       overrides?: CallOverrides
-    ): Promise<[string]>;
+    ): Promise<[string]>
 
     processComment(
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<[void]>;
+    ): Promise<[void]>
 
     processMirror(
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<[void]>;
-  };
+    ): Promise<[void]>
+  }
 
-  HUB(overrides?: CallOverrides): Promise<string>;
+  HUB(overrides?: CallOverrides): Promise<string>
 
   initializeReferenceModule(
     profileId: BigNumberish,
     pubId: BigNumberish,
     data: BytesLike,
     overrides?: CallOverrides
-  ): Promise<string>;
+  ): Promise<string>
 
   processComment(
     profileId: BigNumberish,
     profileIdPointed: BigNumberish,
     pubIdPointed: BigNumberish,
     overrides?: CallOverrides
-  ): Promise<void>;
+  ): Promise<void>
 
   processMirror(
     profileId: BigNumberish,
     profileIdPointed: BigNumberish,
     pubIdPointed: BigNumberish,
     overrides?: CallOverrides
-  ): Promise<void>;
+  ): Promise<void>
 
   callStatic: {
-    HUB(overrides?: CallOverrides): Promise<string>;
+    HUB(overrides?: CallOverrides): Promise<string>
 
     initializeReferenceModule(
       profileId: BigNumberish,
       pubId: BigNumberish,
       data: BytesLike,
       overrides?: CallOverrides
-    ): Promise<string>;
+    ): Promise<string>
 
     processComment(
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<void>
 
     processMirror(
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<void>;
-  };
+    ): Promise<void>
+  }
 
-  filters: {};
+  filters: {}
 
   estimateGas: {
-    HUB(overrides?: CallOverrides): Promise<BigNumber>;
+    HUB(overrides?: CallOverrides): Promise<BigNumber>
 
     initializeReferenceModule(
       profileId: BigNumberish,
       pubId: BigNumberish,
       data: BytesLike,
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     processComment(
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     processMirror(
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
-  };
+    ): Promise<BigNumber>
+  }
 
   populateTransaction: {
-    HUB(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    HUB(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
     initializeReferenceModule(
       profileId: BigNumberish,
       pubId: BigNumberish,
       data: BytesLike,
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     processComment(
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     processMirror(
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-  };
+    ): Promise<PopulatedTransaction>
+  }
 }

@@ -12,119 +12,119 @@ import {
   PopulatedTransaction,
   Signer,
   utils,
-} from "ethers";
-import { FunctionFragment, Result } from "@ethersproject/abi";
-import { Listener, Provider } from "@ethersproject/providers";
-import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from "./common";
+} from 'ethers'
+import { FunctionFragment, Result } from '@ethersproject/abi'
+import { Listener, Provider } from '@ethersproject/providers'
+import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from './common'
 
 export type ProfileDataStruct = {
-  currency: string;
-  amount: BigNumberish;
-  recipient: string;
-};
+  currency: string
+  amount: BigNumberish
+  recipient: string
+}
 
 export type ProfileDataStructOutput = [string, BigNumber, string] & {
-  currency: string;
-  amount: BigNumber;
-  recipient: string;
-};
+  currency: string
+  amount: BigNumber
+  recipient: string
+}
 
 export interface FeeFollowModuleInterface extends utils.Interface {
   functions: {
-    "HUB()": FunctionFragment;
-    "MODULE_GLOBALS()": FunctionFragment;
-    "followModuleTransferHook(uint256,address,address,uint256)": FunctionFragment;
-    "getProfileData(uint256)": FunctionFragment;
-    "initializeFollowModule(uint256,bytes)": FunctionFragment;
-    "processFollow(address,uint256,bytes)": FunctionFragment;
-    "validateFollow(uint256,address,uint256)": FunctionFragment;
-  };
+    'HUB()': FunctionFragment
+    'MODULE_GLOBALS()': FunctionFragment
+    'followModuleTransferHook(uint256,address,address,uint256)': FunctionFragment
+    'getProfileData(uint256)': FunctionFragment
+    'initializeFollowModule(uint256,bytes)': FunctionFragment
+    'processFollow(address,uint256,bytes)': FunctionFragment
+    'validateFollow(uint256,address,uint256)': FunctionFragment
+  }
 
-  encodeFunctionData(functionFragment: "HUB", values?: undefined): string;
+  encodeFunctionData(functionFragment: 'HUB', values?: undefined): string
   encodeFunctionData(
-    functionFragment: "MODULE_GLOBALS",
+    functionFragment: 'MODULE_GLOBALS',
     values?: undefined
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "followModuleTransferHook",
+    functionFragment: 'followModuleTransferHook',
     values: [BigNumberish, string, string, BigNumberish]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "getProfileData",
+    functionFragment: 'getProfileData',
     values: [BigNumberish]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "initializeFollowModule",
+    functionFragment: 'initializeFollowModule',
     values: [BigNumberish, BytesLike]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "processFollow",
+    functionFragment: 'processFollow',
     values: [string, BigNumberish, BytesLike]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "validateFollow",
+    functionFragment: 'validateFollow',
     values: [BigNumberish, string, BigNumberish]
-  ): string;
+  ): string
 
-  decodeFunctionResult(functionFragment: "HUB", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'HUB', data: BytesLike): Result
   decodeFunctionResult(
-    functionFragment: "MODULE_GLOBALS",
+    functionFragment: 'MODULE_GLOBALS',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "followModuleTransferHook",
+    functionFragment: 'followModuleTransferHook',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "getProfileData",
+    functionFragment: 'getProfileData',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "initializeFollowModule",
+    functionFragment: 'initializeFollowModule',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "processFollow",
+    functionFragment: 'processFollow',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "validateFollow",
+    functionFragment: 'validateFollow',
     data: BytesLike
-  ): Result;
+  ): Result
 
-  events: {};
+  events: {}
 }
 
 export interface FeeFollowModule extends BaseContract {
-  connect(signerOrProvider: Signer | Provider | string): this;
-  attach(addressOrName: string): this;
-  deployed(): Promise<this>;
+  connect(signerOrProvider: Signer | Provider | string): this
+  attach(addressOrName: string): this
+  deployed(): Promise<this>
 
-  interface: FeeFollowModuleInterface;
+  interface: FeeFollowModuleInterface
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
     fromBlockOrBlockhash?: string | number | undefined,
     toBlock?: string | number | undefined
-  ): Promise<Array<TEvent>>;
+  ): Promise<Array<TEvent>>
 
   listeners<TEvent extends TypedEvent>(
     eventFilter?: TypedEventFilter<TEvent>
-  ): Array<TypedListener<TEvent>>;
-  listeners(eventName?: string): Array<Listener>;
+  ): Array<TypedListener<TEvent>>
+  listeners(eventName?: string): Array<Listener>
   removeAllListeners<TEvent extends TypedEvent>(
     eventFilter: TypedEventFilter<TEvent>
-  ): this;
-  removeAllListeners(eventName?: string): this;
-  off: OnEvent<this>;
-  on: OnEvent<this>;
-  once: OnEvent<this>;
-  removeListener: OnEvent<this>;
+  ): this
+  removeAllListeners(eventName?: string): this
+  off: OnEvent<this>
+  on: OnEvent<this>
+  once: OnEvent<this>
+  removeListener: OnEvent<this>
 
   functions: {
-    HUB(overrides?: CallOverrides): Promise<[string]>;
+    HUB(overrides?: CallOverrides): Promise<[string]>
 
-    MODULE_GLOBALS(overrides?: CallOverrides): Promise<[string]>;
+    MODULE_GLOBALS(overrides?: CallOverrides): Promise<[string]>
 
     followModuleTransferHook(
       profileId: BigNumberish,
@@ -132,37 +132,37 @@ export interface FeeFollowModule extends BaseContract {
       to: string,
       followNFTTokenId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
     getProfileData(
       profileId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<[ProfileDataStructOutput]>;
+    ): Promise<[ProfileDataStructOutput]>
 
     initializeFollowModule(
       profileId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
     processFollow(
       follower: string,
       profileId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
     validateFollow(
       profileId: BigNumberish,
       follower: string,
       followNFTTokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<[void]>;
-  };
+    ): Promise<[void]>
+  }
 
-  HUB(overrides?: CallOverrides): Promise<string>;
+  HUB(overrides?: CallOverrides): Promise<string>
 
-  MODULE_GLOBALS(overrides?: CallOverrides): Promise<string>;
+  MODULE_GLOBALS(overrides?: CallOverrides): Promise<string>
 
   followModuleTransferHook(
     profileId: BigNumberish,
@@ -170,37 +170,37 @@ export interface FeeFollowModule extends BaseContract {
     to: string,
     followNFTTokenId: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   getProfileData(
     profileId: BigNumberish,
     overrides?: CallOverrides
-  ): Promise<ProfileDataStructOutput>;
+  ): Promise<ProfileDataStructOutput>
 
   initializeFollowModule(
     profileId: BigNumberish,
     data: BytesLike,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   processFollow(
     follower: string,
     profileId: BigNumberish,
     data: BytesLike,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   validateFollow(
     profileId: BigNumberish,
     follower: string,
     followNFTTokenId: BigNumberish,
     overrides?: CallOverrides
-  ): Promise<void>;
+  ): Promise<void>
 
   callStatic: {
-    HUB(overrides?: CallOverrides): Promise<string>;
+    HUB(overrides?: CallOverrides): Promise<string>
 
-    MODULE_GLOBALS(overrides?: CallOverrides): Promise<string>;
+    MODULE_GLOBALS(overrides?: CallOverrides): Promise<string>
 
     followModuleTransferHook(
       profileId: BigNumberish,
@@ -208,40 +208,40 @@ export interface FeeFollowModule extends BaseContract {
       to: string,
       followNFTTokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<void>
 
     getProfileData(
       profileId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<ProfileDataStructOutput>;
+    ): Promise<ProfileDataStructOutput>
 
     initializeFollowModule(
       profileId: BigNumberish,
       data: BytesLike,
       overrides?: CallOverrides
-    ): Promise<string>;
+    ): Promise<string>
 
     processFollow(
       follower: string,
       profileId: BigNumberish,
       data: BytesLike,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<void>
 
     validateFollow(
       profileId: BigNumberish,
       follower: string,
       followNFTTokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<void>;
-  };
+    ): Promise<void>
+  }
 
-  filters: {};
+  filters: {}
 
   estimateGas: {
-    HUB(overrides?: CallOverrides): Promise<BigNumber>;
+    HUB(overrides?: CallOverrides): Promise<BigNumber>
 
-    MODULE_GLOBALS(overrides?: CallOverrides): Promise<BigNumber>;
+    MODULE_GLOBALS(overrides?: CallOverrides): Promise<BigNumber>
 
     followModuleTransferHook(
       profileId: BigNumberish,
@@ -249,38 +249,38 @@ export interface FeeFollowModule extends BaseContract {
       to: string,
       followNFTTokenId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     getProfileData(
       profileId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     initializeFollowModule(
       profileId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     processFollow(
       follower: string,
       profileId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     validateFollow(
       profileId: BigNumberish,
       follower: string,
       followNFTTokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
-  };
+    ): Promise<BigNumber>
+  }
 
   populateTransaction: {
-    HUB(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    HUB(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
-    MODULE_GLOBALS(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    MODULE_GLOBALS(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
     followModuleTransferHook(
       profileId: BigNumberish,
@@ -288,31 +288,31 @@ export interface FeeFollowModule extends BaseContract {
       to: string,
       followNFTTokenId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     getProfileData(
       profileId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     initializeFollowModule(
       profileId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     processFollow(
       follower: string,
       profileId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     validateFollow(
       profileId: BigNumberish,
       follower: string,
       followNFTTokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-  };
+    ): Promise<PopulatedTransaction>
+  }
 }

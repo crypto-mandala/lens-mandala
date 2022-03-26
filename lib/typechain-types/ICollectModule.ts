@@ -12,63 +12,63 @@ import {
   PopulatedTransaction,
   Signer,
   utils,
-} from "ethers";
-import { FunctionFragment, Result } from "@ethersproject/abi";
-import { Listener, Provider } from "@ethersproject/providers";
-import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from "./common";
+} from 'ethers'
+import { FunctionFragment, Result } from '@ethersproject/abi'
+import { Listener, Provider } from '@ethersproject/providers'
+import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from './common'
 
 export interface ICollectModuleInterface extends utils.Interface {
   functions: {
-    "initializePublicationCollectModule(uint256,uint256,bytes)": FunctionFragment;
-    "processCollect(uint256,address,uint256,uint256,bytes)": FunctionFragment;
-  };
+    'initializePublicationCollectModule(uint256,uint256,bytes)': FunctionFragment
+    'processCollect(uint256,address,uint256,uint256,bytes)': FunctionFragment
+  }
 
   encodeFunctionData(
-    functionFragment: "initializePublicationCollectModule",
+    functionFragment: 'initializePublicationCollectModule',
     values: [BigNumberish, BigNumberish, BytesLike]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "processCollect",
+    functionFragment: 'processCollect',
     values: [BigNumberish, string, BigNumberish, BigNumberish, BytesLike]
-  ): string;
+  ): string
 
   decodeFunctionResult(
-    functionFragment: "initializePublicationCollectModule",
+    functionFragment: 'initializePublicationCollectModule',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "processCollect",
+    functionFragment: 'processCollect',
     data: BytesLike
-  ): Result;
+  ): Result
 
-  events: {};
+  events: {}
 }
 
 export interface ICollectModule extends BaseContract {
-  connect(signerOrProvider: Signer | Provider | string): this;
-  attach(addressOrName: string): this;
-  deployed(): Promise<this>;
+  connect(signerOrProvider: Signer | Provider | string): this
+  attach(addressOrName: string): this
+  deployed(): Promise<this>
 
-  interface: ICollectModuleInterface;
+  interface: ICollectModuleInterface
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
     fromBlockOrBlockhash?: string | number | undefined,
     toBlock?: string | number | undefined
-  ): Promise<Array<TEvent>>;
+  ): Promise<Array<TEvent>>
 
   listeners<TEvent extends TypedEvent>(
     eventFilter?: TypedEventFilter<TEvent>
-  ): Array<TypedListener<TEvent>>;
-  listeners(eventName?: string): Array<Listener>;
+  ): Array<TypedListener<TEvent>>
+  listeners(eventName?: string): Array<Listener>
   removeAllListeners<TEvent extends TypedEvent>(
     eventFilter: TypedEventFilter<TEvent>
-  ): this;
-  removeAllListeners(eventName?: string): this;
-  off: OnEvent<this>;
-  on: OnEvent<this>;
-  once: OnEvent<this>;
-  removeListener: OnEvent<this>;
+  ): this
+  removeAllListeners(eventName?: string): this
+  off: OnEvent<this>
+  on: OnEvent<this>
+  once: OnEvent<this>
+  removeListener: OnEvent<this>
 
   functions: {
     initializePublicationCollectModule(
@@ -76,7 +76,7 @@ export interface ICollectModule extends BaseContract {
       pubId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
     processCollect(
       referrerProfileId: BigNumberish,
@@ -85,15 +85,15 @@ export interface ICollectModule extends BaseContract {
       pubId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-  };
+    ): Promise<ContractTransaction>
+  }
 
   initializePublicationCollectModule(
     profileId: BigNumberish,
     pubId: BigNumberish,
     data: BytesLike,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   processCollect(
     referrerProfileId: BigNumberish,
@@ -102,7 +102,7 @@ export interface ICollectModule extends BaseContract {
     pubId: BigNumberish,
     data: BytesLike,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   callStatic: {
     initializePublicationCollectModule(
@@ -110,7 +110,7 @@ export interface ICollectModule extends BaseContract {
       pubId: BigNumberish,
       data: BytesLike,
       overrides?: CallOverrides
-    ): Promise<string>;
+    ): Promise<string>
 
     processCollect(
       referrerProfileId: BigNumberish,
@@ -119,10 +119,10 @@ export interface ICollectModule extends BaseContract {
       pubId: BigNumberish,
       data: BytesLike,
       overrides?: CallOverrides
-    ): Promise<void>;
-  };
+    ): Promise<void>
+  }
 
-  filters: {};
+  filters: {}
 
   estimateGas: {
     initializePublicationCollectModule(
@@ -130,7 +130,7 @@ export interface ICollectModule extends BaseContract {
       pubId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     processCollect(
       referrerProfileId: BigNumberish,
@@ -139,8 +139,8 @@ export interface ICollectModule extends BaseContract {
       pubId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-  };
+    ): Promise<BigNumber>
+  }
 
   populateTransaction: {
     initializePublicationCollectModule(
@@ -148,7 +148,7 @@ export interface ICollectModule extends BaseContract {
       pubId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     processCollect(
       referrerProfileId: BigNumberish,
@@ -157,6 +157,6 @@ export interface ICollectModule extends BaseContract {
       pubId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-  };
+    ): Promise<PopulatedTransaction>
+  }
 }

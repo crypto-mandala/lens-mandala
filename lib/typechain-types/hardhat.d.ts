@@ -2,563 +2,563 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { ethers } from "ethers";
+import { ethers } from 'ethers'
 import {
   FactoryOptions,
   HardhatEthersHelpers as HardhatEthersHelpersBase,
-} from "@nomiclabs/hardhat-ethers/types";
+} from '@nomiclabs/hardhat-ethers/types'
 
-import * as Contracts from ".";
+import * as Contracts from '.'
 
-declare module "hardhat/types/runtime" {
+declare module 'hardhat/types/runtime' {
   interface HardhatEthersHelpers extends HardhatEthersHelpersBase {
     getContractFactory(
-      name: "IERC1822Proxiable",
+      name: 'IERC1822Proxiable',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IERC1822Proxiable__factory>;
+    ): Promise<Contracts.IERC1822Proxiable__factory>
     getContractFactory(
-      name: "IBeacon",
+      name: 'IBeacon',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IBeacon__factory>;
+    ): Promise<Contracts.IBeacon__factory>
     getContractFactory(
-      name: "ERC1967Proxy",
+      name: 'ERC1967Proxy',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ERC1967Proxy__factory>;
+    ): Promise<Contracts.ERC1967Proxy__factory>
     getContractFactory(
-      name: "ERC1967Upgrade",
+      name: 'ERC1967Upgrade',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ERC1967Upgrade__factory>;
+    ): Promise<Contracts.ERC1967Upgrade__factory>
     getContractFactory(
-      name: "Proxy",
+      name: 'Proxy',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Proxy__factory>;
+    ): Promise<Contracts.Proxy__factory>
     getContractFactory(
-      name: "ERC20",
+      name: 'ERC20',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ERC20__factory>;
+    ): Promise<Contracts.ERC20__factory>
     getContractFactory(
-      name: "IERC20Metadata",
+      name: 'IERC20Metadata',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IERC20Metadata__factory>;
+    ): Promise<Contracts.IERC20Metadata__factory>
     getContractFactory(
-      name: "IERC20",
+      name: 'IERC20',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IERC20__factory>;
+    ): Promise<Contracts.IERC20__factory>
     getContractFactory(
-      name: "IERC721Enumerable",
+      name: 'IERC721Enumerable',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IERC721Enumerable__factory>;
+    ): Promise<Contracts.IERC721Enumerable__factory>
     getContractFactory(
-      name: "IERC721Metadata",
+      name: 'IERC721Metadata',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IERC721Metadata__factory>;
+    ): Promise<Contracts.IERC721Metadata__factory>
     getContractFactory(
-      name: "IERC721",
+      name: 'IERC721',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IERC721__factory>;
+    ): Promise<Contracts.IERC721__factory>
     getContractFactory(
-      name: "IERC721Receiver",
+      name: 'IERC721Receiver',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IERC721Receiver__factory>;
+    ): Promise<Contracts.IERC721Receiver__factory>
     getContractFactory(
-      name: "ERC165",
+      name: 'ERC165',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ERC165__factory>;
+    ): Promise<Contracts.ERC165__factory>
     getContractFactory(
-      name: "IERC165",
+      name: 'IERC165',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IERC165__factory>;
+    ): Promise<Contracts.IERC165__factory>
     getContractFactory(
-      name: "ERC721Enumerable",
+      name: 'ERC721Enumerable',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ERC721Enumerable__factory>;
+    ): Promise<Contracts.ERC721Enumerable__factory>
     getContractFactory(
-      name: "ERC721Time",
+      name: 'ERC721Time',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ERC721Time__factory>;
+    ): Promise<Contracts.ERC721Time__factory>
     getContractFactory(
-      name: "IERC721Time",
+      name: 'IERC721Time',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IERC721Time__factory>;
+    ): Promise<Contracts.IERC721Time__factory>
     getContractFactory(
-      name: "LensMultiState",
+      name: 'LensMultiState',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.LensMultiState__factory>;
+    ): Promise<Contracts.LensMultiState__factory>
     getContractFactory(
-      name: "LensNFTBase",
+      name: 'LensNFTBase',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.LensNFTBase__factory>;
+    ): Promise<Contracts.LensNFTBase__factory>
     getContractFactory(
-      name: "CollectNFT",
+      name: 'CollectNFT',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.CollectNFT__factory>;
+    ): Promise<Contracts.CollectNFT__factory>
     getContractFactory(
-      name: "FollowNFT",
+      name: 'FollowNFT',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.FollowNFT__factory>;
+    ): Promise<Contracts.FollowNFT__factory>
     getContractFactory(
-      name: "LensHub",
+      name: 'LensHub',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.LensHub__factory>;
+    ): Promise<Contracts.LensHub__factory>
     getContractFactory(
-      name: "EmptyCollectModule",
+      name: 'EmptyCollectModule',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.EmptyCollectModule__factory>;
+    ): Promise<Contracts.EmptyCollectModule__factory>
     getContractFactory(
-      name: "FeeCollectModule",
+      name: 'FeeCollectModule',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.FeeCollectModule__factory>;
+    ): Promise<Contracts.FeeCollectModule__factory>
     getContractFactory(
-      name: "LimitedFeeCollectModule",
+      name: 'LimitedFeeCollectModule',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.LimitedFeeCollectModule__factory>;
+    ): Promise<Contracts.LimitedFeeCollectModule__factory>
     getContractFactory(
-      name: "LimitedTimedFeeCollectModule",
+      name: 'LimitedTimedFeeCollectModule',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.LimitedTimedFeeCollectModule__factory>;
+    ): Promise<Contracts.LimitedTimedFeeCollectModule__factory>
     getContractFactory(
-      name: "RevertCollectModule",
+      name: 'RevertCollectModule',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.RevertCollectModule__factory>;
+    ): Promise<Contracts.RevertCollectModule__factory>
     getContractFactory(
-      name: "TimedFeeCollectModule",
+      name: 'TimedFeeCollectModule',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.TimedFeeCollectModule__factory>;
+    ): Promise<Contracts.TimedFeeCollectModule__factory>
     getContractFactory(
-      name: "FeeModuleBase",
+      name: 'FeeModuleBase',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.FeeModuleBase__factory>;
+    ): Promise<Contracts.FeeModuleBase__factory>
     getContractFactory(
-      name: "ApprovalFollowModule",
+      name: 'ApprovalFollowModule',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ApprovalFollowModule__factory>;
+    ): Promise<Contracts.ApprovalFollowModule__factory>
     getContractFactory(
-      name: "FeeFollowModule",
+      name: 'FeeFollowModule',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.FeeFollowModule__factory>;
+    ): Promise<Contracts.FeeFollowModule__factory>
     getContractFactory(
-      name: "FollowValidatorFollowModuleBase",
+      name: 'FollowValidatorFollowModuleBase',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.FollowValidatorFollowModuleBase__factory>;
+    ): Promise<Contracts.FollowValidatorFollowModuleBase__factory>
     getContractFactory(
-      name: "FollowValidationModuleBase",
+      name: 'FollowValidationModuleBase',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.FollowValidationModuleBase__factory>;
+    ): Promise<Contracts.FollowValidationModuleBase__factory>
     getContractFactory(
-      name: "ModuleBase",
+      name: 'ModuleBase',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ModuleBase__factory>;
+    ): Promise<Contracts.ModuleBase__factory>
     getContractFactory(
-      name: "ModuleGlobals",
+      name: 'ModuleGlobals',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ModuleGlobals__factory>;
+    ): Promise<Contracts.ModuleGlobals__factory>
     getContractFactory(
-      name: "FollowerOnlyReferenceModule",
+      name: 'FollowerOnlyReferenceModule',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.FollowerOnlyReferenceModule__factory>;
+    ): Promise<Contracts.FollowerOnlyReferenceModule__factory>
     getContractFactory(
-      name: "ICollectModule",
+      name: 'ICollectModule',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ICollectModule__factory>;
+    ): Promise<Contracts.ICollectModule__factory>
     getContractFactory(
-      name: "ICollectNFT",
+      name: 'ICollectNFT',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ICollectNFT__factory>;
+    ): Promise<Contracts.ICollectNFT__factory>
     getContractFactory(
-      name: "IFollowModule",
+      name: 'IFollowModule',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IFollowModule__factory>;
+    ): Promise<Contracts.IFollowModule__factory>
     getContractFactory(
-      name: "IFollowNFT",
+      name: 'IFollowNFT',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IFollowNFT__factory>;
+    ): Promise<Contracts.IFollowNFT__factory>
     getContractFactory(
-      name: "ILensHub",
+      name: 'ILensHub',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ILensHub__factory>;
+    ): Promise<Contracts.ILensHub__factory>
     getContractFactory(
-      name: "ILensNFTBase",
+      name: 'ILensNFTBase',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ILensNFTBase__factory>;
+    ): Promise<Contracts.ILensNFTBase__factory>
     getContractFactory(
-      name: "IModuleGlobals",
+      name: 'IModuleGlobals',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IModuleGlobals__factory>;
+    ): Promise<Contracts.IModuleGlobals__factory>
     getContractFactory(
-      name: "IReferenceModule",
+      name: 'IReferenceModule',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IReferenceModule__factory>;
+    ): Promise<Contracts.IReferenceModule__factory>
     getContractFactory(
-      name: "Errors",
+      name: 'Errors',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Errors__factory>;
+    ): Promise<Contracts.Errors__factory>
     getContractFactory(
-      name: "Events",
+      name: 'Events',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Events__factory>;
+    ): Promise<Contracts.Events__factory>
     getContractFactory(
-      name: "InteractionLogic",
+      name: 'InteractionLogic',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.InteractionLogic__factory>;
+    ): Promise<Contracts.InteractionLogic__factory>
     getContractFactory(
-      name: "ProfileTokenURILogic",
+      name: 'ProfileTokenURILogic',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ProfileTokenURILogic__factory>;
+    ): Promise<Contracts.ProfileTokenURILogic__factory>
     getContractFactory(
-      name: "PublishingLogic",
+      name: 'PublishingLogic',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.PublishingLogic__factory>;
+    ): Promise<Contracts.PublishingLogic__factory>
     getContractFactory(
-      name: "LensPeripheryDataProvider",
+      name: 'LensPeripheryDataProvider',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.LensPeripheryDataProvider__factory>;
+    ): Promise<Contracts.LensPeripheryDataProvider__factory>
     getContractFactory(
-      name: "UIDataProvider",
+      name: 'UIDataProvider',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.UIDataProvider__factory>;
+    ): Promise<Contracts.UIDataProvider__factory>
     getContractFactory(
-      name: "Currency",
+      name: 'Currency',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Currency__factory>;
+    ): Promise<Contracts.Currency__factory>
     getContractFactory(
-      name: "Helper",
+      name: 'Helper',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Helper__factory>;
+    ): Promise<Contracts.Helper__factory>
     getContractFactory(
-      name: "MockFollowModule",
+      name: 'MockFollowModule',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.MockFollowModule__factory>;
+    ): Promise<Contracts.MockFollowModule__factory>
     getContractFactory(
-      name: "MockLensHubV2",
+      name: 'MockLensHubV2',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.MockLensHubV2__factory>;
+    ): Promise<Contracts.MockLensHubV2__factory>
     getContractFactory(
-      name: "MockLensHubV2BadRevision",
+      name: 'MockLensHubV2BadRevision',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.MockLensHubV2BadRevision__factory>;
+    ): Promise<Contracts.MockLensHubV2BadRevision__factory>
     getContractFactory(
-      name: "MockProfileCreationProxy",
+      name: 'MockProfileCreationProxy',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.MockProfileCreationProxy__factory>;
+    ): Promise<Contracts.MockProfileCreationProxy__factory>
     getContractFactory(
-      name: "MockReferenceModule",
+      name: 'MockReferenceModule',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.MockReferenceModule__factory>;
+    ): Promise<Contracts.MockReferenceModule__factory>
     getContractFactory(
-      name: "TransparentUpgradeableProxy",
+      name: 'TransparentUpgradeableProxy',
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.TransparentUpgradeableProxy__factory>;
+    ): Promise<Contracts.TransparentUpgradeableProxy__factory>
 
     getContractAt(
-      name: "IERC1822Proxiable",
+      name: 'IERC1822Proxiable',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.IERC1822Proxiable>;
+    ): Promise<Contracts.IERC1822Proxiable>
     getContractAt(
-      name: "IBeacon",
+      name: 'IBeacon',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.IBeacon>;
+    ): Promise<Contracts.IBeacon>
     getContractAt(
-      name: "ERC1967Proxy",
+      name: 'ERC1967Proxy',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.ERC1967Proxy>;
+    ): Promise<Contracts.ERC1967Proxy>
     getContractAt(
-      name: "ERC1967Upgrade",
+      name: 'ERC1967Upgrade',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.ERC1967Upgrade>;
+    ): Promise<Contracts.ERC1967Upgrade>
     getContractAt(
-      name: "Proxy",
+      name: 'Proxy',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.Proxy>;
+    ): Promise<Contracts.Proxy>
     getContractAt(
-      name: "ERC20",
+      name: 'ERC20',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.ERC20>;
+    ): Promise<Contracts.ERC20>
     getContractAt(
-      name: "IERC20Metadata",
+      name: 'IERC20Metadata',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.IERC20Metadata>;
+    ): Promise<Contracts.IERC20Metadata>
     getContractAt(
-      name: "IERC20",
+      name: 'IERC20',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.IERC20>;
+    ): Promise<Contracts.IERC20>
     getContractAt(
-      name: "IERC721Enumerable",
+      name: 'IERC721Enumerable',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.IERC721Enumerable>;
+    ): Promise<Contracts.IERC721Enumerable>
     getContractAt(
-      name: "IERC721Metadata",
+      name: 'IERC721Metadata',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.IERC721Metadata>;
+    ): Promise<Contracts.IERC721Metadata>
     getContractAt(
-      name: "IERC721",
+      name: 'IERC721',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.IERC721>;
+    ): Promise<Contracts.IERC721>
     getContractAt(
-      name: "IERC721Receiver",
+      name: 'IERC721Receiver',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.IERC721Receiver>;
+    ): Promise<Contracts.IERC721Receiver>
     getContractAt(
-      name: "ERC165",
+      name: 'ERC165',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.ERC165>;
+    ): Promise<Contracts.ERC165>
     getContractAt(
-      name: "IERC165",
+      name: 'IERC165',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.IERC165>;
+    ): Promise<Contracts.IERC165>
     getContractAt(
-      name: "ERC721Enumerable",
+      name: 'ERC721Enumerable',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.ERC721Enumerable>;
+    ): Promise<Contracts.ERC721Enumerable>
     getContractAt(
-      name: "ERC721Time",
+      name: 'ERC721Time',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.ERC721Time>;
+    ): Promise<Contracts.ERC721Time>
     getContractAt(
-      name: "IERC721Time",
+      name: 'IERC721Time',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.IERC721Time>;
+    ): Promise<Contracts.IERC721Time>
     getContractAt(
-      name: "LensMultiState",
+      name: 'LensMultiState',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.LensMultiState>;
+    ): Promise<Contracts.LensMultiState>
     getContractAt(
-      name: "LensNFTBase",
+      name: 'LensNFTBase',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.LensNFTBase>;
+    ): Promise<Contracts.LensNFTBase>
     getContractAt(
-      name: "CollectNFT",
+      name: 'CollectNFT',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.CollectNFT>;
+    ): Promise<Contracts.CollectNFT>
     getContractAt(
-      name: "FollowNFT",
+      name: 'FollowNFT',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.FollowNFT>;
+    ): Promise<Contracts.FollowNFT>
     getContractAt(
-      name: "LensHub",
+      name: 'LensHub',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.LensHub>;
+    ): Promise<Contracts.LensHub>
     getContractAt(
-      name: "EmptyCollectModule",
+      name: 'EmptyCollectModule',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.EmptyCollectModule>;
+    ): Promise<Contracts.EmptyCollectModule>
     getContractAt(
-      name: "FeeCollectModule",
+      name: 'FeeCollectModule',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.FeeCollectModule>;
+    ): Promise<Contracts.FeeCollectModule>
     getContractAt(
-      name: "LimitedFeeCollectModule",
+      name: 'LimitedFeeCollectModule',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.LimitedFeeCollectModule>;
+    ): Promise<Contracts.LimitedFeeCollectModule>
     getContractAt(
-      name: "LimitedTimedFeeCollectModule",
+      name: 'LimitedTimedFeeCollectModule',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.LimitedTimedFeeCollectModule>;
+    ): Promise<Contracts.LimitedTimedFeeCollectModule>
     getContractAt(
-      name: "RevertCollectModule",
+      name: 'RevertCollectModule',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.RevertCollectModule>;
+    ): Promise<Contracts.RevertCollectModule>
     getContractAt(
-      name: "TimedFeeCollectModule",
+      name: 'TimedFeeCollectModule',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.TimedFeeCollectModule>;
+    ): Promise<Contracts.TimedFeeCollectModule>
     getContractAt(
-      name: "FeeModuleBase",
+      name: 'FeeModuleBase',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.FeeModuleBase>;
+    ): Promise<Contracts.FeeModuleBase>
     getContractAt(
-      name: "ApprovalFollowModule",
+      name: 'ApprovalFollowModule',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.ApprovalFollowModule>;
+    ): Promise<Contracts.ApprovalFollowModule>
     getContractAt(
-      name: "FeeFollowModule",
+      name: 'FeeFollowModule',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.FeeFollowModule>;
+    ): Promise<Contracts.FeeFollowModule>
     getContractAt(
-      name: "FollowValidatorFollowModuleBase",
+      name: 'FollowValidatorFollowModuleBase',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.FollowValidatorFollowModuleBase>;
+    ): Promise<Contracts.FollowValidatorFollowModuleBase>
     getContractAt(
-      name: "FollowValidationModuleBase",
+      name: 'FollowValidationModuleBase',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.FollowValidationModuleBase>;
+    ): Promise<Contracts.FollowValidationModuleBase>
     getContractAt(
-      name: "ModuleBase",
+      name: 'ModuleBase',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.ModuleBase>;
+    ): Promise<Contracts.ModuleBase>
     getContractAt(
-      name: "ModuleGlobals",
+      name: 'ModuleGlobals',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.ModuleGlobals>;
+    ): Promise<Contracts.ModuleGlobals>
     getContractAt(
-      name: "FollowerOnlyReferenceModule",
+      name: 'FollowerOnlyReferenceModule',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.FollowerOnlyReferenceModule>;
+    ): Promise<Contracts.FollowerOnlyReferenceModule>
     getContractAt(
-      name: "ICollectModule",
+      name: 'ICollectModule',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.ICollectModule>;
+    ): Promise<Contracts.ICollectModule>
     getContractAt(
-      name: "ICollectNFT",
+      name: 'ICollectNFT',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.ICollectNFT>;
+    ): Promise<Contracts.ICollectNFT>
     getContractAt(
-      name: "IFollowModule",
+      name: 'IFollowModule',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.IFollowModule>;
+    ): Promise<Contracts.IFollowModule>
     getContractAt(
-      name: "IFollowNFT",
+      name: 'IFollowNFT',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.IFollowNFT>;
+    ): Promise<Contracts.IFollowNFT>
     getContractAt(
-      name: "ILensHub",
+      name: 'ILensHub',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.ILensHub>;
+    ): Promise<Contracts.ILensHub>
     getContractAt(
-      name: "ILensNFTBase",
+      name: 'ILensNFTBase',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.ILensNFTBase>;
+    ): Promise<Contracts.ILensNFTBase>
     getContractAt(
-      name: "IModuleGlobals",
+      name: 'IModuleGlobals',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.IModuleGlobals>;
+    ): Promise<Contracts.IModuleGlobals>
     getContractAt(
-      name: "IReferenceModule",
+      name: 'IReferenceModule',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.IReferenceModule>;
+    ): Promise<Contracts.IReferenceModule>
     getContractAt(
-      name: "Errors",
+      name: 'Errors',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.Errors>;
+    ): Promise<Contracts.Errors>
     getContractAt(
-      name: "Events",
+      name: 'Events',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.Events>;
+    ): Promise<Contracts.Events>
     getContractAt(
-      name: "InteractionLogic",
+      name: 'InteractionLogic',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.InteractionLogic>;
+    ): Promise<Contracts.InteractionLogic>
     getContractAt(
-      name: "ProfileTokenURILogic",
+      name: 'ProfileTokenURILogic',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.ProfileTokenURILogic>;
+    ): Promise<Contracts.ProfileTokenURILogic>
     getContractAt(
-      name: "PublishingLogic",
+      name: 'PublishingLogic',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.PublishingLogic>;
+    ): Promise<Contracts.PublishingLogic>
     getContractAt(
-      name: "LensPeripheryDataProvider",
+      name: 'LensPeripheryDataProvider',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.LensPeripheryDataProvider>;
+    ): Promise<Contracts.LensPeripheryDataProvider>
     getContractAt(
-      name: "UIDataProvider",
+      name: 'UIDataProvider',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.UIDataProvider>;
+    ): Promise<Contracts.UIDataProvider>
     getContractAt(
-      name: "Currency",
+      name: 'Currency',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.Currency>;
+    ): Promise<Contracts.Currency>
     getContractAt(
-      name: "Helper",
+      name: 'Helper',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.Helper>;
+    ): Promise<Contracts.Helper>
     getContractAt(
-      name: "MockFollowModule",
+      name: 'MockFollowModule',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.MockFollowModule>;
+    ): Promise<Contracts.MockFollowModule>
     getContractAt(
-      name: "MockLensHubV2",
+      name: 'MockLensHubV2',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.MockLensHubV2>;
+    ): Promise<Contracts.MockLensHubV2>
     getContractAt(
-      name: "MockLensHubV2BadRevision",
+      name: 'MockLensHubV2BadRevision',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.MockLensHubV2BadRevision>;
+    ): Promise<Contracts.MockLensHubV2BadRevision>
     getContractAt(
-      name: "MockProfileCreationProxy",
+      name: 'MockProfileCreationProxy',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.MockProfileCreationProxy>;
+    ): Promise<Contracts.MockProfileCreationProxy>
     getContractAt(
-      name: "MockReferenceModule",
+      name: 'MockReferenceModule',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.MockReferenceModule>;
+    ): Promise<Contracts.MockReferenceModule>
     getContractAt(
-      name: "TransparentUpgradeableProxy",
+      name: 'TransparentUpgradeableProxy',
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.TransparentUpgradeableProxy>;
+    ): Promise<Contracts.TransparentUpgradeableProxy>
 
     // default types
     getContractFactory(
       name: string,
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<ethers.ContractFactory>;
+    ): Promise<ethers.ContractFactory>
     getContractFactory(
       abi: any[],
       bytecode: ethers.utils.BytesLike,
       signer?: ethers.Signer
-    ): Promise<ethers.ContractFactory>;
+    ): Promise<ethers.ContractFactory>
     getContractAt(
       nameOrAbi: string | any[],
       address: string,
       signer?: ethers.Signer
-    ): Promise<ethers.Contract>;
+    ): Promise<ethers.Contract>
   }
 }

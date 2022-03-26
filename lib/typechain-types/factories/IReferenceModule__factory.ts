@@ -2,100 +2,100 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, Signer, utils } from "ethers";
-import { Provider } from "@ethersproject/providers";
+import { Contract, Signer, utils } from 'ethers'
+import { Provider } from '@ethersproject/providers'
 import type {
   IReferenceModule,
   IReferenceModuleInterface,
-} from "../IReferenceModule";
+} from '../IReferenceModule'
 
 const _abi = [
   {
     inputs: [
       {
-        internalType: "uint256",
-        name: "profileId",
-        type: "uint256",
+        internalType: 'uint256',
+        name: 'profileId',
+        type: 'uint256',
       },
       {
-        internalType: "uint256",
-        name: "pubId",
-        type: "uint256",
+        internalType: 'uint256',
+        name: 'pubId',
+        type: 'uint256',
       },
       {
-        internalType: "bytes",
-        name: "data",
-        type: "bytes",
+        internalType: 'bytes',
+        name: 'data',
+        type: 'bytes',
       },
     ],
-    name: "initializeReferenceModule",
+    name: 'initializeReferenceModule',
     outputs: [
       {
-        internalType: "bytes",
-        name: "",
-        type: "bytes",
+        internalType: 'bytes',
+        name: '',
+        type: 'bytes',
       },
     ],
-    stateMutability: "nonpayable",
-    type: "function",
+    stateMutability: 'nonpayable',
+    type: 'function',
   },
   {
     inputs: [
       {
-        internalType: "uint256",
-        name: "profileId",
-        type: "uint256",
+        internalType: 'uint256',
+        name: 'profileId',
+        type: 'uint256',
       },
       {
-        internalType: "uint256",
-        name: "profileIdPointed",
-        type: "uint256",
+        internalType: 'uint256',
+        name: 'profileIdPointed',
+        type: 'uint256',
       },
       {
-        internalType: "uint256",
-        name: "pubIdPointed",
-        type: "uint256",
+        internalType: 'uint256',
+        name: 'pubIdPointed',
+        type: 'uint256',
       },
     ],
-    name: "processComment",
+    name: 'processComment',
     outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
+    stateMutability: 'nonpayable',
+    type: 'function',
   },
   {
     inputs: [
       {
-        internalType: "uint256",
-        name: "profileId",
-        type: "uint256",
+        internalType: 'uint256',
+        name: 'profileId',
+        type: 'uint256',
       },
       {
-        internalType: "uint256",
-        name: "profileIdPointed",
-        type: "uint256",
+        internalType: 'uint256',
+        name: 'profileIdPointed',
+        type: 'uint256',
       },
       {
-        internalType: "uint256",
-        name: "pubIdPointed",
-        type: "uint256",
+        internalType: 'uint256',
+        name: 'pubIdPointed',
+        type: 'uint256',
       },
     ],
-    name: "processMirror",
+    name: 'processMirror',
     outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
+    stateMutability: 'nonpayable',
+    type: 'function',
   },
-];
+]
 
 export class IReferenceModule__factory {
-  static readonly abi = _abi;
+  static readonly abi = _abi
   static createInterface(): IReferenceModuleInterface {
-    return new utils.Interface(_abi) as IReferenceModuleInterface;
+    return new utils.Interface(_abi) as IReferenceModuleInterface
   }
   static connect(
     address: string,
     signerOrProvider: Signer | Provider
   ): IReferenceModule {
-    return new Contract(address, _abi, signerOrProvider) as IReferenceModule;
+    return new Contract(address, _abi, signerOrProvider) as IReferenceModule
   }
 }

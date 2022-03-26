@@ -12,72 +12,72 @@ import {
   PopulatedTransaction,
   Signer,
   utils,
-} from "ethers";
-import { FunctionFragment, Result } from "@ethersproject/abi";
-import { Listener, Provider } from "@ethersproject/providers";
-import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from "./common";
+} from 'ethers'
+import { FunctionFragment, Result } from '@ethersproject/abi'
+import { Listener, Provider } from '@ethersproject/providers'
+import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from './common'
 
 export interface IReferenceModuleInterface extends utils.Interface {
   functions: {
-    "initializeReferenceModule(uint256,uint256,bytes)": FunctionFragment;
-    "processComment(uint256,uint256,uint256)": FunctionFragment;
-    "processMirror(uint256,uint256,uint256)": FunctionFragment;
-  };
+    'initializeReferenceModule(uint256,uint256,bytes)': FunctionFragment
+    'processComment(uint256,uint256,uint256)': FunctionFragment
+    'processMirror(uint256,uint256,uint256)': FunctionFragment
+  }
 
   encodeFunctionData(
-    functionFragment: "initializeReferenceModule",
+    functionFragment: 'initializeReferenceModule',
     values: [BigNumberish, BigNumberish, BytesLike]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "processComment",
+    functionFragment: 'processComment',
     values: [BigNumberish, BigNumberish, BigNumberish]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "processMirror",
+    functionFragment: 'processMirror',
     values: [BigNumberish, BigNumberish, BigNumberish]
-  ): string;
+  ): string
 
   decodeFunctionResult(
-    functionFragment: "initializeReferenceModule",
+    functionFragment: 'initializeReferenceModule',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "processComment",
+    functionFragment: 'processComment',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "processMirror",
+    functionFragment: 'processMirror',
     data: BytesLike
-  ): Result;
+  ): Result
 
-  events: {};
+  events: {}
 }
 
 export interface IReferenceModule extends BaseContract {
-  connect(signerOrProvider: Signer | Provider | string): this;
-  attach(addressOrName: string): this;
-  deployed(): Promise<this>;
+  connect(signerOrProvider: Signer | Provider | string): this
+  attach(addressOrName: string): this
+  deployed(): Promise<this>
 
-  interface: IReferenceModuleInterface;
+  interface: IReferenceModuleInterface
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
     fromBlockOrBlockhash?: string | number | undefined,
     toBlock?: string | number | undefined
-  ): Promise<Array<TEvent>>;
+  ): Promise<Array<TEvent>>
 
   listeners<TEvent extends TypedEvent>(
     eventFilter?: TypedEventFilter<TEvent>
-  ): Array<TypedListener<TEvent>>;
-  listeners(eventName?: string): Array<Listener>;
+  ): Array<TypedListener<TEvent>>
+  listeners(eventName?: string): Array<Listener>
   removeAllListeners<TEvent extends TypedEvent>(
     eventFilter: TypedEventFilter<TEvent>
-  ): this;
-  removeAllListeners(eventName?: string): this;
-  off: OnEvent<this>;
-  on: OnEvent<this>;
-  once: OnEvent<this>;
-  removeListener: OnEvent<this>;
+  ): this
+  removeAllListeners(eventName?: string): this
+  off: OnEvent<this>
+  on: OnEvent<this>
+  once: OnEvent<this>
+  removeListener: OnEvent<this>
 
   functions: {
     initializeReferenceModule(
@@ -85,43 +85,43 @@ export interface IReferenceModule extends BaseContract {
       pubId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
     processComment(
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
     processMirror(
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-  };
+    ): Promise<ContractTransaction>
+  }
 
   initializeReferenceModule(
     profileId: BigNumberish,
     pubId: BigNumberish,
     data: BytesLike,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   processComment(
     profileId: BigNumberish,
     profileIdPointed: BigNumberish,
     pubIdPointed: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   processMirror(
     profileId: BigNumberish,
     profileIdPointed: BigNumberish,
     pubIdPointed: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   callStatic: {
     initializeReferenceModule(
@@ -129,24 +129,24 @@ export interface IReferenceModule extends BaseContract {
       pubId: BigNumberish,
       data: BytesLike,
       overrides?: CallOverrides
-    ): Promise<string>;
+    ): Promise<string>
 
     processComment(
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<void>
 
     processMirror(
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<void>;
-  };
+    ): Promise<void>
+  }
 
-  filters: {};
+  filters: {}
 
   estimateGas: {
     initializeReferenceModule(
@@ -154,22 +154,22 @@ export interface IReferenceModule extends BaseContract {
       pubId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     processComment(
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     processMirror(
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-  };
+    ): Promise<BigNumber>
+  }
 
   populateTransaction: {
     initializeReferenceModule(
@@ -177,20 +177,20 @@ export interface IReferenceModule extends BaseContract {
       pubId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     processComment(
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     processMirror(
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-  };
+    ): Promise<PopulatedTransaction>
+  }
 }

@@ -5,7 +5,13 @@ import Leftside from './Leftside'
 const MainPage = ({ profile, signer }) => {
   return (
     // <div style={{boxShadow: '5px 10px 20px rgba(0,0,0,0.25)'}}>
-    <div style={{border: 'solid', borderColor: '#E2E8F0', borderBottomStyle: 'none'}}>
+    <div
+      style={{
+        border: 'solid',
+        borderColor: '#E2E8F0',
+        borderBottomStyle: 'none',
+      }}
+    >
       <div className="grid grid-flow-col">
         <div className="col-span-1">
           <Leftside />

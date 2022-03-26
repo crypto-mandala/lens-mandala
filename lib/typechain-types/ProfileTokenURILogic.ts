@@ -10,54 +10,54 @@ import {
   PopulatedTransaction,
   Signer,
   utils,
-} from "ethers";
-import { FunctionFragment, Result } from "@ethersproject/abi";
-import { Listener, Provider } from "@ethersproject/providers";
-import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from "./common";
+} from 'ethers'
+import { FunctionFragment, Result } from '@ethersproject/abi'
+import { Listener, Provider } from '@ethersproject/providers'
+import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from './common'
 
 export interface ProfileTokenURILogicInterface extends utils.Interface {
   functions: {
-    "getProfileTokenURI(uint256,uint256,address,string,string)": FunctionFragment;
-  };
+    'getProfileTokenURI(uint256,uint256,address,string,string)': FunctionFragment
+  }
 
   encodeFunctionData(
-    functionFragment: "getProfileTokenURI",
+    functionFragment: 'getProfileTokenURI',
     values: [BigNumberish, BigNumberish, string, string, string]
-  ): string;
+  ): string
 
   decodeFunctionResult(
-    functionFragment: "getProfileTokenURI",
+    functionFragment: 'getProfileTokenURI',
     data: BytesLike
-  ): Result;
+  ): Result
 
-  events: {};
+  events: {}
 }
 
 export interface ProfileTokenURILogic extends BaseContract {
-  connect(signerOrProvider: Signer | Provider | string): this;
-  attach(addressOrName: string): this;
-  deployed(): Promise<this>;
+  connect(signerOrProvider: Signer | Provider | string): this
+  attach(addressOrName: string): this
+  deployed(): Promise<this>
 
-  interface: ProfileTokenURILogicInterface;
+  interface: ProfileTokenURILogicInterface
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
     fromBlockOrBlockhash?: string | number | undefined,
     toBlock?: string | number | undefined
-  ): Promise<Array<TEvent>>;
+  ): Promise<Array<TEvent>>
 
   listeners<TEvent extends TypedEvent>(
     eventFilter?: TypedEventFilter<TEvent>
-  ): Array<TypedListener<TEvent>>;
-  listeners(eventName?: string): Array<Listener>;
+  ): Array<TypedListener<TEvent>>
+  listeners(eventName?: string): Array<Listener>
   removeAllListeners<TEvent extends TypedEvent>(
     eventFilter: TypedEventFilter<TEvent>
-  ): this;
-  removeAllListeners(eventName?: string): this;
-  off: OnEvent<this>;
-  on: OnEvent<this>;
-  once: OnEvent<this>;
-  removeListener: OnEvent<this>;
+  ): this
+  removeAllListeners(eventName?: string): this
+  off: OnEvent<this>
+  on: OnEvent<this>
+  once: OnEvent<this>
+  removeListener: OnEvent<this>
 
   functions: {
     getProfileTokenURI(
@@ -67,8 +67,8 @@ export interface ProfileTokenURILogic extends BaseContract {
       handle: string,
       imageURI: string,
       overrides?: CallOverrides
-    ): Promise<[string]>;
-  };
+    ): Promise<[string]>
+  }
 
   getProfileTokenURI(
     id: BigNumberish,
@@ -77,7 +77,7 @@ export interface ProfileTokenURILogic extends BaseContract {
     handle: string,
     imageURI: string,
     overrides?: CallOverrides
-  ): Promise<string>;
+  ): Promise<string>
 
   callStatic: {
     getProfileTokenURI(
@@ -87,10 +87,10 @@ export interface ProfileTokenURILogic extends BaseContract {
       handle: string,
       imageURI: string,
       overrides?: CallOverrides
-    ): Promise<string>;
-  };
+    ): Promise<string>
+  }
 
-  filters: {};
+  filters: {}
 
   estimateGas: {
     getProfileTokenURI(
@@ -100,8 +100,8 @@ export interface ProfileTokenURILogic extends BaseContract {
       handle: string,
       imageURI: string,
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
-  };
+    ): Promise<BigNumber>
+  }
 
   populateTransaction: {
     getProfileTokenURI(
@@ -111,6 +111,6 @@ export interface ProfileTokenURILogic extends BaseContract {
       handle: string,
       imageURI: string,
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-  };
+    ): Promise<PopulatedTransaction>
+  }
 }

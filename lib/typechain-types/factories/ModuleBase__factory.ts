@@ -2,40 +2,40 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, Signer, utils } from "ethers";
-import { Provider } from "@ethersproject/providers";
-import type { ModuleBase, ModuleBaseInterface } from "../ModuleBase";
+import { Contract, Signer, utils } from 'ethers'
+import { Provider } from '@ethersproject/providers'
+import type { ModuleBase, ModuleBaseInterface } from '../ModuleBase'
 
 const _abi = [
   {
     inputs: [],
-    name: "InitParamsInvalid",
-    type: "error",
+    name: 'InitParamsInvalid',
+    type: 'error',
   },
   {
     inputs: [],
-    name: "HUB",
+    name: 'HUB',
     outputs: [
       {
-        internalType: "address",
-        name: "",
-        type: "address",
+        internalType: 'address',
+        name: '',
+        type: 'address',
       },
     ],
-    stateMutability: "view",
-    type: "function",
+    stateMutability: 'view',
+    type: 'function',
   },
-];
+]
 
 export class ModuleBase__factory {
-  static readonly abi = _abi;
+  static readonly abi = _abi
   static createInterface(): ModuleBaseInterface {
-    return new utils.Interface(_abi) as ModuleBaseInterface;
+    return new utils.Interface(_abi) as ModuleBaseInterface
   }
   static connect(
     address: string,
     signerOrProvider: Signer | Provider
   ): ModuleBase {
-    return new Contract(address, _abi, signerOrProvider) as ModuleBase;
+    return new Contract(address, _abi, signerOrProvider) as ModuleBase
   }
 }

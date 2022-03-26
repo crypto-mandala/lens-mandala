@@ -5,12 +5,7 @@ import { sequence } from '0xsequence'
 import { configureLogger } from '@0xsequence/utils'
 import Head from 'next/head'
 import { useCallback, useEffect, useReducer, useState } from 'react'
-import {
-  Button,
-  IconButton,
-  Input,
-  Center,
-} from '@chakra-ui/react'
+import { Button, IconButton, Input, Center } from '@chakra-ui/react'
 import { CopyIcon } from '@chakra-ui/icons'
 import { ellipseAddress, getChainData } from '../lib/utilities'
 import lens from '../lib/lens'
@@ -123,7 +118,7 @@ export const Home = (): JSX.Element => {
   const [isLoading, setLoading] = useState(false)
   const [handle, setHandle] = useState('')
   const [profile, setProfile] = useState(null)
-  
+
   const connect = useCallback(async function () {
     const provider = await web3Modal.connect()
     const web3Provider = new ethers.providers.Web3Provider(provider)
@@ -152,7 +147,7 @@ export const Home = (): JSX.Element => {
           wallet.disconnect()
         } else {
           await provider.disconnect()
-        }    
+        }
       }
       dispatch({
         type: 'RESET_WEB3_PROVIDER',
@@ -184,7 +179,7 @@ export const Home = (): JSX.Element => {
       followModule: ZERO_ADDRESS,
       followModuleData: [],
       followNFTURI:
-          'https://ipfs.fleek.co/ipfs/ghostplantghostplantghostplantghostplantghostplantghostplan',
+        'https://ipfs.fleek.co/ipfs/ghostplantghostplantghostplantghostplantghostplantghostplan',
     }
     return await lens.createProfile(web3Provider.getSigner(), profile)
   }
@@ -271,12 +266,11 @@ export const Home = (): JSX.Element => {
                 ) : null}
                 <div>
                   <p className="mb-1">
-                    👤 {ellipseAddress(address)}
-                    {' '}
+                    👤 {ellipseAddress(address)}{' '}
                     <IconButton
-                      aria-label='Copy'
-                      fontSize='12px'
-                      size='xs'
+                      aria-label="Copy"
+                      fontSize="12px"
+                      size="xs"
                       icon={<CopyIcon />}
                       className="mb-1"
                       onClick={() => navigator.clipboard.writeText(address)}
@@ -284,11 +278,18 @@ export const Home = (): JSX.Element => {
                   </p>
                 </div>
                 <div>
-                  <p className="mb-1">🔌 {chainData?.name || web3Provider?.network?.name}</p>
+                  <p className="mb-1">
+                    🔌 {chainData?.name || web3Provider?.network?.name}
+                  </p>
                 </div>
               </div>
               <div>
-                <Button colorScheme='red' variant='solid' size='md' onClick={disconnect}>
+                <Button
+                  colorScheme="red"
+                  variant="solid"
+                  size="md"
+                  onClick={disconnect}
+                >
                   Disconnect
                 </Button>
               </div>
@@ -296,7 +297,7 @@ export const Home = (): JSX.Element => {
           )}
         </header>
 
-        <main className='section'>
+        <main className="section">
           {web3Provider && !profile ? (
             <>
               <Center>
@@ -304,13 +305,19 @@ export const Home = (): JSX.Element => {
                   maxWidth="200px"
                   value={handle}
                   onChange={(event) => setHandle(event.target.value)}
-                  placeholder='Your Handle'
-                  size='md'
-                  variant='outline'
-                  className='mt-12 mb-4'
+                  placeholder="Your Handle"
+                  size="md"
+                  variant="outline"
+                  className="mt-12 mb-4"
                 />
               </Center>
-              <Button isLoading={isLoading} colorScheme="red" variant="solid" onClick={loginLens} size="lg">
+              <Button
+                isLoading={isLoading}
+                colorScheme="red"
+                variant="solid"
+                onClick={loginLens}
+                size="lg"
+              >
                 Sign In/Up
               </Button>
             </>
@@ -322,7 +329,12 @@ export const Home = (): JSX.Element => {
             <>
               <div className="p-8 title">Lens Mandala</div>
 
-              <Button colorScheme='red' variant='solid' onClick={connect} size="lg">
+              <Button
+                colorScheme="red"
+                variant="solid"
+                onClick={connect}
+                size="lg"
+              >
                 Connect Wallet
               </Button>
             </>

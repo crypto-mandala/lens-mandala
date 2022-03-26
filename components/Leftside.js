@@ -34,7 +34,6 @@ const Leftside = () => {
               />
 
               <h1 className="ml-3 mt-1">{session?.user?.name}</h1>
-
             </div>
 
             <div className="border-2 border-slate-100 shadow-gray-400 absolute hidden dropdown-menu bg-white rounded-2xl">

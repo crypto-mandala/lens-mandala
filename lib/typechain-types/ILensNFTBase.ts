@@ -12,116 +12,113 @@ import {
   PopulatedTransaction,
   Signer,
   utils,
-} from "ethers";
-import { FunctionFragment, Result } from "@ethersproject/abi";
-import { Listener, Provider } from "@ethersproject/providers";
-import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from "./common";
+} from 'ethers'
+import { FunctionFragment, Result } from '@ethersproject/abi'
+import { Listener, Provider } from '@ethersproject/providers'
+import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from './common'
 
 export type EIP712SignatureStruct = {
-  v: BigNumberish;
-  r: BytesLike;
-  s: BytesLike;
-  deadline: BigNumberish;
-};
+  v: BigNumberish
+  r: BytesLike
+  s: BytesLike
+  deadline: BigNumberish
+}
 
 export type EIP712SignatureStructOutput = [
   number,
   string,
   string,
   BigNumber
-] & { v: number; r: string; s: string; deadline: BigNumber };
+] & { v: number; r: string; s: string; deadline: BigNumber }
 
 export interface ILensNFTBaseInterface extends utils.Interface {
   functions: {
-    "burn(uint256)": FunctionFragment;
-    "burnWithSig(uint256,(uint8,bytes32,bytes32,uint256))": FunctionFragment;
-    "getDomainSeparator()": FunctionFragment;
-    "permit(address,uint256,(uint8,bytes32,bytes32,uint256))": FunctionFragment;
-    "permitForAll(address,address,bool,(uint8,bytes32,bytes32,uint256))": FunctionFragment;
-  };
+    'burn(uint256)': FunctionFragment
+    'burnWithSig(uint256,(uint8,bytes32,bytes32,uint256))': FunctionFragment
+    'getDomainSeparator()': FunctionFragment
+    'permit(address,uint256,(uint8,bytes32,bytes32,uint256))': FunctionFragment
+    'permitForAll(address,address,bool,(uint8,bytes32,bytes32,uint256))': FunctionFragment
+  }
 
-  encodeFunctionData(functionFragment: "burn", values: [BigNumberish]): string;
+  encodeFunctionData(functionFragment: 'burn', values: [BigNumberish]): string
   encodeFunctionData(
-    functionFragment: "burnWithSig",
+    functionFragment: 'burnWithSig',
     values: [BigNumberish, EIP712SignatureStruct]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "getDomainSeparator",
+    functionFragment: 'getDomainSeparator',
     values?: undefined
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "permit",
+    functionFragment: 'permit',
     values: [string, BigNumberish, EIP712SignatureStruct]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "permitForAll",
+    functionFragment: 'permitForAll',
     values: [string, string, boolean, EIP712SignatureStruct]
-  ): string;
+  ): string
 
-  decodeFunctionResult(functionFragment: "burn", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'burn', data: BytesLike): Result
+  decodeFunctionResult(functionFragment: 'burnWithSig', data: BytesLike): Result
   decodeFunctionResult(
-    functionFragment: "burnWithSig",
+    functionFragment: 'getDomainSeparator',
     data: BytesLike
-  ): Result;
+  ): Result
+  decodeFunctionResult(functionFragment: 'permit', data: BytesLike): Result
   decodeFunctionResult(
-    functionFragment: "getDomainSeparator",
+    functionFragment: 'permitForAll',
     data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "permit", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "permitForAll",
-    data: BytesLike
-  ): Result;
+  ): Result
 
-  events: {};
+  events: {}
 }
 
 export interface ILensNFTBase extends BaseContract {
-  connect(signerOrProvider: Signer | Provider | string): this;
-  attach(addressOrName: string): this;
-  deployed(): Promise<this>;
+  connect(signerOrProvider: Signer | Provider | string): this
+  attach(addressOrName: string): this
+  deployed(): Promise<this>
 
-  interface: ILensNFTBaseInterface;
+  interface: ILensNFTBaseInterface
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
     fromBlockOrBlockhash?: string | number | undefined,
     toBlock?: string | number | undefined
-  ): Promise<Array<TEvent>>;
+  ): Promise<Array<TEvent>>
 
   listeners<TEvent extends TypedEvent>(
     eventFilter?: TypedEventFilter<TEvent>
-  ): Array<TypedListener<TEvent>>;
-  listeners(eventName?: string): Array<Listener>;
+  ): Array<TypedListener<TEvent>>
+  listeners(eventName?: string): Array<Listener>
   removeAllListeners<TEvent extends TypedEvent>(
     eventFilter: TypedEventFilter<TEvent>
-  ): this;
-  removeAllListeners(eventName?: string): this;
-  off: OnEvent<this>;
-  on: OnEvent<this>;
-  once: OnEvent<this>;
-  removeListener: OnEvent<this>;
+  ): this
+  removeAllListeners(eventName?: string): this
+  off: OnEvent<this>
+  on: OnEvent<this>
+  once: OnEvent<this>
+  removeListener: OnEvent<this>
 
   functions: {
     burn(
       tokenId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
     burnWithSig(
       tokenId: BigNumberish,
       sig: EIP712SignatureStruct,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
-    getDomainSeparator(overrides?: CallOverrides): Promise<[string]>;
+    getDomainSeparator(overrides?: CallOverrides): Promise<[string]>
 
     permit(
       spender: string,
       tokenId: BigNumberish,
       sig: EIP712SignatureStruct,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
     permitForAll(
       owner: string,
@@ -129,28 +126,28 @@ export interface ILensNFTBase extends BaseContract {
       approved: boolean,
       sig: EIP712SignatureStruct,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-  };
+    ): Promise<ContractTransaction>
+  }
 
   burn(
     tokenId: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   burnWithSig(
     tokenId: BigNumberish,
     sig: EIP712SignatureStruct,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
-  getDomainSeparator(overrides?: CallOverrides): Promise<string>;
+  getDomainSeparator(overrides?: CallOverrides): Promise<string>
 
   permit(
     spender: string,
     tokenId: BigNumberish,
     sig: EIP712SignatureStruct,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   permitForAll(
     owner: string,
@@ -158,25 +155,25 @@ export interface ILensNFTBase extends BaseContract {
     approved: boolean,
     sig: EIP712SignatureStruct,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   callStatic: {
-    burn(tokenId: BigNumberish, overrides?: CallOverrides): Promise<void>;
+    burn(tokenId: BigNumberish, overrides?: CallOverrides): Promise<void>
 
     burnWithSig(
       tokenId: BigNumberish,
       sig: EIP712SignatureStruct,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<void>
 
-    getDomainSeparator(overrides?: CallOverrides): Promise<string>;
+    getDomainSeparator(overrides?: CallOverrides): Promise<string>
 
     permit(
       spender: string,
       tokenId: BigNumberish,
       sig: EIP712SignatureStruct,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<void>
 
     permitForAll(
       owner: string,
@@ -184,31 +181,31 @@ export interface ILensNFTBase extends BaseContract {
       approved: boolean,
       sig: EIP712SignatureStruct,
       overrides?: CallOverrides
-    ): Promise<void>;
-  };
+    ): Promise<void>
+  }
 
-  filters: {};
+  filters: {}
 
   estimateGas: {
     burn(
       tokenId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     burnWithSig(
       tokenId: BigNumberish,
       sig: EIP712SignatureStruct,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
-    getDomainSeparator(overrides?: CallOverrides): Promise<BigNumber>;
+    getDomainSeparator(overrides?: CallOverrides): Promise<BigNumber>
 
     permit(
       spender: string,
       tokenId: BigNumberish,
       sig: EIP712SignatureStruct,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     permitForAll(
       owner: string,
@@ -216,31 +213,29 @@ export interface ILensNFTBase extends BaseContract {
       approved: boolean,
       sig: EIP712SignatureStruct,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-  };
+    ): Promise<BigNumber>
+  }
 
   populateTransaction: {
     burn(
       tokenId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     burnWithSig(
       tokenId: BigNumberish,
       sig: EIP712SignatureStruct,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
-    getDomainSeparator(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    getDomainSeparator(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
     permit(
       spender: string,
       tokenId: BigNumberish,
       sig: EIP712SignatureStruct,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     permitForAll(
       owner: string,
@@ -248,6 +243,6 @@ export interface ILensNFTBase extends BaseContract {
       approved: boolean,
       sig: EIP712SignatureStruct,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-  };
+    ): Promise<PopulatedTransaction>
+  }
 }

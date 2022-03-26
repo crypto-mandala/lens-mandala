@@ -12,115 +12,115 @@ import {
   PopulatedTransaction,
   Signer,
   utils,
-} from "ethers";
-import { FunctionFragment, Result } from "@ethersproject/abi";
-import { Listener, Provider } from "@ethersproject/providers";
-import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from "./common";
+} from 'ethers'
+import { FunctionFragment, Result } from '@ethersproject/abi'
+import { Listener, Provider } from '@ethersproject/providers'
+import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from './common'
 
 export interface ApprovalFollowModuleInterface extends utils.Interface {
   functions: {
-    "HUB()": FunctionFragment;
-    "approve(uint256,address[],bool[])": FunctionFragment;
-    "followModuleTransferHook(uint256,address,address,uint256)": FunctionFragment;
-    "initializeFollowModule(uint256,bytes)": FunctionFragment;
-    "isApproved(address,uint256,address)": FunctionFragment;
-    "isApprovedArray(address,uint256,address[])": FunctionFragment;
-    "processFollow(address,uint256,bytes)": FunctionFragment;
-    "validateFollow(uint256,address,uint256)": FunctionFragment;
-  };
+    'HUB()': FunctionFragment
+    'approve(uint256,address[],bool[])': FunctionFragment
+    'followModuleTransferHook(uint256,address,address,uint256)': FunctionFragment
+    'initializeFollowModule(uint256,bytes)': FunctionFragment
+    'isApproved(address,uint256,address)': FunctionFragment
+    'isApprovedArray(address,uint256,address[])': FunctionFragment
+    'processFollow(address,uint256,bytes)': FunctionFragment
+    'validateFollow(uint256,address,uint256)': FunctionFragment
+  }
 
-  encodeFunctionData(functionFragment: "HUB", values?: undefined): string;
+  encodeFunctionData(functionFragment: 'HUB', values?: undefined): string
   encodeFunctionData(
-    functionFragment: "approve",
+    functionFragment: 'approve',
     values: [BigNumberish, string[], boolean[]]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "followModuleTransferHook",
+    functionFragment: 'followModuleTransferHook',
     values: [BigNumberish, string, string, BigNumberish]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "initializeFollowModule",
+    functionFragment: 'initializeFollowModule',
     values: [BigNumberish, BytesLike]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "isApproved",
+    functionFragment: 'isApproved',
     values: [string, BigNumberish, string]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "isApprovedArray",
+    functionFragment: 'isApprovedArray',
     values: [string, BigNumberish, string[]]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "processFollow",
+    functionFragment: 'processFollow',
     values: [string, BigNumberish, BytesLike]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "validateFollow",
+    functionFragment: 'validateFollow',
     values: [BigNumberish, string, BigNumberish]
-  ): string;
+  ): string
 
-  decodeFunctionResult(functionFragment: "HUB", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'HUB', data: BytesLike): Result
+  decodeFunctionResult(functionFragment: 'approve', data: BytesLike): Result
   decodeFunctionResult(
-    functionFragment: "followModuleTransferHook",
+    functionFragment: 'followModuleTransferHook',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "initializeFollowModule",
+    functionFragment: 'initializeFollowModule',
     data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "isApproved", data: BytesLike): Result;
+  ): Result
+  decodeFunctionResult(functionFragment: 'isApproved', data: BytesLike): Result
   decodeFunctionResult(
-    functionFragment: "isApprovedArray",
+    functionFragment: 'isApprovedArray',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "processFollow",
+    functionFragment: 'processFollow',
     data: BytesLike
-  ): Result;
+  ): Result
   decodeFunctionResult(
-    functionFragment: "validateFollow",
+    functionFragment: 'validateFollow',
     data: BytesLike
-  ): Result;
+  ): Result
 
-  events: {};
+  events: {}
 }
 
 export interface ApprovalFollowModule extends BaseContract {
-  connect(signerOrProvider: Signer | Provider | string): this;
-  attach(addressOrName: string): this;
-  deployed(): Promise<this>;
+  connect(signerOrProvider: Signer | Provider | string): this
+  attach(addressOrName: string): this
+  deployed(): Promise<this>
 
-  interface: ApprovalFollowModuleInterface;
+  interface: ApprovalFollowModuleInterface
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
     fromBlockOrBlockhash?: string | number | undefined,
     toBlock?: string | number | undefined
-  ): Promise<Array<TEvent>>;
+  ): Promise<Array<TEvent>>
 
   listeners<TEvent extends TypedEvent>(
     eventFilter?: TypedEventFilter<TEvent>
-  ): Array<TypedListener<TEvent>>;
-  listeners(eventName?: string): Array<Listener>;
+  ): Array<TypedListener<TEvent>>
+  listeners(eventName?: string): Array<Listener>
   removeAllListeners<TEvent extends TypedEvent>(
     eventFilter: TypedEventFilter<TEvent>
-  ): this;
-  removeAllListeners(eventName?: string): this;
-  off: OnEvent<this>;
-  on: OnEvent<this>;
-  once: OnEvent<this>;
-  removeListener: OnEvent<this>;
+  ): this
+  removeAllListeners(eventName?: string): this
+  off: OnEvent<this>
+  on: OnEvent<this>
+  once: OnEvent<this>
+  removeListener: OnEvent<this>
 
   functions: {
-    HUB(overrides?: CallOverrides): Promise<[string]>;
+    HUB(overrides?: CallOverrides): Promise<[string]>
 
     approve(
       profileId: BigNumberish,
       addresses: string[],
       toApprove: boolean[],
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
     followModuleTransferHook(
       profileId: BigNumberish,
@@ -128,51 +128,51 @@ export interface ApprovalFollowModule extends BaseContract {
       to: string,
       followNFTTokenId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
     initializeFollowModule(
       profileId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
     isApproved(
       profileOwner: string,
       profileId: BigNumberish,
       toCheck: string,
       overrides?: CallOverrides
-    ): Promise<[boolean]>;
+    ): Promise<[boolean]>
 
     isApprovedArray(
       profileOwner: string,
       profileId: BigNumberish,
       toCheck: string[],
       overrides?: CallOverrides
-    ): Promise<[boolean[]]>;
+    ): Promise<[boolean[]]>
 
     processFollow(
       follower: string,
       profileId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
     validateFollow(
       profileId: BigNumberish,
       follower: string,
       followNFTTokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<[void]>;
-  };
+    ): Promise<[void]>
+  }
 
-  HUB(overrides?: CallOverrides): Promise<string>;
+  HUB(overrides?: CallOverrides): Promise<string>
 
   approve(
     profileId: BigNumberish,
     addresses: string[],
     toApprove: boolean[],
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   followModuleTransferHook(
     profileId: BigNumberish,
@@ -180,51 +180,51 @@ export interface ApprovalFollowModule extends BaseContract {
     to: string,
     followNFTTokenId: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   initializeFollowModule(
     profileId: BigNumberish,
     data: BytesLike,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   isApproved(
     profileOwner: string,
     profileId: BigNumberish,
     toCheck: string,
     overrides?: CallOverrides
-  ): Promise<boolean>;
+  ): Promise<boolean>
 
   isApprovedArray(
     profileOwner: string,
     profileId: BigNumberish,
     toCheck: string[],
     overrides?: CallOverrides
-  ): Promise<boolean[]>;
+  ): Promise<boolean[]>
 
   processFollow(
     follower: string,
     profileId: BigNumberish,
     data: BytesLike,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   validateFollow(
     profileId: BigNumberish,
     follower: string,
     followNFTTokenId: BigNumberish,
     overrides?: CallOverrides
-  ): Promise<void>;
+  ): Promise<void>
 
   callStatic: {
-    HUB(overrides?: CallOverrides): Promise<string>;
+    HUB(overrides?: CallOverrides): Promise<string>
 
     approve(
       profileId: BigNumberish,
       addresses: string[],
       toApprove: boolean[],
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<void>
 
     followModuleTransferHook(
       profileId: BigNumberish,
@@ -232,54 +232,54 @@ export interface ApprovalFollowModule extends BaseContract {
       to: string,
       followNFTTokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<void>
 
     initializeFollowModule(
       profileId: BigNumberish,
       data: BytesLike,
       overrides?: CallOverrides
-    ): Promise<string>;
+    ): Promise<string>
 
     isApproved(
       profileOwner: string,
       profileId: BigNumberish,
       toCheck: string,
       overrides?: CallOverrides
-    ): Promise<boolean>;
+    ): Promise<boolean>
 
     isApprovedArray(
       profileOwner: string,
       profileId: BigNumberish,
       toCheck: string[],
       overrides?: CallOverrides
-    ): Promise<boolean[]>;
+    ): Promise<boolean[]>
 
     processFollow(
       follower: string,
       profileId: BigNumberish,
       data: BytesLike,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<void>
 
     validateFollow(
       profileId: BigNumberish,
       follower: string,
       followNFTTokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<void>;
-  };
+    ): Promise<void>
+  }
 
-  filters: {};
+  filters: {}
 
   estimateGas: {
-    HUB(overrides?: CallOverrides): Promise<BigNumber>;
+    HUB(overrides?: CallOverrides): Promise<BigNumber>
 
     approve(
       profileId: BigNumberish,
       addresses: string[],
       toApprove: boolean[],
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     followModuleTransferHook(
       profileId: BigNumberish,
@@ -287,52 +287,52 @@ export interface ApprovalFollowModule extends BaseContract {
       to: string,
       followNFTTokenId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     initializeFollowModule(
       profileId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     isApproved(
       profileOwner: string,
       profileId: BigNumberish,
       toCheck: string,
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     isApprovedArray(
       profileOwner: string,
       profileId: BigNumberish,
       toCheck: string[],
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     processFollow(
       follower: string,
       profileId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     validateFollow(
       profileId: BigNumberish,
       follower: string,
       followNFTTokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
-  };
+    ): Promise<BigNumber>
+  }
 
   populateTransaction: {
-    HUB(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    HUB(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
     approve(
       profileId: BigNumberish,
       addresses: string[],
       toApprove: boolean[],
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     followModuleTransferHook(
       profileId: BigNumberish,
@@ -340,40 +340,40 @@ export interface ApprovalFollowModule extends BaseContract {
       to: string,
       followNFTTokenId: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     initializeFollowModule(
       profileId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     isApproved(
       profileOwner: string,
       profileId: BigNumberish,
       toCheck: string,
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     isApprovedArray(
       profileOwner: string,
       profileId: BigNumberish,
       toCheck: string[],
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     processFollow(
       follower: string,
       profileId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     validateFollow(
       profileId: BigNumberish,
       follower: string,
       followNFTTokenId: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-  };
+    ): Promise<PopulatedTransaction>
+  }
 }

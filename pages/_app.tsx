@@ -7,17 +7,14 @@ const theme = extendTheme({
   styles: {
     global: {
       body: {
-        color: "gray.800"
-      }
-    }
-  }
-});
+        color: 'gray.800',
+      },
+    },
+  },
+})
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-function App({
-  Component,
-  pageProps: { session, ...pageProps },
-}: AppProps) {
+function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
       <SessionProvider session={session}>

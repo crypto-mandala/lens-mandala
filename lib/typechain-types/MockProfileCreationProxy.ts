@@ -11,19 +11,19 @@ import {
   PopulatedTransaction,
   Signer,
   utils,
-} from "ethers";
-import { FunctionFragment, Result } from "@ethersproject/abi";
-import { Listener, Provider } from "@ethersproject/providers";
-import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from "./common";
+} from 'ethers'
+import { FunctionFragment, Result } from '@ethersproject/abi'
+import { Listener, Provider } from '@ethersproject/providers'
+import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from './common'
 
 export type CreateProfileDataStruct = {
-  to: string;
-  handle: string;
-  imageURI: string;
-  followModule: string;
-  followModuleData: BytesLike;
-  followNFTURI: string;
-};
+  to: string
+  handle: string
+  imageURI: string
+  followModule: string
+  followModuleData: BytesLike
+  followNFTURI: string
+}
 
 export type CreateProfileDataStructOutput = [
   string,
@@ -33,90 +33,90 @@ export type CreateProfileDataStructOutput = [
   string,
   string
 ] & {
-  to: string;
-  handle: string;
-  imageURI: string;
-  followModule: string;
-  followModuleData: string;
-  followNFTURI: string;
-};
+  to: string
+  handle: string
+  imageURI: string
+  followModule: string
+  followModuleData: string
+  followNFTURI: string
+}
 
 export interface MockProfileCreationProxyInterface extends utils.Interface {
   functions: {
-    "proxyCreateProfile((address,string,string,address,bytes,string))": FunctionFragment;
-  };
+    'proxyCreateProfile((address,string,string,address,bytes,string))': FunctionFragment
+  }
 
   encodeFunctionData(
-    functionFragment: "proxyCreateProfile",
+    functionFragment: 'proxyCreateProfile',
     values: [CreateProfileDataStruct]
-  ): string;
+  ): string
 
   decodeFunctionResult(
-    functionFragment: "proxyCreateProfile",
+    functionFragment: 'proxyCreateProfile',
     data: BytesLike
-  ): Result;
+  ): Result
 
-  events: {};
+  events: {}
 }
 
 export interface MockProfileCreationProxy extends BaseContract {
-  connect(signerOrProvider: Signer | Provider | string): this;
-  attach(addressOrName: string): this;
-  deployed(): Promise<this>;
+  connect(signerOrProvider: Signer | Provider | string): this
+  attach(addressOrName: string): this
+  deployed(): Promise<this>
 
-  interface: MockProfileCreationProxyInterface;
+  interface: MockProfileCreationProxyInterface
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
     fromBlockOrBlockhash?: string | number | undefined,
     toBlock?: string | number | undefined
-  ): Promise<Array<TEvent>>;
+  ): Promise<Array<TEvent>>
 
   listeners<TEvent extends TypedEvent>(
     eventFilter?: TypedEventFilter<TEvent>
-  ): Array<TypedListener<TEvent>>;
-  listeners(eventName?: string): Array<Listener>;
+  ): Array<TypedListener<TEvent>>
+  listeners(eventName?: string): Array<Listener>
   removeAllListeners<TEvent extends TypedEvent>(
     eventFilter: TypedEventFilter<TEvent>
-  ): this;
-  removeAllListeners(eventName?: string): this;
-  off: OnEvent<this>;
-  on: OnEvent<this>;
-  once: OnEvent<this>;
-  removeListener: OnEvent<this>;
+  ): this
+  removeAllListeners(eventName?: string): this
+  off: OnEvent<this>
+  on: OnEvent<this>
+  once: OnEvent<this>
+  removeListener: OnEvent<this>
 
   functions: {
     proxyCreateProfile(
       vars: CreateProfileDataStruct,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-  };
+    ): Promise<ContractTransaction>
+  }
 
   proxyCreateProfile(
     vars: CreateProfileDataStruct,
     overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   callStatic: {
     proxyCreateProfile(
       vars: CreateProfileDataStruct,
       overrides?: CallOverrides
-    ): Promise<void>;
-  };
+    ): Promise<void>
+  }
 
-  filters: {};
+  filters: {}
 
   estimateGas: {
     proxyCreateProfile(
       vars: CreateProfileDataStruct,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-  };
+    ): Promise<BigNumber>
+  }
 
   populateTransaction: {
     proxyCreateProfile(
       vars: CreateProfileDataStruct,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-  };
+    ): Promise<PopulatedTransaction>
+  }
 }
