@@ -37,6 +37,11 @@ const waitForTx = async (
 }
 
 class Lens {
+
+  getLensHubAddress() {
+    return addrs['lensHub proxy']
+  }
+
   async createProfile(
     userSigner: Signer,
     profile: CreateProfileDataStruct
