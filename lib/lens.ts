@@ -12,6 +12,7 @@ import {
   ProfileStructStructOutput,
   PostDataStruct,
   MirrorDataStruct,
+  PublicationStructStructOutput,
 } from './typechain-types/LensHub'
 
 const addrs = require('./addresses.json')
