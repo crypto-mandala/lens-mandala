@@ -1,5 +1,27 @@
 # lens-mandala
 
+![Lens Mandala](./etc/logo.png)
+
+## Overview
+
+https://showcase.ethglobal.com/lfgrow/lens-mandala-t9jkr
+
+## Architecture
+
+![Lens Mandala](./etc/architecture.png)
+
+### Web and API
+
+- [./](./)
+
+### Viewer
+
+- [lens-mandala-viewer](https://github.com/crypto-mandala/lens-mandala-viewer)
+
+### NFT Contract
+
+- [lens-mandala-contracts](https://github.com/crypto-mandala/lens-mandala-contracts)
+
 ## Setup
 
 ### Lens Protocol Local Node
