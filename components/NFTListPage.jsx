@@ -5,7 +5,7 @@ const LensMandalaNFT = require('./abis/LensMandalaNFT.json')
 const ERC20Token = require('./abis/ERC20Token.json')
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-const NFTListPage = ({ _profile, signer, nfts, setNftTokenId }) => {
+const NFTListPage = ({ signer, nfts, setNftTokenId }) => {
   
 
   const select = async (argsObj) => {

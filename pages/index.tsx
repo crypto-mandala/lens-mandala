@@ -343,7 +343,6 @@ export const Home = (): JSX.Element => {
           ) : web3Provider && profile && !nftTokenId ? (
             <div className="mt-8 mb-8">
               <NFTListPage
-                profile={profile}
                 signer={web3Provider.getSigner()}
                 nfts={nfts}
                 setNftTokenId={setNftTokenId}
