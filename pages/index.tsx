@@ -132,6 +132,37 @@ export const Home = (): JSX.Element => {
     const signer = web3Provider.getSigner()
     const address = await signer.getAddress()
     const network = await web3Provider.getNetwork()
+
+    if (window.ethereum) {
+      // MEMO: only Mumbai for now.
+      const chainId = '0x13881'
+      try {
+        await window.ethereum.request({ method: "wallet_switchEthereumChain", params: [{ chainId }] });
+      } catch (e: any) {
+        // This error code indicates that the chain has not been added to MetaMask
+        // if it is not, then install it into the user MetaMask
+        if (e.code === 4902) {
+          const chainParams = {
+            chainId: "0x13881",
+            chainName: "Matic Mumbai-Testnet",
+            nativeCurrency: {
+              name: "Matic",
+              symbol: "Matic",
+              decimals: 18,
+            },
+            rpcUrls: [
+              "https://rpc-mumbai.matic.today",
+              "https://matic-mumbai.chainstacklabs.com",
+              "https://rpc-mumbai.maticvigil.com",
+              "https://matic-testnet-archive-rpc.bwarelabs.com",
+            ],
+            blockExplorerUrls: ["https://mumbai.polygonscan.com/"],
+          }
+          window.ethereum.request({ method: "wallet_addEthereumChain", params: [chainParams] });
+        }
+      }
+    }
+
     dispatch({
       type: 'SET_WEB3_PROVIDER',
       provider,
