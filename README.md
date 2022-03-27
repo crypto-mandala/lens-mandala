@@ -104,3 +104,4 @@ Example NFT
 
 - Contract Address: `0x7d2DD3b11a6fB4D77c5134F0424eF40FcCD549A8`
 - OpenSea Page: https://testnets.opensea.io/collection/lensmandalanft-v2
+- Etherscan: https://mumbai.polygonscan.com/address/0x7d2dd3b11a6fb4d77c5134f0424ef40fccd549a8#code

@@ -9,9 +9,6 @@ import styles from './Card.module.css'
 const Card = ({ tokenId, imageUrl, buttonLabel, action }) => {
   const [isSending, setSending] = useState(false)
 
-  // eslint-disable-next-line no-console
-  console.log(tokenId)
-
   const doAction = async (argsObj) => {
     const sleep = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
     setSending(true)
