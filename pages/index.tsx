@@ -11,6 +11,7 @@ import { ellipseAddress, getChainData } from '../lib/utilities'
 import lens from '../lib/lens'
 import { CreateProfileDataStruct } from '../lib/typechain-types/LensHub'
 import MainPage from '../components/MainPage'
+import NFTListPage from '../components/NFTListPage'
 
 configureLogger({ logLevel: 'DEBUG' })
 
@@ -117,8 +118,9 @@ export const Home = (): JSX.Element => {
   const { provider, web3Provider, address, chainId } = state
   const [isLoading, setLoading] = useState(false)
   const [handle, setHandle] = useState('')
-  const [nftContractAddress, setNftContractAddress] = useState('0x41db8e68b817abe104cced933c9d8c5030ba1879')
-  const [nftTokenId, setNftTokenId] = useState('1')
+  const [nftContractAddress, ] = useState('0x7d2dd3b11a6fb4d77c5134f0424ef40fccd549a8')
+  const [nftTokenId, setNftTokenId] = useState('')
+  const [nfts, setNfts] = useState([])
   const [profile, setProfile] = useState(null)
 
   const connect = useCallback(async function () {
@@ -141,6 +143,7 @@ export const Home = (): JSX.Element => {
 
   const disconnect = useCallback(
     async function () {
+      setNftTokenId('')
       setProfile(null)
       await web3Modal.clearCachedProvider()
       if (provider?.disconnect && typeof provider.disconnect === 'function') {
@@ -201,6 +204,15 @@ export const Home = (): JSX.Element => {
       // eslint-disable-next-line no-console
       console.log({ res })
       setProfile(res)
+
+      setNfts([
+        {
+          tokenId: '1',
+        },
+        {
+          tokenId: '2',
+        },
+      ])
     } finally {
       setLoading(false)
     }
@@ -307,7 +319,7 @@ export const Home = (): JSX.Element => {
                   Handle
                 </Box>
               </Center>
-              <Center>
+              <Center className="mb-4">
                 <Input
                   maxWidth="310px"
                   value={handle}
@@ -315,31 +327,6 @@ export const Home = (): JSX.Element => {
                   placeholder="Your Handle"
                   size="md"
                   variant="outline"
-                />
-              </Center>
-
-              <Center className="mt-6 mb-4">
-                <Box textStyle='h2'>
-                  Community NFT Info
-                </Box>
-              </Center>
-              <Center className="mt-2 mb-8">
-                <Input
-                  maxWidth="200px"
-                  value={nftContractAddress}
-                  onChange={(event) => setNftContractAddress(event.target.value)}
-                  placeholder="NFT Contract address"
-                  size="md"
-                  variant="outline"
-                />
-                <Input
-                  maxWidth="100px"
-                  value={nftTokenId}
-                  onChange={(event) => setNftTokenId(event.target.value)}
-                  placeholder="NFT Token ID"
-                  size="md"
-                  variant="outline"
-                  className='ml-2'
                 />
               </Center>
 
@@ -353,6 +340,15 @@ export const Home = (): JSX.Element => {
                 Sign In/Up
               </Button>
             </>
+          ) : web3Provider && profile && !nftTokenId ? (
+            <div className="mt-8 mb-8">
+              <NFTListPage
+                profile={profile}
+                signer={web3Provider.getSigner()}
+                nfts={nfts}
+                setNftTokenId={setNftTokenId}
+              />
+            </div>
           ) : web3Provider && profile ? (
             <div className="mt-8 mb-8">
               <MainPage
