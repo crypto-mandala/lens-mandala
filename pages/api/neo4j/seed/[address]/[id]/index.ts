@@ -1,12 +1,22 @@
 import { BigNumber } from 'ethers'
 import { NextApiResponse } from 'next'
 import withNeo4j, { ApiRequestWithNeo4j } from '../../../../../../lib/middleware/neo4j'
+import initMiddleware from '../../../../../../lib/middleware/init'
+import Cors from 'cors'
+
+const cors = initMiddleware(
+  Cors({
+    methods: ['GET', 'OPTIONS'],
+  })
+)
 
 const handler = async (req: ApiRequestWithNeo4j, res: NextApiResponse) => {
   const {
     query: { address, id },
     method,
   } = req
+  const addressLower = typeof address == 'string' ? address.toLowerCase() : address[0].toLowerCase()
+  await cors(req, res)
 
   switch (method) {
     case 'GET':
@@ -15,11 +25,11 @@ const handler = async (req: ApiRequestWithNeo4j, res: NextApiResponse) => {
         const selectQuery = `MATCH
           (pf: Profile)-[:POST]->(pb: Pub)
           WHERE
-            pb.seed_nft_contract_address = $address AND
+            pb.seed_nft_contract_address = $addressLower AND
             pb.seed_nft_token_id = $tokenIdInt
 
           RETURN COUNT(DISTINCT pf) as profile, COUNT(DISTINCT pb) as post, SUM(pb.collectCount) as collect;`
-        const result = await req.neo4j.run(selectQuery, { address, tokenIdInt })
+        const result = await req.neo4j.run(selectQuery, { addressLower, tokenIdInt })
 
         const resData = {
           timestamp_minted: "2022-03-25T23:13:00Z",

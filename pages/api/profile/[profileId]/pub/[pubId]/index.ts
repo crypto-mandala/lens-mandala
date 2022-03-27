@@ -38,7 +38,7 @@ const handler = async (req: ApiRequestWithNeo4j, res: NextApiResponse) => {
               message: res.data.message || '',
               encrypted: res.data.encrypted,
               timestamp: res.data.timestamp || '',
-              seed_nft_contract_address: res.data.seed_nft_contract_address || '',
+              seed_nft_contract_address: res.data.seed_nft_contract_address ? res.data.seed_nft_contract_address.toLowerCase() : '',
               seed_nft_token_id: BigNumber.from(res.data.seed_nft_token_id).toBigInt(),
               tx_hash: res.data.tx_hash || ''
             }
