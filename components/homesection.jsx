@@ -16,7 +16,7 @@ const homesection = ({ profile, signer, nftContractAddress, nftTokenId }) => {
   const [wantEncrypt, setWantEncrypt] = useState(false)
 
   useEffect(() => {
-    apiClient.getPosts().then(posts => setPosts(posts))
+    apiClient.getPosts({ nftContractAddress, nftTokenId }).then(posts => setPosts(posts))
   }, [])
 
   const uploadContent = async (profileId, handle, message) => {
@@ -34,7 +34,7 @@ const homesection = ({ profile, signer, nftContractAddress, nftTokenId }) => {
     }
 
     if (wantEncrypt) {
-      const { encryptedString, encryptedSymmetricKey } = await lit.encrypt('test', nftContractAddress)
+      const { encryptedString, encryptedSymmetricKey } = await lit.encrypt(message, nftContractAddress)
       // await lit.decrypt(encryptedString, encryptedSymmetricKey, nftContractAddress)
       contentJson.encryptedSymmetricKey = encryptedSymmetricKey
       contentJson.message = encryptedString
@@ -75,6 +75,8 @@ const homesection = ({ profile, signer, nftContractAddress, nftTokenId }) => {
           imageURI: profile.imageURI,
           pubId,
           message: contentJson.message,
+          encrypted: contentJson.encrypted,
+          encryptedSymmetricKey: contentJson.encryptedSymmetricKey,
         },
         ...posts,
       ])
@@ -126,11 +128,14 @@ const homesection = ({ profile, signer, nftContractAddress, nftTokenId }) => {
         </div>
         {posts.map((post) => (
           <Post
-            key={post.id}
+            key={post.pubId || post.id }
             handle={post.handle}
             imageURI={post.imageURI}
             pubId={post.pubId}
             message={post.message}
+            encrypted={post.encrypted}
+            encryptedSymmetricKey={post.encryptedSymmetricKey}
+            nftContractAddress={nftContractAddress}
             currentHandle={profile.handle}
             signer={signer}
           />

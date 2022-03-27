@@ -4,9 +4,20 @@ import { FaRetweet } from 'react-icons/fa'
 import { FiDownload } from 'react-icons/fi'
 import { Button } from '@chakra-ui/react'
 import lens from '../lib/lens'
+import lit from '../lib/lit'
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-const Post = ({ handle, imageURI, pubId, message, signer, currentHandle }) => {
+const Post = ({
+  handle,
+  imageURI,
+  pubId,
+  message,
+  encrypted,
+  encryptedSymmetricKey,
+  nftContractAddress,
+  signer,
+  currentHandle
+}) => {
   const comment = async () => {
     alert('This feature is currently not available')
   }
@@ -35,6 +46,11 @@ const Post = ({ handle, imageURI, pubId, message, signer, currentHandle }) => {
     await lens.collect(signer, args)
   }
 
+  const decrypt = async () => {
+    const { decryptedString } = await lit.decrypt(message, encryptedSymmetricKey, nftContractAddress)
+    alert(decryptedString)
+  }
+
   return (
     <>
       <div className="hover:bg-slate-100 border-b-2 cursor-pointer pt-4 pb-2">
@@ -48,6 +64,12 @@ const Post = ({ handle, imageURI, pubId, message, signer, currentHandle }) => {
         </div>
 
         <div className="flex flex-row justify-around ml-4  mt-8 m-2 ">
+          {encrypted ? (
+            <Button variant="solid" size="md" onClick={decrypt}>
+              Decrypt
+            </Button>
+          ): null}
+          
           <Button variant="ghost" size="md" onClick={comment}>
             <FaRegComment size={20} />
           </Button>

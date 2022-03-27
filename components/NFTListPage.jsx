@@ -6,8 +6,6 @@ const ERC20Token = require('./abis/ERC20Token.json')
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const NFTListPage = ({ signer, nfts, setNftTokenId }) => {
-  
-
   const select = async (argsObj) => {
     setNftTokenId(argsObj.tokenId)
   }

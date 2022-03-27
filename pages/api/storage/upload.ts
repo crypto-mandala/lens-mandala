@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-// import lighthouse from '../../../lib/lighthouse'
 import pinata from '../../../lib/pinata'
 
 const handler = async (
@@ -13,8 +12,6 @@ const handler = async (
 
   switch (method) {
     case 'POST':
-      // eslint-disable-next-line no-case-declarations
-      // const cid = await lighthouse.upload(json.toString())
       // eslint-disable-next-line no-case-declarations
       const cid = await pinata.upload(JSON.parse(json))
       res.status(200).json(cid)
