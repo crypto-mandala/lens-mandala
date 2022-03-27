@@ -16,7 +16,7 @@ const homesection = ({ profile, signer, nftContractAddress, nftTokenId }) => {
   const [wantEncrypt, setWantEncrypt] = useState(false)
 
   useEffect(() => {
-    apiClient.getPosts().then(posts => setPosts(posts))
+    apiClient.getPosts({ nftContractAddress, nftTokenId }).then(posts => setPosts(posts))
   }, [])
 
   const uploadContent = async (profileId, handle, message) => {
@@ -126,7 +126,7 @@ const homesection = ({ profile, signer, nftContractAddress, nftTokenId }) => {
         </div>
         {posts.map((post) => (
           <Post
-            key={post.id}
+            key={post.pubId || post.id }
             handle={post.handle}
             imageURI={post.imageURI}
             pubId={post.pubId}

@@ -1,8 +1,7 @@
-// import axios from 'axios'
+import axios from 'axios'
 
 class ApiClient {
-  async getPosts() {
-    // TODO: Replace mock
+  async getPosts({ nftContractAddress, nftTokenId }) {
     const imageURIs = [
       'https://openseauserdata.com/files/f175198e5ee2c5326211d4f6e1300e3e.svg',
       'https://openseauserdata.com/files/64275135762f54bcf92771b8b4f9a75d.svg',
@@ -17,6 +16,23 @@ class ApiClient {
       'https://openseauserdata.com/files/09cb4dc0ceaf02d7807fc6eaf12adf81.svg',
       'https://openseauserdata.com/files/e7c3db61f4a957956e455517b4922788.svg',
     ]
+    try {
+      const res = await axios.get(`/api/neo4j/seed/${nftContractAddress}/${nftTokenId}/pub`)
+      if (!res.data) {
+        return res.data.filter((pub: any) => {
+          return pub.type === 'post'
+        }).map((pub: any) => {
+          if (!pub.imageURI) {
+            pub.imageURI = imageURIs[Math.floor(Math.random() * imageURIs.length)]
+          }
+          return pub
+        })
+      }
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.log(e)
+    }
+    // TODO: Replace mock
     return [
       {
         id: 1,
